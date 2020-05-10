@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
-import 'Pantallas/PantallaInicio.dart';
+import 'PantallaInicio.dart';
+import 'Login.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+  MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Login(),
+  ),
+);
