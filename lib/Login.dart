@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'FadeAnimation.dart';
+import 'PantallaInicio.dart';
 
-
-void main() => runApp(
-  MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Login(),
-  )
-);
 
 class Login extends StatelessWidget {
   @override
@@ -136,6 +130,14 @@ class Login extends StatelessWidget {
                         height: 30,
                       ),
                       FadeAnimation(2, InkWell(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyApp(),
+                            ),
+                          );
+                        },
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(
