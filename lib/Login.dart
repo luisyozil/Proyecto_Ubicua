@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'FadeAnimation.dart';
 import 'PantallaInicio.dart';
 
-
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context){

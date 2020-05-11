@@ -5,6 +5,7 @@ import 'PantallaNotificaciones.dart';
 import 'PantallaEventos.dart';
 import 'Login.dart';
 import 'Tulio.dart';
+import 'Paquetes.dart';
 
 class MyApp extends StatelessWidget {
   @override
