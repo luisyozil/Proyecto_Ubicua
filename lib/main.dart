@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'Tulio.dart';
-void main() => runApp(MyApp());
+import 'PantallaInicio.dart';
+import 'Login.dart';
+
+void main() => runApp(
+  MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Login(),
+  ),
+);
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

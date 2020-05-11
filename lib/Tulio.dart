@@ -2,31 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-
 class perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0), // here the desired height
 
         child: AppBar(
-
           iconTheme: IconThemeData(
             color: Colors.black, //change your color here
           ),
           title: Text("Perfil"),
-
         ),
-
       ),
       body: ListView(
-
         children: <Widget>[
           Column(
             children: <Widget>[
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -40,23 +36,25 @@ class perfil extends StatelessWidget {
                             image: new AssetImage('Images/fotoPerfilVacia.png')
                         )
                     ),
-
                   ),
                 ],
               ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Marco Nuñez")
-                ],
+              SizedBox(
+                height: 20,
               ),
-              SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("México")
-                ],
+                children: <Widget>[Text("Marco Nuñez")],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[Text("México")],
+              ),
+              SizedBox(
+                height: 20,
               ),
               SizedBox(height: 300,),
               Row(
@@ -204,8 +202,6 @@ class ayuda extends StatelessWidget {
                       ),
                     ) ,
                   ),
-
-
                 ],
               ),
               SizedBox(height: 20,),
@@ -737,14 +733,11 @@ class facturacion extends StatelessWidget {
             ],
           ),
         ],
-
       ),
-
     );
-
   }
-
 }
+
 class nuevopago extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -870,5 +863,4 @@ class nuevopago extends StatelessWidget {
     );
 
   }
-
 }
