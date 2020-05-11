@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_ubicua/Pantallas/Login.dart';
+import 'package:proyecto_ubicua/Login.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'CardItemModel.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Pantallas/PantallaInicio.dart';
+import 'PantallaInicio.dart';
 
 
 void main() => runApp(MyApp());
