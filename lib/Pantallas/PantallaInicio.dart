@@ -4,6 +4,7 @@ import 'package:proyecto_ubicua/Pantallas/PantallaDetalleVenta.dart';
 import 'PantallaNotificaciones.dart';
 import 'PantallaEventos.dart';
 import 'Login.dart';
+import 'Paquetes.dart';
 
 void main() => runApp(MyApp());
 
