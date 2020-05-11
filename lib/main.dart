@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'Tulio.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: pago(),
     );
   }
 }
@@ -90,7 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: <Widget>[
+            perfil(),
             Text(
               'You have pushed the button this many times:',
             ),
