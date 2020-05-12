@@ -3,8 +3,15 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:proyecto_ubicua/Pantallas/PantallaDetalleVenta.dart';
 import 'PantallaNotificaciones.dart';
 import 'PantallaEventos.dart';
+<<<<<<< Updated upstream:lib/Pantallas/PantallaInicio.dart
 
 void main() => runApp(MyApp());
+=======
+import 'PantallaAyuda.dart';
+import 'Login.dart';
+import 'Tulio.dart';
+import 'Paquetes.dart';
+>>>>>>> Stashed changes:lib/PantallaInicio.dart
 
 class MyApp extends StatelessWidget {
   @override
@@ -33,7 +40,7 @@ class PantallaInicio extends State<PantallaInicio_State> {
   static final itemsPares = List<int>();
   int idx_Title = 2;
   final List<Widget> Pantalla = [
-    Text('Pantalla Ayuda', style: TextStyle(color: Colors.white)),
+    PantallaAyuda(),
     PantallaNotificaciones_State(items: items),
     PantallaEventos(items: itemsEventos),
     Text('Pantalla Busqueda', style: TextStyle(color: Colors.white)),
