@@ -9,7 +9,7 @@ import 'Tulio.dart';
 import 'Paquetes.dart';
 import 'PantallaAyuda.dart';
 
-class MyApp extends StatelessWidget {
+class Inicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class PantallaInicio_State extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new PantallaInicio();
@@ -27,10 +28,12 @@ class PantallaInicio extends State<PantallaInicio_State> {
   static final items = List<int>.generate(20, (i) => i + 1);
   static final itemsEventos = List<int>.generate(10, (i) => i + 1);
 
-  List<CardFormatoGeneral> Titulos = items.map((it) => new CardFormatoGeneral(
-    rutaImagen : 'La imagen es $it',Titulo: 'Titulo $it',Descripcion: 'Mi descripcion es $it'
-  )).toList();
-
+  List<CardFormatoGeneral> Titulos = items
+      .map((it) => new CardFormatoGeneral(
+          rutaImagen: 'La imagen es $it',
+          Titulo: 'Titulo $it',
+          Descripcion: 'Mi descripcion es $it'))
+      .toList();
 
   // Aqui seria el refresh
   static final itemsPares = List<int>();
@@ -40,24 +43,26 @@ class PantallaInicio extends State<PantallaInicio_State> {
     PantallaNotificaciones_State(items: items),
     PantallaEventos(items: itemsEventos),
     Text('Pantalla Busqueda', style: TextStyle(color: Colors.white)),
-    //Text('Cuenta', style: TextStyle(color: Colors.white)),
     perfil(),
   ];
 
   @override
   Widget build(BuildContext context) {
     var MenuList = ['Ayuda', 'Notificaciones', 'Eventos', 'Búsqueda', 'Cuenta'];
+
     return new Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(MenuList[idx_Title],
-          style: TextStyle(color: Color.fromARGB(255, 230, 230, 230),),
+        title: Text(
+          MenuList[idx_Title],
+          style: TextStyle(
+            color: Color.fromARGB(255, 230, 230, 230),
+          ),
         ),
         backgroundColor: Color.fromARGB(255, 45, 45, 45),
       ),
       body: Pantalla[idx_Title],
-      bottomNavigationBar:
-      BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         onTap: (int TabIndice) {
           setState(() {
             idx_Title = TabIndice;

@@ -133,7 +133,7 @@ class Login extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyApp(),
+                              builder: (context) => Inicio(),
                             ),
                           );
                         },
