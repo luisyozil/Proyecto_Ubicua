@@ -3,20 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class perfil extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          title: Text("Perfil"),
-        ),
-      ),
-      body: ListView(
+    return  ListView(
         children: <Widget>[
           Column(
             children: <Widget>[
@@ -44,251 +32,42 @@ class perfil extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text("Marco Nuñez")],
+                children: <Widget>[Text('Nombre de usuario',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),)],
               ),
               SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text("México")],
+                children: <Widget>[Text('México',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),)],
               ),
               SizedBox(
                 height: 20,
               ),
               SizedBox(height: 300,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
+                  SizedBox(width:10.0),
+                  Container(
                     height: 50.0,
-
+                    width: MediaQuery.of(context).size.width - 20,
+                    decoration:  BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black,
+                      boxShadow: [
+                        BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                      ],
+                    ),
                     child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
+                      splashColor: Color.fromARGB(125, 255, 204, 0),
+                      onPressed: (){
 
                       },
-                      child: Text(
-                        "Cerrar Sesion",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-
-
-            ],
-          ),
-
-        ],
-
-      ),
-
-    );
-
-  }
-
-}
-
-class ayuda extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          title: Text("Ayuda"),
-
-        ),
-
-      ),
-      body: ListView(
-
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: 80.0,
-                    height: 80.0,
-                    decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: new AssetImage('Images/simboloAyuda.png')
-                        )
+                      child: Text('Cerrar Sesion',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
                     ),
 
                   ),
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("AYUDA", style: TextStyle(fontSize: 30.0))
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "PREGUNTAS FRECUENTES",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "CONTACTO",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "QUIENES SOMOS",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "TERMINOS Y CONDICIONES",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "PRIVACIDAD Y SEGURIDAD",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
+                  SizedBox(width:10.0),
                 ],
               ),
 
@@ -298,33 +77,20 @@ class ayuda extends StatelessWidget {
 
         ],
 
-      ),
+      );
 
-    );
 
   }
 
 }
+
+
 
 class contacto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          title: Text("Contacto"),
-
-        ),
-
-      ),
-      body: ListView(
+    return  ListView(
 
         children: <Widget>[
           Column(
@@ -458,9 +224,9 @@ class contacto extends StatelessWidget {
 
         ],
 
-      ),
+      );
 
-    );
+
 
   }
 
@@ -471,21 +237,7 @@ class pago extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          title: Text("Carrito"),
-
-        ),
-
-      ),
-      body: ListView(
+    return ListView(
 
         children: <Widget>[
           Container(
@@ -586,9 +338,9 @@ class pago extends StatelessWidget {
           ),
         ],
 
-      ),
+      );
 
-    );
+
 
   }
 
@@ -598,21 +350,7 @@ class facturacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          title: Text("Facturacion"),
-
-        ),
-
-      ),
-      body: ListView(
+    return ListView(
 
         children: <Widget>[
           Row(
@@ -733,8 +471,8 @@ class facturacion extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
+      );
+
   }
 }
 
@@ -742,21 +480,7 @@ class nuevopago extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          title: Text("Agregar nuevo pago"),
-
-        ),
-
-      ),
-      body: ListView(
+    return ListView(
 
         children: <Widget>[
           SizedBox(height: 15,),
@@ -858,9 +582,9 @@ class nuevopago extends StatelessWidget {
           ),
         ],
 
-      ),
+      );
 
-    );
+
 
   }
 }
