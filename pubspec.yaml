@@ -54,7 +54,8 @@ flutter:
    - img/microfono.png
    - img/microfonobco.png
    - img/tecate.jpg
-    - Images/
+  # To add assets to your application, add an assets section, like this:
+   - Images/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
