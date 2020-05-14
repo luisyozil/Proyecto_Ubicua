@@ -5,6 +5,13 @@ class Usuario {
   String nombre;
   String correo;
 
+  Usuario(this.nombre):correo = "ejemplo@hotmail.com";
+
+  Map<String, dynamic> Conversion() => {
+    'usuario': nombre,
+    'correo': correo,
+  };
+
   Usuario.GuardaUsuario(DocumentSnapshot doc)
       : id = doc.documentID,
         nombre = doc.data['usuario'],
