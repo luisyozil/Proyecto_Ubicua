@@ -8,6 +8,7 @@ import 'Login.dart';
 import 'Tulio.dart';
 import 'Paquetes.dart';
 import 'PantallaAyuda.dart';
+import 'prueba.dart';
 
 class Inicio extends StatelessWidget {
   @override
@@ -42,7 +43,7 @@ class PantallaInicio extends State<PantallaInicio_State> {
     PantallaAyuda(),
     PantallaNotificaciones_State(items: items),
     PantallaEventos(items: itemsEventos),
-    Text('Pantalla Busqueda', style: TextStyle(color: Colors.white)),
+    Prueba(),
     perfil(),
   ];
 
