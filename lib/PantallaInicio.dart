@@ -8,7 +8,7 @@ import 'Login.dart';
 import 'Tulio.dart';
 import 'Paquetes.dart';
 import 'PantallaAyuda.dart';
-import 'prueba.dart';
+import 'Busqueda.dart';
 
 class Inicio extends StatelessWidget {
   @override
@@ -16,6 +16,14 @@ class Inicio extends StatelessWidget {
     return MaterialApp(
       title: 'Version 1.0',
       home: PantallaInicio_State(),
+      themeMode: ThemeMode.dark,
+      theme: ThemeData(fontFamily: 'Proxima_nova',
+          primaryColor: Colors.grey[900],
+          accentColor: Colors.yellow[600],
+          cursorColor: Colors.yellow[600],
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: Colors.black
+      ),
     );
   }
 }
@@ -43,7 +51,7 @@ class PantallaInicio extends State<PantallaInicio_State> {
     PantallaAyuda(),
     PantallaNotificaciones_State(items: items),
     PantallaEventos(items: itemsEventos),
-    Prueba(),
+    Busqueda(),
     perfil(),
   ];
 
