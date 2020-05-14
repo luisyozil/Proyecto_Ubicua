@@ -52,7 +52,7 @@ class PantallaInicio extends State<PantallaInicio_State> {
     PantallaNotificaciones_State(items: items),
     PantallaEventos(items: itemsEventos),
     Busqueda(),
-    perfil(),
+    perfil2(),
   ];
 
   @override

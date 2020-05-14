@@ -588,3 +588,156 @@ class nuevopago extends StatelessWidget {
 
   }
 }
+
+
+class perfil2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+        children: <Widget>[
+          SizedBox.expand(
+            child: Image.asset("Images/Yozil.jpg", fit: BoxFit.cover,),
+          ),
+
+          DraggableScrollableSheet(
+            minChildSize: 0.1,
+            initialChildSize: 0.22,
+            builder: (context, scrollController){
+              return SingleChildScrollView(
+                controller: scrollController,
+                child: Container(
+                  constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+                  color: Colors.black,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      //for user profile header
+                      Container(
+                        padding : EdgeInsets.only(left: 32, right: 32, top: 32),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: ClipOval(
+                                  child: Image.asset('Images/Yozil.jpg', fit: BoxFit.cover,),
+                                )
+                            ),
+
+                            SizedBox(width: 16,),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("AJIJIJIJIJI", style: TextStyle(color:Colors.yellow[600], fontFamily: "Roboto",
+                                      fontSize: 36, fontWeight: FontWeight.w700
+                                  ),),
+                                  Text("México", style: TextStyle(color: Colors.yellow[600], fontFamily: "Roboto",
+                                      fontSize: 16, fontWeight: FontWeight.w400
+                                  ),),
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+                      //performace bar
+
+                      SizedBox(height: 16,),
+                      Container(
+                        padding: EdgeInsets.all(32),
+                        color: Colors.yellow[600],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.check_box, color: Colors.black, size: 30,),
+                                    SizedBox(width: 4,),
+                                    Text("23", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700,
+                                        fontFamily: "Roboto", fontSize: 24
+                                    ),)
+                                  ],
+                                ),
+
+                                Text("Viajes Realizados ", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400,
+                                    fontFamily: "Roboto", fontSize: 15
+                                ),)
+                              ],
+                            ),
+
+                            Column(
+                              children: <Widget>[
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.favorite, color: Colors.black, size: 30,),
+                                    SizedBox(width: 4,),
+                                    Text("14/05/20", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700,
+                                        fontFamily: "Roboto", fontSize: 24
+                                    ),)
+                                  ],
+                                ),
+
+                                Text("Miembro desde", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400,
+                                    fontFamily: "Roboto", fontSize: 15
+                                ),)
+                              ],
+                            ),
+
+
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(height: 16,),
+                      //container for about me
+
+                      Container(
+                        padding: EdgeInsets.only(left: 32, right: 32),
+                        child: Column(
+                          children: <Widget>[
+                            Text("Acerca de mi", style: TextStyle(color: Colors.yellow[600], fontWeight: FontWeight.w700,
+                                fontFamily: "Roboto", fontSize: 18
+                            ),),
+
+                            SizedBox(height: 8,),
+                            Text("HOLA SE VE BIEN COOL ESTO AJIJIJIJIJI                      "
+                                "EL YOZIL ES JOT0 ",
+                              style: TextStyle(fontFamily: "Roboto", fontSize: 15),
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(height: 16,),
+                      //Container for clients
+
+
+                      //Container for reviews
+
+
+
+
+                    ],
+                  ),
+
+                ),
+              );
+            },
+          )
+        ],
+      );
+
+  }
+}
+
+
