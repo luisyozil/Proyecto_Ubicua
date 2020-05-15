@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_ubicua/login2.dart';
 import 'package:proyecto_ubicua/prueba.dart';
 import 'Login.dart';
+import 'intro.dart';
 
 void main() => runApp(
   MaterialApp(
@@ -13,6 +15,6 @@ void main() => runApp(
         scaffoldBackgroundColor: Colors.black
     ),
     debugShowCheckedModeBanner: false,
-    home: Login(),
+    home: IntroPage(),
   ),
 );
