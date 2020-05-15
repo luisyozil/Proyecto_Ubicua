@@ -24,8 +24,7 @@ class _IntroPageState extends State<IntroPage> {
         currentPage = _pageController.page.round();
       });
     });
-    return MaterialApp(
-      home: Scaffold(
+    return  Scaffold(
         body: Stack(
           children: <Widget>[
             Container(
@@ -105,8 +104,7 @@ class _IntroPageState extends State<IntroPage> {
             )
           ],
         ),
-      ),
-    );
+      );
   }
 
 
