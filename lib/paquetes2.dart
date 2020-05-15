@@ -101,7 +101,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                       child: new Column (
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          new Text ("Tecate Pal Norte", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0, color: Colors.black)),
+                                          new Text ("Tecate Pal Norte", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0, color: Colors.white)),
                                         ],
                                       ),
                                     ),

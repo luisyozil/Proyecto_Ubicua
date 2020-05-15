@@ -20,6 +20,7 @@ class _Login2PageState extends State<Login2> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => IntroPage()),
@@ -107,11 +108,12 @@ class _FormLoginState extends State<FormLogin> {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: <Widget>[
         Text("Ingresa a tu cuenta",style: TextStyle(color: Colors.white,fontSize: 22,),),
         Padding(
-          padding: EdgeInsets.only(left: 35, right: 35, top: 12),
+          padding: EdgeInsets.only(left: 35, right: 35, top: 20,),
           child: Material(
             shape: StadiumBorder(),
             child: Padding(
@@ -144,18 +146,27 @@ class _FormLoginState extends State<FormLogin> {
             ),
           ),
         ),
-        Container(
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            gradient: LinearGradient(
-              colors: [Colors.grey, Colors.grey]
+        SizedBox(height: 30,),
+        RaisedButton(
+          onPressed: Verifica,
+          textColor: Colors.white,
+          color: Colors.black,
+          padding: const EdgeInsets.all(0.0),
+          child: Container(
+            height: 50,
+            decoration:BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                colors: <Color>[
+                  Colors.yellow[500],
+                  Colors.yellow[600],
+                  Colors.yellow[700],
+                ],
+              ),
             ),
-            color: Colors.black54
-          ),
-          child: RaisedButton(
-            onPressed: Verifica,
-            child: Text("Ingresar"),
+            padding: const EdgeInsets.only(left:100.0,right: 100, top: 10,bottom: 10 ),
+            child:
+            const Text('Ingresar', style: TextStyle(fontSize: 21)),
           ),
         ),
         SizedBox(height: 30,),

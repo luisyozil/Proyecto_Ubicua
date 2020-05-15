@@ -58,12 +58,12 @@ class _IntroPageState extends State<IntroPage> {
                       Pantalla(
                         titulo: "We care about you, friends and family",
                         descripcion: "We connect with your favorite artist in every concert wherever you are",
-                        imagen: "img/musicos4.png",
+                        imagen: "img/musicos2.png",
                       ),
                       Pantalla(
                         titulo: "La mejor organización sin preocuparte por nada",
                         descripcion: "Sea cual sea el concierto, pasarás grandes momentos",
-                        imagen: "img/musicos2.png",
+                        imagen: "img/musicos4.png",
                       ),
                       Pantalla(
                         titulo: "Conciertos",
@@ -123,8 +123,7 @@ class Pantalla extends StatelessWidget{
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body:
-          Container(
+      body: Container(
               padding: EdgeInsets.only(top: 60),
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
