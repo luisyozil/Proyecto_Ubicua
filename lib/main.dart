@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_ubicua/MisViajes.dart';
 import 'package:proyecto_ubicua/Paquetes.dart';
 import 'package:proyecto_ubicua/QuienesSomos.dart';
 import 'package:proyecto_ubicua/login2.dart';

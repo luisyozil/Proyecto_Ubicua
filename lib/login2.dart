@@ -84,7 +84,6 @@ class _FormLoginState extends State<FormLogin> {
     _pass.dispose();
     super.dispose();
   }
-}
 
   @override
   void initState() {
@@ -92,6 +91,7 @@ class _FormLoginState extends State<FormLogin> {
     _pass = TextEditingController();
     super.initState();
   }
+
   void Verifica(){
     if(_user.text == "ADMIN" && _pass.text == "ROOT") {
       Navigator.push(
@@ -108,6 +108,7 @@ class _FormLoginState extends State<FormLogin> {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: <Widget>[
         Text("Ingresa a tu cuenta",style: TextStyle(color: Colors.white,fontSize: 22,),),
@@ -166,7 +167,6 @@ class _FormLoginState extends State<FormLogin> {
             padding: const EdgeInsets.only(left:100.0,right: 100, top: 10,bottom: 10 ),
             child:
             const Text('Ingresar', style: TextStyle(fontSize: 21)),
-
           ),
         ),
         SizedBox(height: 30,),
@@ -175,6 +175,4 @@ class _FormLoginState extends State<FormLogin> {
     );
   }
 }
-
-
 

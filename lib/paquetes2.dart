@@ -50,7 +50,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
             },
             child: Icon(
               Icons.arrow_back,
-              color: Colors.white,
+              color: Colors.yellow[600],
             ),
           ),
         ),
@@ -68,9 +68,9 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(colors:[
-                          Colors.yellow[500],
-                          Colors.yellow[600],
-                          Colors.yellow[700],
+                          Colors.grey[900],
+                          Colors.grey[800],
+                          Colors.grey[700],
                         ],
                           begin: Alignment.topLeft,
                           end: Alignment.centerRight,
