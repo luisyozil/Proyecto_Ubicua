@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_ubicua/paquetes2.dart';
 
 
 class PantallaDetalleEvento extends StatelessWidget {
@@ -28,9 +29,39 @@ class PantallaDetalleEvento extends StatelessWidget {
               Text('Detalles: Los detalles de $Nombre consta de  .............', style: TextStyle(
                   color: Color.fromARGB(255, 230, 230, 230), fontSize: 20.0),),
               this.ImagenEvento,
+              RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Paquetes2()
+                    ),
+                  );
+                },
+                textColor: Colors.white,
+                color: Colors.black,
+                padding: const EdgeInsets.all(0.0),
+                child: Container(
+                  height: 50,
+                  decoration:BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      colors: <Color>[
+                        Colors.yellow[500],
+                        Colors.yellow[600],
+                        Colors.yellow[700],
+                      ],
+                    ),
+                  ),
+                  padding: const EdgeInsets.only(left:100.0,right: 100, top: 10,bottom: 10 ),
+                  child:
+                  const Text('Paquetes', style: TextStyle(fontSize: 21)),
+                ),
+              ),
             ]
         ),
       ),
+
     );
   }
 }

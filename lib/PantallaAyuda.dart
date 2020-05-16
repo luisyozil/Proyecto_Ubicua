@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_ubicua/QuienesSomos.dart';
 import 'PantallaCondiciones.dart';
 
 class PantallaAyuda extends StatelessWidget {
@@ -97,9 +98,14 @@ class PantallaAyuda extends StatelessWidget {
               ),
               child: FlatButton(
                 splashColor: Color.fromARGB(125, 255, 204, 0),
-                onPressed: (){
-
-                },
+                onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QuienesSomos()
+                      ),
+                    );
+                  },
                 child: Text('Quienes Somos',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
               ),
 

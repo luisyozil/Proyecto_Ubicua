@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/Paquetes.dart';
+import 'package:proyecto_ubicua/QuienesSomos.dart';
 import 'package:proyecto_ubicua/login2.dart';
 import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:proyecto_ubicua/prueba.dart';
@@ -18,6 +19,6 @@ void main() => runApp(
         scaffoldBackgroundColor: Colors.black,
     ),
     debugShowCheckedModeBanner: false,
-    home: Paquetes2(),
+    home: IntroPage(),
   ),
 );
