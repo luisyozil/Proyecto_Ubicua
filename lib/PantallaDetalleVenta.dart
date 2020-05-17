@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:proyecto_ubicua/paquetes2.dart';
-
 
 class PantallaDetalleEvento extends StatelessWidget {
   final String Nombre;
@@ -27,39 +25,39 @@ class PantallaDetalleEvento extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(4),
             height: MediaQuery.of(context).size.height * 0.45,
-               decoration: BoxDecoration(
-                   borderRadius: BorderRadius.all(Radius.circular(20),),
-                   boxShadow:[ BoxShadow(
-                     blurRadius: 7,
-                     spreadRadius: 1,
-                     color: Color.fromARGB(255, 230, 230, 230),
-                   ),]
-               ),
-               child: this.ImagenEvento,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20),),
+                boxShadow:[ BoxShadow(
+                  blurRadius: 7,
+                  spreadRadius: 1,
+                  color: Color.fromARGB(255, 230, 230, 230),
+                ),]
+            ),
+            child: this.ImagenEvento,
           ),
           SizedBox(height: 15.0,),
           Expanded(
-              child:ListView(
-                physics: BouncingScrollPhysics(),
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      width:MediaQuery.of(context).size.width-20.0,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Text('El nombre del evento es :  $Nombre', style: TextStyle(
-                                color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
-                            Text('Detalles: Los detalles de $Nombre consta de  .............', style: TextStyle(
-                                color: Color.fromARGB(255, 230, 230, 230), fontSize: 20.0),),
+            child:ListView(
+              physics: BouncingScrollPhysics(),
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    width:MediaQuery.of(context).size.width-20.0,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text('El nombre del evento es :  $Nombre', style: TextStyle(
+                              color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
+                          Text('Detalles: Los detalles de $Nombre consta de  .............', style: TextStyle(
+                              color: Color.fromARGB(255, 230, 230, 230), fontSize: 20.0),),
 
-                          ]
-                      ),
+                        ]
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -94,7 +92,7 @@ class PantallaDetalleEvento extends StatelessWidget {
             ),
             padding: const EdgeInsets.only(left:100.0,right: 100, top: 10,bottom: 10 ),
             child:
-             Shimmer.fromColors(
+            Shimmer.fromColors(
               child: Text(
                 'Paquetes',
                 style: TextStyle(

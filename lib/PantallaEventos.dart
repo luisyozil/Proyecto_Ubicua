@@ -24,98 +24,14 @@ class PantallaEventos extends StatelessWidget {
                 return GestureDetector(
                   onTap:(){
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>
-                        PantallaDetalleEvento(
-                          Nombre: 'Evento $item',
-                          DetalleEvento: "Este es una descripcion del el evento numero $item",
-                          ImagenEvento: Image.asset('img/ImagenFest.jpg',
-                            fit: BoxFit.cover,),)),);
+                      context,
+                      MaterialPageRoute(builder: (context) =>
+                          PantallaDetalleEvento(
+                            Nombre: 'Evento $item',
+                            DetalleEvento: "Este es una descripcion del el evento numero $item",
+                            ImagenEvento: Image.asset('img/ImagenFest.jpg',
+                              fit: BoxFit.cover,),)),);
                   },
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(width: 5.0,),
-                      Container(
-                        width: (MediaQuery.of(context).size.height / 4) - 30,
-                        height: (MediaQuery.of(context).size.height / 4) - 30,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('img/ImagenFest.jpg',
-                              ),
-                            ),
-                           color: Colors.black,
-                            border: Border.all(
-                              color: Color.fromARGB(255, 255, 204, 0),
-                              width :2.0,
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(10))
-                        ),
-                      ),
-                      SizedBox(width: 8.0,),
-                      Container(
-                        width: MediaQuery.of(context).size.width - 154.0,
-                        height: (MediaQuery.of(context).size.height / 4) - 20,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle
-                        ),
-                      ),
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.only(bottom: 5),
-                                child: Text(
-                                  "EDC México",
-                                  style: TextStyle(fontSize: 25.0, color: Colors.white,fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(bottom: 5),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.pin_drop,
-                                      color: Colors.white,
-                                      size: 20.0,
-                                    ),
-                                    Text(
-                                      " Ciudad de México",
-                                      style: TextStyle(fontSize: 15.0, color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(bottom: 5),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                      size: 20.0,
-                                    ),
-                                    Text(
-                                      " 28 Marzo 2020",
-                                      style: TextStyle(fontSize: 15.0, color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
                   child: EventoBuilder(context, index,item),
                 );
               },
@@ -157,11 +73,11 @@ Widget EventoBuilder(BuildContext context, int idx,int item)
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [
-                        Colors.transparent,
-                        Colors.transparent,
-                        Colors.black87,
-                      ]
+                        colors: [
+                          Colors.transparent,
+                          Colors.transparent,
+                          Colors.black87,
+                        ]
                     ),
                   ),
                 ),
@@ -201,7 +117,7 @@ Widget EventoBuilder(BuildContext context, int idx,int item)
                     initialRating: 5,
                     itemSize: 13.0,
                     itemBuilder: (context,index) => Icon(Icons.star,
-                    color: Colors.amberAccent,),
+                      color: Colors.amberAccent,),
                   ),
                   Text(' + 1234',
                       style: TextStyle(
@@ -253,10 +169,10 @@ Widget EventoBuilder(BuildContext context, int idx,int item)
                         color: Color.fromARGB(255, 255, 204, 0),
                       ),
                       child: Text('Fecha',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 50, 50, 50),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12.0,),),
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 50, 50, 50),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.0,),),
                     ),
                     Container( padding: EdgeInsets.all(6),
                       decoration: BoxDecoration(
