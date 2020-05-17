@@ -37,7 +37,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
   Widget build(BuildContext context){
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    double c_width = MediaQuery.of(context).size.width*0.6;
+    double c_width = MediaQuery.of(context).size.width*0.9;
     return Scaffold(
         appBar: AppBar(
           title: Text("",
@@ -64,18 +64,21 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                 child: ClipPath(
                   clipper: MainClipper(),
                   child: Container(
-                    height: height * .40,
+                    height: height * .35,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(colors:[
-                          Colors.grey[900],
-                          Colors.grey[800],
-                          Colors.grey[700],
-                        ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.centerRight,
-                        )
-                    ),
+                      decoration:
+                      BoxDecoration(
+                        color: Colors.grey[900],
+                        image: new DecorationImage(
+                          fit: BoxFit.cover,
+                          colorFilter:
+                          ColorFilter.mode(Colors.black.withOpacity(0.4),
+                              BlendMode.dstATop),
+                          image: new AssetImage(
+                            'img/tecate.jpg',
+                          ),
+                        ),
+                      ),
                     child: Container(
                       padding: EdgeInsets.only(top: 10),
                       child: Column(
@@ -84,46 +87,24 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.only(left: 28.0, top: 7.0),
-                                child: CircleAvatar(
-                                  radius: 60,
-                                  backgroundImage: AssetImage("img/tecate.jpg"),
-                                ),
-                              ),
-                              Padding(
                                 padding: const EdgeInsets.only(left: 2.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Container(
-                                      padding: const EdgeInsets.only(top:16.0,left: 30),
+                                      padding: const EdgeInsets.only(top:15.0,left: 30),
                                       width: c_width,
-                                      child: new Column (
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                      child: new Wrap (
                                         children: <Widget>[
-                                          new Text ("Tecate Pal Norte", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0, color: Colors.white)),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.only(left:30,top: 10),
-                                      width: c_width,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Icon(Icons.location_on, color: Colors.white, size: 17),
-                                          Text("Monterrey, N.L", style: TextStyle(color: Colors.white, letterSpacing: 2,fontWeight: FontWeight.bold),),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.only(left:30, top: 20),
-                                      width: c_width,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Icon(Icons.calendar_today, color: Colors.white, size: 17),
-                                          Text("12/13 Septiembre 2020", style: TextStyle(color: Colors.white, letterSpacing: 2,fontWeight: FontWeight.bold),),
+                                          Container(child: new Text ("Tecate Pal Norte", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35.0, color: Colors.white,))),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                              child: Text("12/13 Septiembre 2020", style: TextStyle(color: Colors.white, letterSpacing: 2,fontWeight: FontWeight.bold),),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text("Monterrey N.L", style: TextStyle(color: Colors.white, letterSpacing: 2,fontWeight: FontWeight.bold),),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -191,7 +172,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 5),
         child: Padding(
-          padding: EdgeInsets.only(top: height*.40-60),
+          padding: EdgeInsets.only(top: height*.38-60),
           child: Column(
             children: <Widget>[
               Column(
@@ -287,7 +268,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15,
-                                                      fontWeight: FontWeight.w500,
+                                                      fontWeight: FontWeight.bold,
                                                     ),
                                                   ),
                                                 ),
@@ -333,7 +314,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15,
-                                                      fontWeight: FontWeight.w500,
+                                                      fontWeight: FontWeight.bold,
                                                     ),
                                                   ),
                                                 ),

@@ -1,72 +1,171 @@
-// Flutter code sample for RaisedButton
-
-// This sample shows how to render a disabled RaisedButton, an enabled RaisedButton
-// and lastly a RaisedButton with gradient background.
-//
-// ![Three raised buttons, one enabled, another disabled, and the last one
-// styled with a blue gradient background](https://flutter.github.io/assets-for-api-docs/assets/material/raised_button.png)
-
 import 'package:flutter/material.dart';
+import 'package:proyecto_ubicua/QuienesSomos.dart';
+import 'PantallaCondiciones.dart';
+import 'package:flutter/cupertino.dart';
 
-void main() => runApp(MyApp());
+class PantallaAyuda extends StatelessWidget {
+  final List<int> items;
 
-/// This Widget is the main application widget.
-class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
-        body: MyStatelessWidget(),
-      ),
-    );
-  }
-}
-
-/// This is the stateless widget that the main application instantiates.
-class MyStatelessWidget extends StatelessWidget {
-  MyStatelessWidget({Key key}) : super(key: key);
+  PantallaAyuda({this.items});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const RaisedButton(
-            onPressed: null,
-            child: Text('Disabled Button', style: TextStyle(fontSize: 20)),
-          ),
-          const SizedBox(height: 30),
-          RaisedButton(
-            onPressed: () {},
-            child: const Text('Enabled Button', style: TextStyle(fontSize: 20)),
-          ),
-          const SizedBox(height: 30),
-          RaisedButton(
-            onPressed: () {},
-            textColor: Colors.white,
-            padding: const EdgeInsets.all(0.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    Color(0xFF0D47A1),
-                    Color(0xFF1976D2),
-                    Color(0xFF42A5F5),
-                  ],
-                ),
+    return ListView(
+      children: <Widget>[
+        SizedBox(height: 20,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 80.0,
+              height: 80.0,
+              decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: new DecorationImage(
+                      fit: BoxFit.fill,
+                      image: new AssetImage('Images/ayuda.png')
+                  )
               ),
-              padding: const EdgeInsets.all(10.0),
-              child:
-              const Text('Gradient Button', style: TextStyle(fontSize: 20)),
+
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+        SizedBox(height: 20,),
+        SizedBox(height: 15.0),
+        Row(
+          children: <Widget>[
+            SizedBox(width:10.0),
+            Container(
+              height: 50.0,
+              width: MediaQuery.of(context).size.width - 20,
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.black,
+                boxShadow: [
+                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                ],
+              ),
+              child: FlatButton(
+                splashColor: Color.fromARGB(125, 255, 204, 0),
+                onPressed: (){
+
+                },
+                child: Text('Preguntas Frecuentes',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+              ),
+            ),
+            SizedBox(width:10.0),
+          ],
+        ),
+        SizedBox(height: 15.0),
+        Row(
+          children: <Widget>[
+            SizedBox(width:10.0),
+            Container(
+              height: 50.0,
+              width: MediaQuery.of(context).size.width - 20,
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.black,
+                boxShadow: [
+                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                ],
+              ),
+              child: FlatButton(
+                splashColor: Color.fromARGB(125, 255, 204, 0),
+                onPressed: (){
+
+                },
+                child: Text('Contacto',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+              ),
+
+            ),
+            SizedBox(width:10.0),
+          ],
+        ),
+        SizedBox(height: 15.0),
+        Row(
+          children: <Widget>[
+            SizedBox(width:10.0),
+            Container(
+              height: 50.0,
+              width: MediaQuery.of(context).size.width - 20,
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.black,
+                boxShadow: [
+                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                ],
+              ),
+              child: FlatButton(
+                splashColor: Color.fromARGB(125, 255, 204, 0),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => QuienesSomos()
+                    ),
+                  );
+                },
+                child: Text('Quienes Somos',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+              ),
+
+            ),
+            SizedBox(width:10.0),
+          ],
+        ),
+        SizedBox(height: 15.0),
+        Row(
+          children: <Widget>[
+            SizedBox(width:10.0),
+            Container(
+              height: 50.0,
+              width: MediaQuery.of(context).size.width - 20,
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.black,
+                boxShadow: [
+                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                ],
+              ),
+              child: FlatButton(
+                splashColor: Color.fromARGB(125, 255, 204, 0),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PantallaCondiciones()));
+                },
+                child: Text('Términos y Condiciones',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+              ),
+
+            ),
+            SizedBox(width:10.0),
+          ],
+        ),
+        SizedBox(height: 15.0),
+        Row(
+          children: <Widget>[
+            SizedBox(width:10.0),
+            Container(
+              height: 50.0,
+              width: MediaQuery.of(context).size.width - 20,
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.black,
+                boxShadow: [
+                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                ],
+              ),
+              child: FlatButton(
+                splashColor: Color.fromARGB(125, 255, 204, 0),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PantallaCondiciones()));
+                },
+                child: Text('Privacidad y Seguridad',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+              ),
+            ),
+            SizedBox(width:10.0),
+          ],
+        ),
+      ],
     );
   }
 }
+

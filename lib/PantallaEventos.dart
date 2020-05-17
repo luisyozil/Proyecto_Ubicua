@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'PantallaDetalleVenta.dart';
 
@@ -19,17 +20,7 @@ class PantallaEventos extends StatelessWidget {
             Material(
               color: Colors.black,
               child: Ink(
-                height: (MediaQuery.of(context).size.height / 4) - 10,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                    border: Border.all(
-                      color: Color.fromARGB(255, 255, 204, 0),
-                      width :2.0,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
                 child: InkWell(
-                  splashColor: Color.fromARGB(100, 255, 204, 0),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -43,56 +34,75 @@ class PantallaEventos extends StatelessWidget {
                               fit: BoxFit.cover,),)),
                     );
                   },
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(width: 5.0,),
-                      Container(
-                        width: (MediaQuery.of(context).size.height / 4) - 30,
-                        height: (MediaQuery.of(context).size.height / 4) - 30,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('img/ImagenFest.jpg',
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 180.0,
+                    decoration:
+                    BoxDecoration(
+                      color: Colors.grey[900],
+                      image: new DecorationImage(
+                        fit: BoxFit.cover,
+                        colorFilter:
+                        ColorFilter.mode(Colors.black.withOpacity(0.4),
+                            BlendMode.dstATop),
+                        image: new AssetImage(
+                          'img/edc.jpg',
+                        ),
+                      ),
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  "EDC México",
+                                  style: TextStyle(fontSize: 25.0, color: Colors.white,fontWeight: FontWeight.bold),
+                                ),
                               ),
-                            ),
-                           color: Colors.black,
-                            border: Border.all(
-                              color: Color.fromARGB(255, 255, 204, 0),
-                              width :2.0,
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(10))
-                        ),
-                      ),
-                      SizedBox(width: 8.0,),
-                      Container(
-                        width: MediaQuery.of(context).size.width - 154.0,
-                        height: (MediaQuery.of(context).size.height / 4) - 20,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Este es un titulo para el evento numero $item",
-                              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 230, 230, 230),),
-                              maxLines: 2,
-                              overflow: TextOverflow.fade,
-                            ),
-                            SizedBox(width: 5.0,),
-                            Text(
-                              "Este es una descripcion del el evento numero $item",
-                              style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 230, 230, 230),),
-                              maxLines: 2,
-                              overflow: TextOverflow.fade,
-                            ),
-                          ],),
-                      ),
-                      SizedBox(width: 5.0,),
-                    ],
-                  ), // other widget
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.pin_drop,
+                                      color: Colors.white,
+                                      size: 20.0,
+                                    ),
+                                    Text(
+                                      " Ciudad de México",
+                                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: Colors.white,
+                                      size: 20.0,
+                                    ),
+                                    Text(
+                                      " 28 Marzo 2020",
+                                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -116,7 +126,6 @@ class PantallaEventos2 extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (context, index) {
         final item = items[index];
-
         return
           Column(
             children: <Widget>[
