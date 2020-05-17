@@ -129,14 +129,14 @@ class Login extends StatelessWidget {
                         height: 30,
                       ),
                       FadeAnimation(2, InkWell(
-                        onTap: (){
+                        /*onTap: (){
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Inicio(),
                             ),
                           );
-                        },
+                        },*/
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(
