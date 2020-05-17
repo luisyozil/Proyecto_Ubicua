@@ -81,7 +81,7 @@ class Renglon extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(usuarios[index].nombre),
-              Text(usuarios[index].correo),
+              //Text(usuarios[index].correo),
             ],
           ),
         );
