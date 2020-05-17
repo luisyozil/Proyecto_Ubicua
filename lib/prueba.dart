@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/Tulio.dart';
@@ -5,6 +7,8 @@ import 'db.dart' as db;
 import 'modelos/Usuario.dart';
 
 class Prueba extends StatelessWidget {
+  Prueba(this.usuario);
+  final FirebaseUser usuario;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -32,9 +36,31 @@ class Prueba extends StatelessWidget {
                 MessageBox(onSend: (text) {
                   db.GuardaUsuario(Usuario(text));
                 }),
+                Datos(usuario),
               ],
             );
           }),
+    );
+  }
+}
+
+class Datos extends StatelessWidget {
+  Datos(this.usuario);
+  final FirebaseUser usuario;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: StreamBuilder(
+        stream: Firestore.instance.collection("usuarios").document(usuario.uid).snapshots(),
+        builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot){
+          return Column(
+            children: <Widget>[
+              Text(snapshot.data['nombre']),
+              Image.network(snapshot.data["imagen"]),
+            ],
+          );
+        },
+      ),
     );
   }
 }
