@@ -82,7 +82,7 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
                           width: 10.0,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width - 80.0,
+                          width: MediaQuery.of(context).size.width*.70,
                           height: (MediaQuery.of(context).size.height / 8) - 20,
                           decoration: BoxDecoration(
                               //  color: Color.fromARGB(255, 150, 150, 150),

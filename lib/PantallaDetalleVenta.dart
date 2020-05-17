@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:shimmer/shimmer.dart';
 
-
-
 class PantallaDetalleEvento extends StatelessWidget {
   final String Nombre;
   final String DetalleEvento;
@@ -108,6 +106,7 @@ class PantallaDetalleEvento extends StatelessWidget {
           ),
         ),
       ),
+
     );
   }
 }

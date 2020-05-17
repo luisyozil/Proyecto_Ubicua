@@ -3,20 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class perfil extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          title: Text("Perfil"),
-        ),
-      ),
-      body: ListView(
+    return  ListView(
         children: <Widget>[
           Column(
             children: <Widget>[
@@ -44,251 +32,42 @@ class perfil extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text("Marco Nuñez")],
+                children: <Widget>[Text('Nombre de usuario',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),)],
               ),
               SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text("México")],
+                children: <Widget>[Text('México',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),)],
               ),
               SizedBox(
                 height: 20,
               ),
               SizedBox(height: 300,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
+                  SizedBox(width:10.0),
+                  Container(
                     height: 50.0,
-
+                    width: MediaQuery.of(context).size.width - 20,
+                    decoration:  BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black,
+                      boxShadow: [
+                        BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                      ],
+                    ),
                     child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
+                      splashColor: Color.fromARGB(125, 255, 204, 0),
+                      onPressed: (){
 
                       },
-                      child: Text(
-                        "Cerrar Sesion",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-
-
-            ],
-          ),
-
-        ],
-
-      ),
-
-    );
-
-  }
-
-}
-
-class ayuda extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          title: Text("Ayuda"),
-
-        ),
-
-      ),
-      body: ListView(
-
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: 80.0,
-                    height: 80.0,
-                    decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: new AssetImage('Images/simboloAyuda.png')
-                        )
+                      child: Text('Cerrar Sesion',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
                     ),
 
                   ),
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("AYUDA", style: TextStyle(fontSize: 30.0))
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "PREGUNTAS FRECUENTES",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "CONTACTO",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "QUIENES SOMOS",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "TERMINOS Y CONDICIONES",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 411.0,
-                    height: 50.0,
-
-                    child: FlatButton(
-
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey,
-                      disabledTextColor: Colors.black,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      onPressed: () {
-
-                      },
-                      child: Text(
-                        "PRIVACIDAD Y SEGURIDAD",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ) ,
-                  ),
-
-
+                  SizedBox(width:10.0),
                 ],
               ),
 
@@ -298,33 +77,20 @@ class ayuda extends StatelessWidget {
 
         ],
 
-      ),
+      );
 
-    );
 
   }
 
 }
+
+
 
 class contacto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
-          ),
-          title: Text("Contacto"),
-
-        ),
-
-      ),
-      body: ListView(
+    return  ListView(
 
         children: <Widget>[
           Column(
@@ -458,9 +224,9 @@ class contacto extends StatelessWidget {
 
         ],
 
-      ),
+      );
 
-    );
+
 
   }
 
@@ -471,21 +237,7 @@ class pago extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          title: Text("Carrito"),
-
-        ),
-
-      ),
-      body: ListView(
+    return ListView(
 
         children: <Widget>[
           Container(
@@ -586,9 +338,9 @@ class pago extends StatelessWidget {
           ),
         ],
 
-      ),
+      );
 
-    );
+
 
   }
 
@@ -598,21 +350,7 @@ class facturacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          title: Text("Facturacion"),
-
-        ),
-
-      ),
-      body: ListView(
+    return ListView(
 
         children: <Widget>[
           Row(
@@ -733,8 +471,8 @@ class facturacion extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
+      );
+
   }
 }
 
@@ -742,21 +480,7 @@ class nuevopago extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
-
-        child: AppBar(
-
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          title: Text("Agregar nuevo pago"),
-
-        ),
-
-      ),
-      body: ListView(
+    return ListView(
 
         children: <Widget>[
           SizedBox(height: 15,),
@@ -858,9 +582,161 @@ class nuevopago extends StatelessWidget {
           ),
         ],
 
-      ),
+      );
 
-    );
+
 
   }
 }
+
+
+class perfil2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+        children: <Widget>[
+          SizedBox.expand(
+            child: Image.asset("Images/Yozil.jpg", fit: BoxFit.cover,),
+          ),
+          DraggableScrollableSheet(
+            minChildSize: 0.1,
+            initialChildSize: 0.22,
+            builder: (context, scrollController){
+              return SingleChildScrollView(
+                controller: scrollController,
+                child: Container(
+                  constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+                  color: Colors.black,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      //for user profile header
+                      Container(
+                        padding : EdgeInsets.only(left: 32, right: 32, top: 32),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: ClipOval(
+                                  child: Image.asset('Images/Yozil.jpg', fit: BoxFit.cover,),
+                                )
+                            ),
+
+                            SizedBox(width: 16,),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("AJIJIJIJIJI", style: TextStyle(color:Colors.yellow[600], fontFamily: "Raleway",
+                                      fontSize: 36, fontWeight: FontWeight.w700
+                                  ),),
+                                  Text("México", style: TextStyle(color: Colors.yellow[600], fontFamily: "Raleway",
+                                      fontSize: 16, fontWeight: FontWeight.w400
+                                  ),),
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+                      //performace bar
+
+                      SizedBox(height: 16,),
+                      Container(
+                        padding: EdgeInsets.all(32),
+                        color: Colors.yellow[600],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.check_box, color: Colors.black, size: 30,),
+                                    SizedBox(width: 4,),
+                                    Text("23", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700,
+                                        fontFamily: "Raleway", fontSize: 24
+                                    ),)
+                                  ],
+                                ),
+
+                                Text("Viajes Realizados ", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400,
+                                    fontFamily: "Raleway", fontSize: 15
+                                ),)
+                              ],
+                            ),
+
+                            Column(
+                              children: <Widget>[
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.favorite, color: Colors.black, size: 30,),
+                                    SizedBox(width: 4,),
+                                    Text("14/05/20", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700,
+                                        fontFamily: "Raleway", fontSize: 24
+                                    ),)
+                                  ],
+                                ),
+
+                                Text("Miembro desde", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400,
+                                    fontFamily: "Raleway", fontSize: 15
+                                ),)
+                              ],
+                            ),
+
+
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(height: 16,),
+                      //container for about me
+
+                      Container(
+                        padding: EdgeInsets.only(left: 32, right: 32),
+                        child: Column(
+                          children: <Widget>[
+                            Text("Acerca de mi", style: TextStyle(color: Colors.yellow[600], fontWeight: FontWeight.w700,
+                                fontFamily: "Raleway", fontSize: 18
+                            ),),
+
+                            SizedBox(height: 8,),
+                            Text("HOLA SE VE BIEN COOL ESTO AJIJIJIJIJI                      "
+                                "EL YOZIL ES JOT0 ",
+                              style: TextStyle(fontFamily: "Raleway", fontSize: 15),
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(height: 16,),
+                      //Container for clients
+
+
+                      //Container for reviews
+
+
+
+
+                    ],
+                  ),
+
+                ),
+              );
+            },
+          )
+        ],
+      );
+
+  }
+}
+
+
