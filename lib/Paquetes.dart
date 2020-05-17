@@ -43,8 +43,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   void initState() {
     super.initState();
     scrollController = new ScrollController();
-
-
   }
 
   @override
@@ -175,8 +173,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
                                                   decoration: BoxDecoration(
                                                     gradient: LinearGradient(
                                                       colors: [
-                                                        Color.fromARGB(255, 45, 45, 45),
-                                                        Color.fromARGB(0, 0, 0, 0),
+                                                        Colors.yellow[500],
+                                                        Colors.yellow[600],
+                                                        Colors.yellow[700],
                                                       ],
                                                       begin: Alignment.topLeft,
                                                       end: Alignment.bottomRight,
@@ -220,8 +219,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
                                                   decoration: BoxDecoration(
                                                     gradient: LinearGradient(
                                                       colors: [
-                                                        Color.fromARGB(255, 45, 45, 45),
-                                                        Color.fromARGB(0, 0, 0, 0),
+                                                        Colors.yellow[500],
+                                                        Colors.yellow[600],
+                                                        Colors.yellow[700],
                                                       ],
                                                       begin: Alignment.topLeft,
                                                       end: Alignment.bottomRight,

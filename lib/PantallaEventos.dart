@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'PantallaDetalleVenta.dart';
@@ -9,31 +10,6 @@ class PantallaEventos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< Updated upstream
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-
-        return Column(
-          children: <Widget>[
-            SizedBox(height:8.0),
-            Material(
-              color: Colors.black,
-              child: Ink(
-                height: (MediaQuery.of(context).size.height / 4) - 10,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                    border: Border.all(
-                      color: Color.fromARGB(255, 255, 204, 0),
-                      width :2.0,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
-                child: InkWell(
-                  splashColor: Color.fromARGB(100, 255, 204, 0),
-                  onTap: () {
-=======
     return Padding(
       padding: EdgeInsets.all(16),
       child: Column(
@@ -47,7 +23,6 @@ class PantallaEventos extends StatelessWidget {
                 final item = items[index];
                 return GestureDetector(
                   onTap:(){
->>>>>>> Stashed changes
                     Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) =>
@@ -57,7 +32,6 @@ class PantallaEventos extends StatelessWidget {
                           ImagenEvento: Image.asset('img/ImagenFest.jpg',
                             fit: BoxFit.cover,),)),);
                   },
-<<<<<<< Updated upstream
                   child: Row(
                     children: <Widget>[
                       SizedBox(width: 5.0,),
@@ -85,36 +59,66 @@ class PantallaEventos extends StatelessWidget {
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Este es un titulo para el evento numero $item",
-                              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 230, 230, 230),),
-                              maxLines: 2,
-                              overflow: TextOverflow.fade,
-                            ),
-                            SizedBox(width: 5.0,),
-                            Text(
-                              "Este es una descripcion del el evento numero $item",
-                              style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 230, 230, 230),),
-                              maxLines: 2,
-                              overflow: TextOverflow.fade,
-                            ),
-                          ],),
                       ),
-                      SizedBox(width: 5.0,),
-                    ],
-                  ), // other widget
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  "EDC México",
+                                  style: TextStyle(fontSize: 25.0, color: Colors.white,fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.pin_drop,
+                                      color: Colors.white,
+                                      size: 20.0,
+                                    ),
+                                    Text(
+                                      " Ciudad de México",
+                                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 5),
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: Colors.white,
+                                      size: 20.0,
+                                    ),
+                                    Text(
+                                      " 28 Marzo 2020",
+                                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-=======
                   child: EventoBuilder(context, index,item),
                 );
               },
->>>>>>> Stashed changes
             ),
           ),
         ],
@@ -123,28 +127,6 @@ class PantallaEventos extends StatelessWidget {
   }
 }
 
-<<<<<<< Updated upstream
-
-class PantallaEventos2 extends StatelessWidget {
-  final List<int> items;
-
-  PantallaEventos2({this.items});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-
-        return
-          Column(
-            children: <Widget>[
-              SizedBox(height:10.0),
-              Material(
-                child: Ink(
-                  height: (MediaQuery.of(context).size.height / 5) - 10,
-=======
 Widget EventoBuilder(BuildContext context, int idx,int item)
 {
   return Container(
@@ -173,7 +155,6 @@ Widget EventoBuilder(BuildContext context, int idx,int item)
               fit:StackFit.expand,
               children: <Widget>[
                 Container(
->>>>>>> Stashed changes
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [

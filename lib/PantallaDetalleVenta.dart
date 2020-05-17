@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:shimmer/shimmer.dart';
-
->>>>>>> Stashed changes
+import 'package:proyecto_ubicua/paquetes2.dart';
 
 
 class PantallaDetalleEvento extends StatelessWidget {
@@ -25,18 +22,6 @@ class PantallaDetalleEvento extends StatelessWidget {
         ),
         backgroundColor: Color.fromARGB(255, 45, 45, 45),
       ),
-<<<<<<< Updated upstream
-      body: Center(
-        child: Column(
-           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text('El nombre del evento es :  $Nombre', style: TextStyle(
-                  color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
-              Text('Detalles: Los detalles de $Nombre consta de  .............', style: TextStyle(
-                  color: Color.fromARGB(255, 230, 230, 230), fontSize: 20.0),),
-              this.ImagenEvento,
-            ]
-=======
       body: Column(
         children: <Widget>[
           Container(
@@ -121,9 +106,9 @@ class PantallaDetalleEvento extends StatelessWidget {
               //loop: 3,
             ),
           ),
->>>>>>> Stashed changes
         ),
       ),
+
     );
   }
 }

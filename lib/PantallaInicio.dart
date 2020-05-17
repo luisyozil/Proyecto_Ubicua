@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:proyecto_ubicua/prueba.dart';
 import 'PantallaAyuda.dart';
 import 'PantallaDetalleVenta.dart';
 import 'PantallaNotificaciones.dart';
@@ -8,27 +10,44 @@ import 'Login.dart';
 import 'Tulio.dart';
 import 'Paquetes.dart';
 import 'PantallaAyuda.dart';
+import 'Busqueda.dart';
 
 class Inicio extends StatelessWidget {
+  final FirebaseUser usuario;
+
+  Inicio(this.usuario);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Version 1.0',
-      home: PantallaInicio_State(),
+      home: PantallaInicio(usuario),
+      themeMode: ThemeMode.dark,
+      theme: ThemeData(fontFamily: 'Raleway',
+          primaryColor: Colors.grey[900],
+          accentColor: Colors.yellow[600],
+          cursorColor: Colors.yellow[600],
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: Colors.black
+      ),
     );
   }
 }
 
-class PantallaInicio_State extends StatefulWidget {
+class PantallaInicio extends StatefulWidget {
+  PantallaInicio(this.usuario);
+  final FirebaseUser usuario;
+
+
   @override
-  State<StatefulWidget> createState() => new PantallaInicio();
+  _PantallaInicioState createState() => _PantallaInicioState();
 }
 
-class PantallaInicio extends State<PantallaInicio_State> {
+class _PantallaInicioState extends State<PantallaInicio> {
   static final items = List<int>.generate(20, (i) => i + 1);
   static final itemsEventos = List<int>.generate(10, (i) => i + 1);
 
-  List<CardFormatoGeneral> Titulos = items
+  final List<CardFormatoGeneral> Titulos = items
       .map((it) => new CardFormatoGeneral(
           rutaImagen: 'La imagen es $it',
           Titulo: 'Titulo $it',
@@ -36,20 +55,20 @@ class PantallaInicio extends State<PantallaInicio_State> {
       .toList();
 
   // Aqui seria el refresh
-  static final itemsPares = List<int>();
+  final itemsPares = List<int>();
   int idx_Title = 2;
-  final List<Widget> Pantalla = [
-    PantallaAyuda(),
-    PantallaNotificaciones_State(items: items),
-    PantallaEventos(items: itemsEventos),
-    Text('Pantalla Busqueda', style: TextStyle(color: Colors.white)),
-    perfil(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     var MenuList = ['Ayuda', 'Notificaciones', 'Eventos', 'Búsqueda', 'Cuenta'];
-
+    List<Widget> Pantalla = [
+      PantallaAyuda(),
+      PantallaNotificaciones_State(items: items),
+      PantallaEventos(items: itemsEventos),
+      Busqueda(),
+      //Prueba(widget.usuario),
+      perfil2(),
+    ];
     return new Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
