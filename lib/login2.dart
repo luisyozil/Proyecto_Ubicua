@@ -96,12 +96,15 @@ class _FormLoginState extends State<FormLogin> {
 
   Future<void> Verifica() async {
     final formstate = _formkey.currentState;
-    if(formstate.validate()){
+    if (formstate.validate()) {
       formstate.save();
-      try{
-        AuthResult usuario = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email.text.trim(), password: _pass.text);
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>Inicio(usuario.user)));
-      }catch(error){
+      try {
+        AuthResult usuario = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+                email: _email.text.trim(), password: _pass.text);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
+      } catch (error) {
         print(error.toString());
       }
     }
@@ -131,9 +134,8 @@ class _FormLoginState extends State<FormLogin> {
               child: Padding(
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
-                  validator: (input){
-                    if(input.isEmpty)
-                      return "Ingrese su Correo";
+                  validator: (input) {
+                    if (input.isEmpty) return "Ingrese su Correo";
                   },
                   onSaved: (input) => _email.text = input,
                   controller: _email,
@@ -153,9 +155,8 @@ class _FormLoginState extends State<FormLogin> {
               child: Padding(
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
-                  validator: (input){
-                    if(input.isEmpty)
-                      return 'Ingrese su Contraseña';
+                  validator: (input) {
+                    if (input.isEmpty) return 'Ingrese su Contraseña';
                   },
                   onSaved: (input) => _pass.text = input,
                   controller: _pass,
@@ -194,16 +195,17 @@ class _FormLoginState extends State<FormLogin> {
               child: const Text('Ingresar', style: TextStyle(fontSize: 21)),
             ),
           ),
-          SizedBox(
-            height: 30,
-          ),
-          Text(
-            "¿Olvidaste tu contraseña?",
-            style: TextStyle(color: Color.fromARGB(255, 255, 204, 0)),
+          FlatButton(
+            onPressed: (){
+              //TODO aqui se llama el formulario para registro
+            },
+            child: Text(
+              "¿Nuevo? Registrate aqui",
+              style: TextStyle(color: Color.fromARGB(255, 255, 204, 0)),
+            ),
           ),
         ],
       ),
     );
   }
 }
-
