@@ -65,6 +65,8 @@ flutter:
    - img/microfono.png
    - img/microfonobco.png
    - img/tecate.jpg
+   - img/profile_1.jpg
+   - img/profile_2.jpg
   # To add assets to your application, add an assets section, like this:
    - Images/
   #  - images/a_dot_ham.jpeg
