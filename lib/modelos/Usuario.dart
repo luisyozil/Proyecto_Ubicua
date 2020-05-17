@@ -1,21 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Usuario {
-  String id;
+  //String id;
   String nombre;
-  String correo;
+  String apellido;
+  String imagen;
 
-  Usuario(this.nombre):correo = "ejemplo@hotmail.com";
+  Usuario(this.nombre);//:correo = "ejemplo@hotmail.com";
 
   Map<String, dynamic> Conversion() => {
     'usuario': nombre,
-    'correo': correo,
+    'apellido': apellido,
+    'imagen': imagen,
   };
 
   Usuario.GuardaUsuario(DocumentSnapshot doc)
-      : id = doc.documentID,
+      : //id = doc.documentID,
         nombre = doc.data['usuario'],
-        correo = doc.data['correo'];
+        apellido = doc.data['apellido'],
+        imagen = doc.data['imagen'];
+        //correo = doc.data['correo'];
 }
 
 /*esta funcion se debe declarar para cada modelo para que procese sus datos*/
