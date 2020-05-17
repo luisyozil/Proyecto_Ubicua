@@ -598,7 +598,6 @@ class perfil2 extends StatelessWidget {
           SizedBox.expand(
             child: Image.asset("Images/Yozil.jpg", fit: BoxFit.cover,),
           ),
-
           DraggableScrollableSheet(
             minChildSize: 0.1,
             initialChildSize: 0.22,
@@ -631,10 +630,10 @@ class perfil2 extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("AJIJIJIJIJI", style: TextStyle(color:Colors.yellow[600], fontFamily: "Roboto",
+                                  Text("AJIJIJIJIJI", style: TextStyle(color:Colors.yellow[600], fontFamily: "Raleway",
                                       fontSize: 36, fontWeight: FontWeight.w700
                                   ),),
-                                  Text("México", style: TextStyle(color: Colors.yellow[600], fontFamily: "Roboto",
+                                  Text("México", style: TextStyle(color: Colors.yellow[600], fontFamily: "Raleway",
                                       fontSize: 16, fontWeight: FontWeight.w400
                                   ),),
                                 ],
@@ -662,13 +661,13 @@ class perfil2 extends StatelessWidget {
                                     Icon(Icons.check_box, color: Colors.black, size: 30,),
                                     SizedBox(width: 4,),
                                     Text("23", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700,
-                                        fontFamily: "Roboto", fontSize: 24
+                                        fontFamily: "Raleway", fontSize: 24
                                     ),)
                                   ],
                                 ),
 
                                 Text("Viajes Realizados ", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400,
-                                    fontFamily: "Roboto", fontSize: 15
+                                    fontFamily: "Raleway", fontSize: 15
                                 ),)
                               ],
                             ),
@@ -681,13 +680,13 @@ class perfil2 extends StatelessWidget {
                                     Icon(Icons.favorite, color: Colors.black, size: 30,),
                                     SizedBox(width: 4,),
                                     Text("14/05/20", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700,
-                                        fontFamily: "Roboto", fontSize: 24
+                                        fontFamily: "Raleway", fontSize: 24
                                     ),)
                                   ],
                                 ),
 
                                 Text("Miembro desde", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400,
-                                    fontFamily: "Roboto", fontSize: 15
+                                    fontFamily: "Raleway", fontSize: 15
                                 ),)
                               ],
                             ),
@@ -705,13 +704,13 @@ class perfil2 extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Text("Acerca de mi", style: TextStyle(color: Colors.yellow[600], fontWeight: FontWeight.w700,
-                                fontFamily: "Roboto", fontSize: 18
+                                fontFamily: "Raleway", fontSize: 18
                             ),),
 
                             SizedBox(height: 8,),
                             Text("HOLA SE VE BIEN COOL ESTO AJIJIJIJIJI                      "
                                 "EL YOZIL ES JOT0 ",
-                              style: TextStyle(fontFamily: "Roboto", fontSize: 15),
+                              style: TextStyle(fontFamily: "Raleway", fontSize: 15),
                             ),
 
                           ],

@@ -17,7 +17,7 @@ class Inicio extends StatelessWidget {
       title: 'Version 1.0',
       home: PantallaInicio_State(),
       themeMode: ThemeMode.dark,
-      theme: ThemeData(fontFamily: 'Proxima_nova',
+      theme: ThemeData(fontFamily: 'Raleway',
           primaryColor: Colors.grey[900],
           accentColor: Colors.yellow[600],
           cursorColor: Colors.yellow[600],
