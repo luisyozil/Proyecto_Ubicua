@@ -25,8 +25,8 @@ dependencies:
   image_picker: ^0.6.6+1
   flutter_staggered_grid_view:
   firebase_auth: ^0.16.0
-
-
+  flutter_rating_bar: ^3.0.1+1
+  shimmer: ^1.1.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -61,6 +61,8 @@ flutter:
    - img/microfono.png
    - img/microfonobco.png
    - img/tecate.jpg
+   - img/profile_1.jpg
+   - img/profile_2.jpg
    - img/bateria.png
    - img/musicos.png
    - img/musicos2.png
