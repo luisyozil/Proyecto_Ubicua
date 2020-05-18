@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:proyecto_ubicua/prueba.dart';
 import 'PantallaAyuda.dart';
@@ -19,18 +20,23 @@ class Inicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Version 1.0',
-      home: PantallaInicio(usuario),
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(fontFamily: 'Raleway',
-          primaryColor: Colors.grey[900],
-          accentColor: Colors.yellow[600],
-          cursorColor: Colors.yellow[600],
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.black
-      ),
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    return WillPopScope(
+        onWillPop: () async { return false; },
+        child:   MaterialApp(
+          title: 'Version 1.0',
+          home: PantallaInicio(usuario),
+          themeMode: ThemeMode.dark,
+          theme: ThemeData(fontFamily: 'Raleway',
+              primaryColor: Colors.grey[900],
+              accentColor: Colors.yellow[600],
+              cursorColor: Colors.yellow[600],
+              brightness: Brightness.dark,
+              scaffoldBackgroundColor: Colors.black
+          ),
+        ),
     );
   }
 }
