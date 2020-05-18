@@ -126,13 +126,13 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
               ),
             ),
             onTap: () {
-              Navigator.push(
+              /*Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => PantallaDetalleEvento(
                           Nombre: 'Evento $item',
                           DetalleEvento:
-                              "Este es una descripcion del el evento numero $item",
+                              "Este es una descripcion del el evento numero",
                           ImagenEvento: Image.asset(
                             'img/ImagenFest.jpg',
                             height: 160.0,
@@ -140,7 +140,7 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
                             fit: BoxFit.cover,
                           ),
                         )),
-              );
+              );*/
             },
           ),
         );

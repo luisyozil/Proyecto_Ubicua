@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_ubicua/modelos/Evento.dart';
 import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PantallaDetalleEvento extends StatelessWidget {
-  final String Nombre;
-  final String DetalleEvento;
-  final Widget ImagenEvento;
+  final Evento evento;
 
-  PantallaDetalleEvento({this.Nombre, this.DetalleEvento, this.ImagenEvento});
+  PantallaDetalleEvento({this.evento});
 
 
   @override
@@ -15,7 +14,7 @@ class PantallaDetalleEvento extends StatelessWidget {
     return new Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Detalles del evento $Nombre',
+        title: Text('Detalles del evento ${evento.nombre}',
           style: TextStyle(color: Color.fromARGB(255, 230, 230, 230),),
         ),
         backgroundColor: Color.fromARGB(255, 45, 45, 45),
@@ -33,7 +32,7 @@ class PantallaDetalleEvento extends StatelessWidget {
                   color: Color.fromARGB(255, 230, 230, 230),
                 ),]
             ),
-            child: this.ImagenEvento,
+            child: Image.network(evento.imagen, fit: BoxFit.cover,),
           ),
           SizedBox(height: 15.0,),
           Expanded(
@@ -47,9 +46,9 @@ class PantallaDetalleEvento extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Text('El nombre del evento es :  $Nombre', style: TextStyle(
+                          Text('El nombre del evento es :  ${evento.nombre}', style: TextStyle(
                               color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
-                          Text('Detalles: Los detalles de $Nombre consta de  .............', style: TextStyle(
+                          Text('Detalles: Los detalles de ${evento.nombre} consta de  .............', style: TextStyle(
                               color: Color.fromARGB(255, 230, 230, 230), fontSize: 20.0),),
 
                         ]
