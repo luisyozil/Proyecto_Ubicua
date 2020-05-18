@@ -23,17 +23,20 @@ class Inicio extends StatelessWidget {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    return MaterialApp(
-      title: 'Version 1.0',
-      home: PantallaInicio(usuario),
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(fontFamily: 'Raleway',
-          primaryColor: Colors.grey[900],
-          accentColor: Colors.yellow[600],
-          cursorColor: Colors.yellow[600],
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.black
-      ),
+    return WillPopScope(
+        onWillPop: () async { return false; },
+        child:   MaterialApp(
+          title: 'Version 1.0',
+          home: PantallaInicio(usuario),
+          themeMode: ThemeMode.dark,
+          theme: ThemeData(fontFamily: 'Raleway',
+              primaryColor: Colors.grey[900],
+              accentColor: Colors.yellow[600],
+              cursorColor: Colors.yellow[600],
+              brightness: Brightness.dark,
+              scaffoldBackgroundColor: Colors.black
+          ),
+        ),
     );
   }
 }
