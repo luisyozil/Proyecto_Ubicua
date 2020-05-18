@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PantallaDetalleVenta.dart';
+import 'package:shimmer/shimmer.dart';
+
 
 class PantallaNotificaciones_State extends StatefulWidget {
   final List<int> items;
@@ -43,21 +45,21 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
               width: MediaQuery.of(context).size.width,
               color: Colors.black),
           child: InkWell(
-            child: Container(
-              height: MediaQuery.of(context).size.height / 8,
+            child:  Container(
+              height: MediaQuery.of(context).size.height / 6,
               width: MediaQuery.of(context).size.width,
               color: Colors.black,
               child: Center(
                 child: Container(
-                  height: (MediaQuery.of(context).size.height / 8) - 10,
+                  height: (MediaQuery.of(context).size.height / 6) - 10,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                        Color.fromARGB(255, 100, 100, 100),
-                        Color.fromARGB(255, 45, 45, 45),
-                      ])),
+                    gradient: LinearGradient(
+                      colors: <Color>[
+                        Colors.yellow[500],
+                        Colors.yellow[600],
+                        Colors.yellow[700],
+                      ],
+                    ),),
                   child: Center(
                     child: Row(
                       children: <Widget>[
@@ -65,8 +67,8 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
                           width: 5.0,
                         ),
                         Container(
-                          width: (MediaQuery.of(context).size.height / 8) - 20,
-                          height: (MediaQuery.of(context).size.height / 8) - 20,
+                          width: (MediaQuery.of(context).size.height / 6) - 20,
+                          height: (MediaQuery.of(context).size.height / 6) - 20,
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 150, 150, 150),
                             shape: BoxShape.circle,
@@ -83,35 +85,44 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width*.70,
-                          height: (MediaQuery.of(context).size.height / 8) - 20,
+                          height: (MediaQuery.of(context).size.height / 6) - 20,
                           decoration: BoxDecoration(
-                              //  color: Color.fromARGB(255, 150, 150, 150),
+                            //  color: Color.fromARGB(255, 150, 150, 150),
                               shape: BoxShape.rectangle),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
-                                "Este es un titulo para el evento numero $item",
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 230, 230, 230),
+                              Shimmer.fromColors(
+                                child:Text(
+                                  "Este es un titulo para el evento numero $item",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 230, 230, 230),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.fade,
+                                baseColor: Colors.white,
+                                highlightColor: Colors.black12,
                               ),
+
                               SizedBox(
                                 width: 5.0,
                               ),
-                              Text(
-                                "Este es una descripcion del el evento numero $item",
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 230, 230, 230),
+                              Shimmer.fromColors(
+                                child:Text(
+                                  "Este es una descripcion del el evento numero $item",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 230, 230, 230),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.fade,
+                                baseColor: Colors.white,
+                                highlightColor: Colors.black12,
                               ),
                             ],
                           ),
