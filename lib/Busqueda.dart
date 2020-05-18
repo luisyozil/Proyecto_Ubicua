@@ -58,37 +58,6 @@ class _BusquedaPageState extends State<Busqueda> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-          bottomNavigationBar:
-          BottomNavigationBar(
-            selectedItemColor: Theme.of(context).accentColor,
-            type: BottomNavigationBarType.shifting,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.help_outline),
-                title: Text('Ayuda'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.edit),
-                title: Text('Notificaciones'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.edit),
-                title: Text('Eventos'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                title: Text('Búsqueda'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.edit),
-                title: Text('Cuenta'),
-              ),
-            ],
-          ),
-          /*appBar: AppBar(
-
-          title: Text('uno'),
-        ),*/
           body: Container(
               padding: EdgeInsets.symmetric(vertical: 35,horizontal: 35),
               width: MediaQuery.of(context).size.width,

@@ -8,6 +8,9 @@ import 'db.dart' as db;
 import 'PantallaInicio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'modelos/Usuario.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -76,6 +79,15 @@ class FormSignUp extends StatefulWidget {
 }
 
 class _FormSignUpState extends State<FormSignUp> {
+  File imagen;
+
+  Future<void> pickImage() async {
+    File selected = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imagen = selected;
+    });
+  }
+
   TextEditingController _name;
   TextEditingController _lastname;
   TextEditingController _email;
@@ -231,6 +243,12 @@ class _FormSignUpState extends State<FormSignUp> {
                 ),
               ),
             ),
+          ),
+          IconButton(
+            icon: Icon(Icons.image),
+            onPressed: () {
+              pickImage();
+            },
           ),
           SizedBox(
             height: 30,
