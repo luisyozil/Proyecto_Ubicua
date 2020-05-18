@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'db.dart' as db;
 
 class Busqueda extends StatefulWidget {
   @override
@@ -38,9 +40,10 @@ class _BusquedaPageState extends State<Busqueda> {
         value.substring(0, 1).toUpperCase() + value.substring(1);
 
     if (queryResultSet.length == 0 && value.length == 1) {
-      busqueda.forEach((element) {
-        if(element.startsWith(value.toString().substring(0,1)))
-          queryResultSet.add(element);
+      db.SearchService().searchByName(value.toString().substring(0,1)).then((QuerySnapshot docs) {
+        for (int i = 0; i < docs.documents.length; ++i) {
+          queryResultSet.add(docs.documents[i].data);
+        }
       });
     } else {
       tempSearchStore = [];
@@ -58,37 +61,6 @@ class _BusquedaPageState extends State<Busqueda> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-          bottomNavigationBar:
-          BottomNavigationBar(
-            selectedItemColor: Theme.of(context).accentColor,
-            type: BottomNavigationBarType.shifting,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.help_outline),
-                title: Text('Ayuda'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.edit),
-                title: Text('Notificaciones'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.edit),
-                title: Text('Eventos'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                title: Text('Búsqueda'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.edit),
-                title: Text('Cuenta'),
-              ),
-            ],
-          ),
-          /*appBar: AppBar(
-
-          title: Text('uno'),
-        ),*/
           body: Container(
               padding: EdgeInsets.symmetric(vertical: 35,horizontal: 35),
               width: MediaQuery.of(context).size.width,

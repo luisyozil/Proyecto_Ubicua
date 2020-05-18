@@ -34,7 +34,7 @@ class Prueba extends StatelessWidget {
                   ),
                 ),
                 MessageBox(onSend: (text) {
-                  db.GuardaUsuario(Usuario(text));
+                  //db.GuardaUsuario(Usuario(text));
                 }),
                 Datos(usuario),
               ],

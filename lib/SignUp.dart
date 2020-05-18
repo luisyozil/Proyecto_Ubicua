@@ -1,18 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/intro.dart';
 import 'clipper.dart';
 import 'Login.dart';
 import 'FadeAnimation.dart';
+import 'db.dart' as db;
 import 'PantallaInicio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'SignUp.dart';
+import 'modelos/Usuario.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 
-class Login2 extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _Login2PageState createState() => _Login2PageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _Login2PageState extends State<Login2> {
+class _SignUpPageState extends State<SignUp> {
   var width, height;
   //static final GlobalKey<FormState> user = new GlobalKey<FormState>();
   @override
@@ -37,18 +42,18 @@ class _Login2PageState extends State<Login2> {
                     child: ClipPath(
                       clipper: MainClipper(),
                       child: Container(
-                        height: height * .55,
+                        height: height * .35,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                          colors: [
-                            Colors.yellow[500],
-                            Colors.yellow[600],
-                            Colors.yellow[700],
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.centerRight,
-                        )),
+                              colors: [
+                                Colors.yellow[500],
+                                Colors.yellow[600],
+                                Colors.yellow[700],
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.centerRight,
+                            )),
                         child: Image.asset(
                           "img/musicos.png",
                           width: width * .9,
@@ -58,28 +63,41 @@ class _Login2PageState extends State<Login2> {
                   ),
                 ],
               ),
-              FormLogin(height),
+              FormSignUp(height),
             ],
           ),
         ));
   }
 }
 
-class FormLogin extends StatefulWidget {
+class FormSignUp extends StatefulWidget {
   final height;
-  FormLogin(this.height);
+  FormSignUp(this.height);
 
   @override
-  _FormLoginState createState() => _FormLoginState();
+  _FormSignUpState createState() => _FormSignUpState();
 }
 
-class _FormLoginState extends State<FormLogin> {
+class _FormSignUpState extends State<FormSignUp> {
+  File imagen;
+
+  Future<void> pickImage() async {
+    File selected = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imagen = selected;
+    });
+  }
+
+  TextEditingController _name;
+  TextEditingController _lastname;
   TextEditingController _email;
   TextEditingController _pass;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   void dispose() {
+    _name.dispose();
+    _lastname.dispose();
     _email.dispose();
     _pass.dispose();
     super.dispose();
@@ -89,6 +107,8 @@ class _FormLoginState extends State<FormLogin> {
   void initState() {
     _email = TextEditingController();
     _pass = TextEditingController();
+    _name = TextEditingController();
+    _lastname = TextEditingController();
     super.initState();
   }
 
@@ -98,8 +118,14 @@ class _FormLoginState extends State<FormLogin> {
       formstate.save();
       try {
         AuthResult usuario = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-                email: _email.text.trim(), password: _pass.text);
+            .createUserWithEmailAndPassword(
+            email: _email.text.trim(),
+            password: _pass.text
+        );
+
+        String Uid = usuario.user.uid;
+        Usuario user = Usuario(Uid,_name.value.toString(),_lastname.value.toString(),"fl",_email.value.toString());
+        db.GuardaUsuario(user);
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
       } catch (error) {
@@ -115,7 +141,7 @@ class _FormLoginState extends State<FormLogin> {
       child: Column(
         children: <Widget>[
           Text(
-            "Ingresa a tu cuenta",
+            "Registrate",
             style: TextStyle(
               color: Colors.white,
               fontSize: 22,
@@ -133,21 +159,71 @@ class _FormLoginState extends State<FormLogin> {
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
                   validator: (input) {
-                    if (input.isEmpty) return "Ingrese su Correo";
+                    if (input.isEmpty) return "No puede estar vacio";
                   },
-                  onSaved: (input) => _email.text = input,
-                  controller: _email,
+                  onSaved: (input) => _name.text = input,
+                  controller: _name,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     icon: Icon(Icons.person),
-                    hintText: "Usuario",
+                    hintText: "Nombre",
                   ),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 35, right: 35, top: 12),
+            padding: EdgeInsets.only(
+              left: 35,
+              right: 35,
+              top: 20,
+            ),
+            child: Material(
+              shape: StadiumBorder(),
+              child: Padding(
+                padding: EdgeInsets.only(left: 16, right: 16),
+                child: TextFormField(
+                  validator: (input) {
+                    if (input.isEmpty) return "No puede estar vacio";
+                  },
+                  onSaved: (input) => _lastname.text = input,
+                  controller: _lastname,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    icon: Icon(Icons.perm_identity),
+                    hintText: "Apellido",
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: 35,
+              right: 35,
+              top: 20,
+            ),
+            child: Material(
+              shape: StadiumBorder(),
+              child: Padding(
+                padding: EdgeInsets.only(left: 16, right: 16),
+                child: TextFormField(
+                  validator: (input) {
+                    if (input.isEmpty) return "No puede estar vacio";
+                  },
+                  onSaved: (input) => _email.text = input,
+                  controller: _email,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    icon: Icon(Icons.email),
+                    hintText: "Correo",
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 35, right: 35, top: 20),
             child: Material(
               shape: StadiumBorder(),
               child: Padding(
@@ -167,6 +243,12 @@ class _FormLoginState extends State<FormLogin> {
                 ),
               ),
             ),
+          ),
+          IconButton(
+            icon: Icon(Icons.image),
+            onPressed: () {
+              pickImage();
+            },
           ),
           SizedBox(
             height: 30,
@@ -190,21 +272,7 @@ class _FormLoginState extends State<FormLogin> {
               ),
               padding: const EdgeInsets.only(
                   left: 100.0, right: 100, top: 10, bottom: 10),
-              child: const Text('Ingresar', style: TextStyle(fontSize: 21)),
-            ),
-          ),
-          FlatButton(
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SignUp(),
-                ),
-              );
-            },
-            child: Text(
-              "¿Nuevo? Registrate aqui",
-              style: TextStyle(color: Color.fromARGB(255, 255, 204, 0)),
+              child: const Text('Registrarse', style: TextStyle(fontSize: 21)),
             ),
           ),
         ],
