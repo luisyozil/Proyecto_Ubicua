@@ -124,7 +124,8 @@ class _FormSignUpState extends State<FormSignUp> {
         );
 
         String Uid = usuario.user.uid;
-        Usuario user = Usuario(Uid,_name.value.toString(),_lastname.value.toString(),"https://firebasestorage.googleapis.com/v0/b/proyectoubicua-8b009.appspot.com/o/Yozil.jpg?alt=media&token=6d43fa61-b43b-48ab-ac8b-1a0f927cae23",_email.value.toString());
+        String urlImagen = "https://api.adorable.io/avatars/600/"+_name.text+_lastname.text+"@adorable.io.png";
+        Usuario user = Usuario(Uid,_name.text,_lastname.text,urlImagen,_email.text);
         db.GuardaUsuario(user);
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
@@ -243,12 +244,6 @@ class _FormSignUpState extends State<FormSignUp> {
                 ),
               ),
             ),
-          ),
-          IconButton(
-            icon: Icon(Icons.image),
-            onPressed: () {
-              pickImage();
-            },
           ),
           SizedBox(
             height: 30,

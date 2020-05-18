@@ -13,7 +13,7 @@ Stream<Usuario> BuscaUsuario(String id){
 }
 
 Future<void> GuardaUsuario(Usuario usuario){
-  return Firestore.instance.collection('usuarios').document(usuario.id).setData(usuario.Conversion());//); add(usuario.Conversion());
+  return Firestore.instance.collection('usuarios').document(usuario.id).setData(usuario.Conversion());
 }
 
 
@@ -23,9 +23,8 @@ Stream<List<Evento>> dameEventos() {
 }
 
 class SearchService {
-  searchByName(String searchField) {
+  searchByName() {
     return Firestore.instance
-        .collection('eventos').where('nombre',
-        arrayContains: searchField.substring(0,1)).getDocuments();
+        .collection('eventos').getDocuments();
   }
 }
