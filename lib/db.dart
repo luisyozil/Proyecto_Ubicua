@@ -8,6 +8,10 @@ Stream<List<Usuario>> dameUsuarios() {
   return Firestore.instance.collection('usuarios').orderBy('usuario').snapshots().map(CambiaListaUsuarios);
 }
 
+Stream<Usuario> BuscaUsuario(String id){
+  return Firestore.instance.collection("usuarios").document(id).snapshots().map(CambiaUsuario);
+}
+
 Future<void> GuardaUsuario(Usuario usuario){
   return Firestore.instance.collection('usuarios').add(usuario.Conversion());
 }

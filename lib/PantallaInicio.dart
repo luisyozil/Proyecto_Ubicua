@@ -20,6 +20,7 @@ class Inicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Version 1.0',
       home: PantallaInicio(usuario),
       themeMode: ThemeMode.dark,
@@ -67,7 +68,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
       PantallaEventos(items: itemsEventos),
       Busqueda(),
       //Prueba(widget.usuario),
-      perfil2(),
+      perfil2(widget.usuario),
     ];
     return new Scaffold(
       backgroundColor: Colors.black,
