@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'db.dart' as db;
 
 class Busqueda extends StatefulWidget {
   @override
@@ -38,9 +40,10 @@ class _BusquedaPageState extends State<Busqueda> {
         value.substring(0, 1).toUpperCase() + value.substring(1);
 
     if (queryResultSet.length == 0 && value.length == 1) {
-      busqueda.forEach((element) {
-        if(element.startsWith(value.toString().substring(0,1)))
-          queryResultSet.add(element);
+      db.SearchService().searchByName(value.toString().substring(0,1)).then((QuerySnapshot docs) {
+        for (int i = 0; i < docs.documents.length; ++i) {
+          queryResultSet.add(docs.documents[i].data);
+        }
       });
     } else {
       tempSearchStore = [];

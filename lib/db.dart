@@ -21,3 +21,11 @@ Future<void> GuardaUsuario(Usuario usuario){
 Stream<List<Evento>> dameEventos() {
   return Firestore.instance.collection('eventos').snapshots().map(CambiaListaEventos);
 }
+
+class SearchService {
+  searchByName(String searchField) {
+    return Firestore.instance
+        .collection('eventos').where('nombre',
+        arrayContains: searchField.substring(0,1)).getDocuments();
+  }
+}

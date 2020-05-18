@@ -272,7 +272,7 @@ class _FormSignUpState extends State<FormSignUp> {
               ),
               padding: const EdgeInsets.only(
                   left: 100.0, right: 100, top: 10, bottom: 10),
-              child: const Text('Ingresar', style: TextStyle(fontSize: 21)),
+              child: const Text('Registrarse', style: TextStyle(fontSize: 21)),
             ),
           ),
         ],
