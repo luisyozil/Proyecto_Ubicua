@@ -55,9 +55,10 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: <Color>[
-                        Colors.yellow[500],
+                        Colors.yellow[200],
+                        Colors.yellow[400],
                         Colors.yellow[600],
-                        Colors.yellow[700],
+                        Colors.yellow[800],
                       ],
                     ),),
                   child: Center(
