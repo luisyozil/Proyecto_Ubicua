@@ -74,7 +74,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
       PantallaEventos(items: itemsEventos),
       Busqueda(),
       //Prueba(widget.usuario),
-      perfil2(),
+      perfil2(widget.usuario),
     ];
     return new Scaffold(
       backgroundColor: Colors.black,
