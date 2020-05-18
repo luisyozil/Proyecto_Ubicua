@@ -75,9 +75,6 @@ class _PantallaCondiciones extends State<PantallaCondiciones> {
       ),
     );
   }
-
-
-
 }
 
 class ParteGris extends StatelessWidget{
