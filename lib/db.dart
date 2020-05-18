@@ -13,7 +13,7 @@ Stream<Usuario> BuscaUsuario(String id){
 }
 
 Future<void> GuardaUsuario(Usuario usuario){
-  return Firestore.instance.collection('usuarios').add(usuario.Conversion());
+  return Firestore.instance.collection('usuarios').document(usuario.id).setData(usuario.Conversion());//); add(usuario.Conversion());
 }
 
 
