@@ -832,7 +832,127 @@ class perfil2 extends StatelessWidget {
                           height: 16,
                         ),
                         //Container for clients
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 10,),
 
+                            Container(
+
+
+                              height: 50.0,
+                              width: MediaQuery.of(context).size.width*.93,
+                              decoration:  BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black,
+                                boxShadow: [
+                                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.airplanemode_active,
+                                    color: Colors.yellow[600],
+                                    size: 30.0,
+                                  ),
+
+                                  FlatButton(
+                                    splashColor: Color.fromARGB(125, 255, 204, 0),
+                                    onPressed: (){
+
+                                    },
+                                    child: Text('Mis Viajes',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+                                  ),
+                                ],
+                              ),
+
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 10,),
+                            Container(
+
+
+                              height: 50.0,
+                              width: MediaQuery.of(context).size.width*.93,
+                              decoration:  BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black,
+                                boxShadow: [
+                                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.info,
+                                    color: Colors.yellow[600],
+                                    size: 30.0,
+                                  ),
+
+                                  FlatButton(
+                                    splashColor: Color.fromARGB(125, 255, 204, 0),
+                                    onPressed: (){
+
+                                    },
+                                    child: Text('Mi Informacion',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+                                  ),
+                                ],
+                              ),
+
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 10,),
+                            Container(
+
+
+                              height: 50.0,
+                              width: MediaQuery.of(context).size.width*.93,
+                              decoration:  BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black,
+                                boxShadow: [
+                                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.help,
+                                    color: Colors.yellow[600],
+                                    size: 30.0,
+                                  ),
+
+                                  FlatButton(
+                                    splashColor: Color.fromARGB(125, 255, 204, 0),
+                                    onPressed: (){
+
+                                    },
+                                    child: Text('Ayuda',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+                                  ),
+                                ],
+                              ),
+
+                            ),
+                          ],
+                        ),
                         //Container for reviews
                       ],
                     ),
