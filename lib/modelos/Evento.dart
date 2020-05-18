@@ -13,7 +13,7 @@ class Evento {
 
   Evento.GuardaEvento(DocumentSnapshot doc)
       : //id = doc.documentID,
-        nombre = doc.data['usuario'],
+        nombre = doc.data['nombre'],
         imagen = doc.data['imagen'],
         fecha = (doc.data['fecha'] as Timestamp).toDate(),
         idLocacion = doc.data['idLocacion'],
