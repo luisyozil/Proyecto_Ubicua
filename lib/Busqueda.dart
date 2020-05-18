@@ -40,7 +40,7 @@ class _BusquedaPageState extends State<Busqueda> {
         value.substring(0, 1).toUpperCase() + value.substring(1);
 
     if (queryResultSet.length == 0 && value.length == 1) {
-      db.SearchService().searchByName(value.toString().substring(0,1)).then((QuerySnapshot docs) {
+      db.SearchService().searchByName().then((QuerySnapshot docs) {
         for (int i = 0; i < docs.documents.length; ++i) {
           queryResultSet.add(docs.documents[i].data);
         }
@@ -48,8 +48,7 @@ class _BusquedaPageState extends State<Busqueda> {
     } else {
       tempSearchStore = [];
       queryResultSet.forEach((element) {
-        if (element.startsWith(value)) {
-          print(value);
+        if (element['nombre'].toString().toLowerCase().contains(value.toString().toLowerCase())) {
           setState(() {
             tempSearchStore.add(element);
           });
@@ -114,7 +113,9 @@ class _BusquedaPageState extends State<Busqueda> {
 
 
 
-Widget buildResultCard(datos,context) {
+Widget buildResultCard(data,context) {
+  DateTime date = data['fecha'].toDate();
+  String fecha = date.day.toString()+'/'+date.month.toString()+'/'+date.year.toString();
   return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       elevation: 2.0,
@@ -124,15 +125,20 @@ Widget buildResultCard(datos,context) {
           Container(
             alignment: Alignment.center,
             width: 120,
-            child: Text(datos),
+            child: Image.network(data['imagen'])
+          ),
+          Container(
+            alignment: Alignment.center,
+            width: 120,
+            child: Text(data['nombre']),
           ),
           Container(
             height: 120,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('Fecha',style: TextStyle(color: Theme.of(context).accentColor),),
-                Text('Precio')
+                Text(fecha,style: TextStyle(color: Theme.of(context).accentColor),),
+                //Text(data['descripcion'])
               ],
             ),
           )

@@ -10,16 +10,14 @@ class Usuario {
   Usuario(this.id,this.nombre,this.apellido,this.imagen, this.correo);//:correo = "ejemplo@hotmail.com";
 
   Map<String, dynamic> Conversion() => {
-    'id': id,
-    'usuario': nombre,
+    'nombre': nombre,
     'apellido': apellido,
     'imagen': imagen,
     'correo': correo,
   };
 
   Usuario.GuardaUsuario(DocumentSnapshot doc)
-      : id = doc.documentID,
-        nombre = doc.data['nombre'],
+      : nombre = doc.data['nombre'],
         apellido = doc.data['apellido'],
         imagen = doc.data['imagen'],
         correo = doc.data['correo'];
