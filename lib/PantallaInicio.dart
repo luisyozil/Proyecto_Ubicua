@@ -51,9 +51,8 @@ class PantallaInicio extends StatefulWidget {
 }
 
 class _PantallaInicioState extends State<PantallaInicio> {
-  static final items = List<int>.generate(20, (i) => i + 1);
   static final itemsEventos = List<int>.generate(10, (i) => i + 1);
-
+  static final items = List<int>.generate(20, (i) => i + 1);
   final List<CardFormatoGeneral> Titulos = items
       .map((it) => new CardFormatoGeneral(
           rutaImagen: 'La imagen es $it',
@@ -61,8 +60,6 @@ class _PantallaInicioState extends State<PantallaInicio> {
           Descripcion: 'Mi descripcion es $it'))
       .toList();
 
-  // Aqui seria el refresh
-  final itemsPares = List<int>();
   int idx_Title = 2;
 
   @override
@@ -71,7 +68,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
     List<Widget> Pantalla = [
       PantallaAyuda(),
       PantallaNotificaciones_State(items: items),
-      PantallaEventos(items: itemsEventos),
+      PantallaEventos(),
       Busqueda(),
       //Prueba(widget.usuario),
       perfil2(widget.usuario),

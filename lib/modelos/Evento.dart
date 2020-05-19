@@ -8,6 +8,7 @@ class Evento {
   String idLocacion;
   String descripcion;
   String cupo;
+  String Categoria;
 
   Evento(this.nombre);//:correo = "ejemplo@hotmail.com";
 
@@ -18,7 +19,9 @@ class Evento {
         fecha = (doc.data['fecha'] as Timestamp).toDate(),
         idLocacion = doc.data['idLocacion'],
         descripcion = doc.data['descripcion'],
-        cupo = doc.data['cupo'];
+        cupo = doc.data['cupo'],
+        Categoria = doc.data['categorias'];
+
 }
 
 /*esta funcion se debe declarar para cada modelo para que procese sus datos*/

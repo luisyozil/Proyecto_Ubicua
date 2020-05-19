@@ -14,7 +14,7 @@ class PantallaDetalleEvento extends StatelessWidget {
     return new Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text('Detalles del evento ${evento.nombre}',
+          title: Text('Detalles',
             style: TextStyle(color: Color.fromARGB(255, 230, 230, 230),),
           ),
           backgroundColor: Color.fromARGB(255, 45, 45, 45),
@@ -46,9 +46,11 @@ class PantallaDetalleEvento extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text('El nombre del evento es :  ${evento.nombre}', style: TextStyle(
+                            Text('${evento.fecha.weekday}, ${evento.fecha.day} de ${evento.fecha.month}, ${evento.fecha.year}', style: TextStyle(
+    color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
+                            Text('${evento.nombre}', style: TextStyle(
                                 color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
-                            Text('Detalles: Los detalles de ${evento.nombre} consta de  .............', style: TextStyle(
+                            Text('Detalles: ${evento.nombre} : ${evento.descripcion}', style: TextStyle(
                                 color: Color.fromARGB(255, 230, 230, 230), fontSize: 20.0),),
 
                           ]
@@ -98,8 +100,8 @@ class PantallaDetalleEvento extends StatelessWidget {
                     fontSize: 21.0,
                   ),
                 ),
-                baseColor: Colors.black12,
-                highlightColor: Colors.white,
+                baseColor: Colors.black,
+                highlightColor: Colors.grey,
                 //loop: 3,
               ),
             ),

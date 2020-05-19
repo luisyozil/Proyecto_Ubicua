@@ -6,9 +6,8 @@ import 'db.dart' as db;
 import 'modelos/Evento.dart';
 
 class PantallaEventos extends StatelessWidget {
-  final List<int> items;
 
-  PantallaEventos({this.items});
+  PantallaEventos();
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +28,11 @@ class PantallaEventos extends StatelessWidget {
                 }
 
                 List<Evento> eventos = snapshot.data;
+
                 return ListView.builder(
                   physics: BouncingScrollPhysics(),
                   itemCount: eventos.length,
                   itemBuilder: (context, index) {
-                    final item = items[index];
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -183,70 +182,28 @@ Widget EventoBuilder(BuildContext context, Evento item) {
                     ),
                   ],
                 ),
-                Wrap(
-                  children: <Widget>[
+              Wrap(
+                children: item.Categoria.split(',')                       // split the text into an array
+                    .map((String categoria) =>
                     Container(
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        color: Color.fromARGB(255, 255, 204, 0),
-                      ),
-                      child: Text(
-                        'Fecha',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 50, 50, 50),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
+                  padding: EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    color: Color.fromARGB(255, 255, 204, 0),
+                  ),
+                  child: Text(
+                    categoria,
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 50, 50, 50),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12.0,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        color: Color.fromARGB(255, 255, 204, 0),
-                      ),
-                      child: Text(
-                        'Categoria 1',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 50, 50, 50),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        color: Color.fromARGB(255, 255, 204, 0),
-                      ),
-                      child: Text(
-                        'Categoria 2',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 50, 50, 50),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        color: Color.fromARGB(255, 255, 204, 0),
-                      ),
-                      child: Text(
-                        'Categoria 3',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 50, 50, 50),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ),) // put the text inside a widget
+                    .toList(),                        // convert the iterable to a list
+              ),
+
+
               ],
             ),
           ),
