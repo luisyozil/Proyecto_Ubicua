@@ -41,7 +41,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+  http: ^0.11.3+17
+  progress_dialog: ^1.2.2
+  flutter_credit_card: ^0.1.3
+  stripe_payment: ^1.0.7
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
