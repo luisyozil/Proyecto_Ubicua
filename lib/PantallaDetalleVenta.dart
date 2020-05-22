@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/modelos/Evento.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PantallaDetalleEvento extends StatelessWidget {
   final Evento evento;
+  double StarValue;
 
   PantallaDetalleEvento({this.evento});
 
@@ -19,48 +22,168 @@ class PantallaDetalleEvento extends StatelessWidget {
           ),
           backgroundColor: Color.fromARGB(255, 45, 45, 45),
         ),
-        body: Column(
+        body: Stack(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(4),
-              height: MediaQuery.of(context).size.height * 0.45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20),),
-                  boxShadow:[ BoxShadow(
-                    blurRadius: 7,
-                    spreadRadius: 1,
-                    color: Color.fromARGB(255, 230, 230, 230),
-                  ),]
-              ),
-              child: Image.network(evento.imagen, fit: BoxFit.cover,),
-            ),
-            SizedBox(height: 15.0,),
-            Expanded(
-              child:ListView(
-                physics: BouncingScrollPhysics(),
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      width:MediaQuery.of(context).size.width-20.0,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Text('${evento.fecha.day.toString()} / '
-                                 '${evento.fecha.month.toString()} / '
-                                 '${evento.fecha.year}', style: TextStyle(
-                                color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
-                            Text('${evento.nombre}', style: TextStyle(
-                                color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
-                            Text('Detalles: ${evento.nombre} : ${evento.descripcion}', style: TextStyle(
-                                color: Color.fromARGB(255, 230, 230, 230), fontSize: 20.0),),
-
-                          ]
-                      ),
-                    ),
+            Align(
+              child: Container(
+                  padding: EdgeInsets.all(4),
+                  height: MediaQuery.of(context).size.height * 0.45,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20),),
+                      boxShadow:[ BoxShadow(
+                        blurRadius: 7,
+                        spreadRadius: 1,
+                        color: Color.fromARGB(255, 230, 230, 230),
+                      ),]
                   ),
-                ],
-              ),
+                  child: Image.network(evento.imagen, fit: BoxFit.cover,),
+                ),
+              alignment: Alignment.topCenter,
+            ),
+            DraggableScrollableSheet(
+                initialChildSize: 0.45,
+                minChildSize: 0.45,
+                maxChildSize: 0.8,
+                builder: (context , controller){
+                  return SingleChildScrollView(
+                    controller: controller,
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(top:25,),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                   Color.fromARGB(255, 45, 45, 45),
+                                   Color.fromARGB(255, 30, 30, 30),
+                                   Color.fromARGB(255, 15, 15, 15),
+                                   Color.fromARGB(255, 0,0, 0),
+                                ]
+                              ),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(25),
+                                topRight: Radius.circular(25),
+                              )
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(child: Icon(MdiIcons.dragHorizontal,color: Colors.white)),
+                              Padding(
+                                padding: const EdgeInsets.all(24.0),
+                                child: Text('${evento.nombre}', style: TextStyle(
+                                    color: Color.fromARGB(255, 230, 230, 230), fontSize: 22.0),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                child: Text('${evento.fecha.day.toString()} / '
+                                    '${evento.fecha.month.toString()} / '
+                                    '${evento.fecha.year}', style: TextStyle(
+                                    color: Color.fromARGB(255, 230, 230, 230), fontSize: 18.0),),
+                              ),
+                              SizedBox(height:15.0),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                child: Text('${evento.descripcion}', style: TextStyle(
+                                    color: Color.fromARGB(255, 230, 230, 230), fontSize: 18.0),),
+                              ),
+                              SizedBox(height:15.0),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 35.0,
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: ExactAssetImage('img/profile_1.jpg'),
+                                        ),
+                                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 35.0,
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: ExactAssetImage('img/profile_2.jpg'),
+                                        ),
+                                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                                        color: Color.fromARGB(255, 75, 75, 75),
+                                      ),
+                                      child: Text(
+                                        '+${evento.interesados}',
+                                        style: TextStyle(
+                                          color: Color.fromARGB(255, 230, 230, 230),
+                                          fontSize: 18.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      ' les interesa asistir',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 230, 230, 230),
+                                        fontSize: 18.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height:25.0),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                child: Text(
+                                  'Categorias:',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 230, 230, 230),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height:15.0),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                child:  Wrap(
+                                  children: evento.Categoria.split(',')                       // split the text into an array
+                                      .map((String categoria) =>
+                                      Container(
+                                        padding: EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                                          color: Color.fromARGB(255, 255, 204, 0),
+                                        ),
+                                        child: Text(
+                                          categoria,
+                                          style: TextStyle(
+                                            color: Color.fromARGB(255, 50, 50, 50),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18.0,
+                                          ),
+                                        ),
+                                      ),) // put the text inside a widget
+                                      .toList(),                        // convert the iterable to a list
+                                ),
+                              ),
+                              SizedBox(height:25.0),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }
             ),
           ],
         ),
@@ -179,52 +302,3 @@ class SliderPaquetesState extends State<SliderPaquetes>{
     });
   }
 }
-
-
-/*
-Padding(
-padding: EdgeInsets.only(
-left: MediaQuery.of(context).size.width*0.1,
-right: MediaQuery.of(context).size.width*0.1,
-bottom: 12,),
-
-child:  RaisedButton(
-onPressed: () {
-Navigator.push(
-context,
-MaterialPageRoute(
-builder: (context) => Paquetes2()
-),
-);
-},
-textColor: Colors.white,
-color: Colors.black,
-padding: const EdgeInsets.all(0.0),
-child: Container(
-height: 50,
-decoration:BoxDecoration(
-borderRadius: BorderRadius.circular(20),
-gradient: LinearGradient(
-colors: <Color>[
-Colors.yellow[500],
-Colors.yellow[600],
-Colors.yellow[700],
-],
-),
-),
-padding: const EdgeInsets.only(left:100.0,right: 100, top: 10,bottom: 10 ),
-child:
-Shimmer.fromColors(
-child: Text(
-'Paquetes',
-style: TextStyle(
-fontSize: 21.0,
-),
-),
-baseColor: Colors.black,
-highlightColor: Colors.grey,
-//loop: 3,
-),
-),
-),
-),*/

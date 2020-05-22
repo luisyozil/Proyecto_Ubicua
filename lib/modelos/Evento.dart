@@ -9,6 +9,8 @@ class Evento {
   String descripcion;
   String cupo;
   String Categoria;
+  int no_resenas;
+  int interesados;
 
   Evento(this.nombre);//:correo = "ejemplo@hotmail.com";
 
@@ -20,8 +22,9 @@ class Evento {
         idLocacion = doc.data['idLocacion'],
         descripcion = doc.data['descripcion'],
         cupo = doc.data['cupo'],
-        Categoria = doc.data['categorias'];
-
+        Categoria = doc.data['categorias'],
+        no_resenas = doc.data['no_reseñas'],
+        interesados = doc.data['interesados'];
 }
 
 /*esta funcion se debe declarar para cada modelo para que procese sus datos*/

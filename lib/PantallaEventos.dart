@@ -6,7 +6,7 @@ import 'db.dart' as db;
 import 'modelos/Evento.dart';
 
 class PantallaEventos extends StatelessWidget {
-
+  double StarRating = 0.0;
   PantallaEventos();
 
   @override
@@ -38,11 +38,11 @@ class PantallaEventos extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PantallaDetalleEvento(evento: eventos[index],),
+                            builder: (context) => PantallaDetalleEvento(evento: eventos[index]),
                           ),
                         );
                       },
-                      child: EventoBuilder(context, eventos[index]),
+                      child: EventoBuilder(context, eventos[index],StarRating),
                     );
                   },
                 );
@@ -55,7 +55,7 @@ class PantallaEventos extends StatelessWidget {
   }
 }
 
-Widget EventoBuilder(BuildContext context, Evento item) {
+Widget EventoBuilder(BuildContext context, Evento item,double StarRating) {
   return Container(
     padding: EdgeInsets.all(12),
     height: 250.0,
@@ -131,15 +131,15 @@ Widget EventoBuilder(BuildContext context, Evento item) {
                 Row(
                   children: <Widget>[
                     RatingBar(
-                      onRatingUpdate: (v) {},
-                      initialRating: 5,
+                      onRatingUpdate: (v) {StarRating = v;},
+                      initialRating: StarRating,
                       itemSize: 13.0,
                       itemBuilder: (context, index) => Icon(
                         Icons.star,
                         color: Colors.amberAccent,
                       ),
                     ),
-                    Text(' + 1234',
+                    Text(' + ${item.no_resenas}',
                         style: TextStyle(
                           color: Color.fromARGB(255, 230, 230, 230),
                           fontWeight: FontWeight.bold,
@@ -170,19 +170,23 @@ Widget EventoBuilder(BuildContext context, Evento item) {
                       ),
                     ),
                     Container(
-                      width: 25.0,
-                      height: 25.0,
+                      padding: EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        color: Colors.white30,
                         borderRadius: BorderRadius.all(Radius.circular(50)),
+                        color: Color.fromARGB(255, 75, 75, 75),
                       ),
-                      child: Center(
-                        child: Text('+25'),
+                      child: Text(
+                        '+${item.interesados}',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 230, 230, 230),
+                          fontSize: 12.0,
+                        ),
                       ),
                     ),
+
                   ],
                 ),
-              Wrap(
+                Wrap(
                 children: item.Categoria.split(',')                       // split the text into an array
                     .map((String categoria) =>
                     Container(
@@ -202,7 +206,6 @@ Widget EventoBuilder(BuildContext context, Evento item) {
                 ),) // put the text inside a widget
                     .toList(),                        // convert the iterable to a list
               ),
-
 
               ],
             ),
