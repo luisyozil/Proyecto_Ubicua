@@ -45,7 +45,6 @@ class PantallaInicio extends StatefulWidget {
   PantallaInicio(this.usuario);
   final FirebaseUser usuario;
 
-
   @override
   _PantallaInicioState createState() => _PantallaInicioState();
 }
