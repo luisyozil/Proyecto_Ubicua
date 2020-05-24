@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:proyecto_ubicua/PantallaAyuda.dart';
 import 'db.dart' as db;
 import 'modelos/Usuario.dart';
-import 'package:stripe_payment/stripe_payment.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'services/payment-service.dart';
 
@@ -649,6 +649,13 @@ class perfil2 extends StatelessWidget {
     return StreamBuilder(
       stream: db.BuscaUsuario(usuario.uid),
       builder: (context, AsyncSnapshot<Usuario> snapshot) {
+        if (!snapshot.hasData) {
+          return CircularProgressIndicator();
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
         Usuario user = snapshot.data;
         return Stack(
           children: <Widget>[
@@ -837,18 +844,19 @@ class perfil2 extends StatelessWidget {
                         //Container for clients
                         Row(
                           children: <Widget>[
-                            SizedBox(width: 10,),
-
+                            SizedBox(
+                              width: 10,
+                            ),
                             Container(
-
-
                               height: 50.0,
-                              width: MediaQuery.of(context).size.width*.93,
-                              decoration:  BoxDecoration(
+                              width: MediaQuery.of(context).size.width * .93,
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.black,
                                 boxShadow: [
-                                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                                  BoxShadow(
+                                      color: Color.fromARGB(255, 255, 204, 0),
+                                      spreadRadius: 2),
                                 ],
                               ),
                               child: Row(
@@ -860,17 +868,20 @@ class perfil2 extends StatelessWidget {
                                     color: Colors.yellow[600],
                                     size: 30.0,
                                   ),
-
                                   FlatButton(
-                                    splashColor: Color.fromARGB(125, 255, 204, 0),
-                                    onPressed: (){
-
-                                    },
-                                    child: Text('Mis Viajes',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+                                    splashColor:
+                                        Color.fromARGB(125, 255, 204, 0),
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Mis Viajes',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Color.fromARGB(255, 255, 204, 0),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
-
                             ),
                           ],
                         ),
@@ -879,17 +890,19 @@ class perfil2 extends StatelessWidget {
                         ),
                         Row(
                           children: <Widget>[
-                            SizedBox(width: 10,),
+                            SizedBox(
+                              width: 10,
+                            ),
                             Container(
-
-
                               height: 50.0,
-                              width: MediaQuery.of(context).size.width*.93,
-                              decoration:  BoxDecoration(
+                              width: MediaQuery.of(context).size.width * .93,
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.black,
                                 boxShadow: [
-                                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                                  BoxShadow(
+                                      color: Color.fromARGB(255, 255, 204, 0),
+                                      spreadRadius: 2),
                                 ],
                               ),
                               child: Row(
@@ -901,17 +914,20 @@ class perfil2 extends StatelessWidget {
                                     color: Colors.yellow[600],
                                     size: 30.0,
                                   ),
-
                                   FlatButton(
-                                    splashColor: Color.fromARGB(125, 255, 204, 0),
-                                    onPressed: (){
-
-                                    },
-                                    child: Text('Mi Informacion',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+                                    splashColor:
+                                        Color.fromARGB(125, 255, 204, 0),
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Mi Informacion',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Color.fromARGB(255, 255, 204, 0),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
-
                             ),
                           ],
                         ),
@@ -920,17 +936,19 @@ class perfil2 extends StatelessWidget {
                         ),
                         Row(
                           children: <Widget>[
-                            SizedBox(width: 10,),
+                            SizedBox(
+                              width: 10,
+                            ),
                             Container(
-
-
                               height: 50.0,
-                              width: MediaQuery.of(context).size.width*.93,
-                              decoration:  BoxDecoration(
+                              width: MediaQuery.of(context).size.width * .93,
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.black,
                                 boxShadow: [
-                                  BoxShadow(color: Color.fromARGB(255, 255, 204, 0), spreadRadius: 2),
+                                  BoxShadow(
+                                      color: Color.fromARGB(255, 255, 204, 0),
+                                      spreadRadius: 2),
                                 ],
                               ),
                               child: Row(
@@ -942,17 +960,23 @@ class perfil2 extends StatelessWidget {
                                     color: Colors.yellow[600],
                                     size: 30.0,
                                   ),
-
                                   FlatButton(
-                                    splashColor: Color.fromARGB(125, 255, 204, 0),
-                                    onPressed: (){
-
+                                    splashColor:
+                                        Color.fromARGB(125, 255, 204, 0),
+                                    onPressed: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) => PantallaAyuda()));
                                     },
-                                    child: Text('Ayuda',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
+                                    child: Text(
+                                      'Ayuda',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Color.fromARGB(255, 255, 204, 0),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
-
                             ),
                           ],
                         ),
@@ -970,7 +994,6 @@ class perfil2 extends StatelessWidget {
   }
 }
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -979,9 +1002,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-
   onItemPress(BuildContext context, int index) async {
-    switch(index) {
+    switch (index) {
       case 0:
         payViaNewCard(context);
         break;
@@ -993,22 +1015,16 @@ class HomePageState extends State<HomePage> {
 
   payViaNewCard(BuildContext context) async {
     ProgressDialog dialog = new ProgressDialog(context);
-    dialog.style(
-        message: 'Por favor espera...'
-    );
+    dialog.style(message: 'Por favor espera...');
     await dialog.show();
-    var response = await StripeService.payWithNewCard(
-        amount: '15000',
-        currency: 'USD'
-
-    );
+    var response =
+        await StripeService.payWithNewCard(amount: '15000', currency: 'USD');
     await dialog.hide();
-    Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(response.message),
-          duration: new Duration(milliseconds: response.success == true ? 1200 : 3000),
-        )
-    );
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(response.message),
+      duration:
+          new Duration(milliseconds: response.success == true ? 1200 : 3000),
+    ));
   }
 
   @override
@@ -1031,7 +1047,7 @@ class HomePageState extends State<HomePage> {
               Icon icon;
               Text text;
 
-              switch(index) {
+              switch (index) {
                 case 0:
                   icon = Icon(Icons.add_circle, color: theme.primaryColor);
                   text = Text('Añadir una tarjeta nueva');
@@ -1053,11 +1069,11 @@ class HomePageState extends State<HomePage> {
               );
             },
             separatorBuilder: (context, index) => Divider(
-              color: theme.primaryColor,
-            ),
-            itemCount: 2
-        ),
+                  color: theme.primaryColor,
+                ),
+            itemCount: 2),
       ),
-    );;
+    );
+    ;
   }
 }

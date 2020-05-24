@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_ubicua/intro.dart';
+import 'package:proyecto_ubicua/modelos/Evento.dart';
 import 'clipper.dart';
 import 'CardItemModel.dart';
-import 'Login.dart';
-import 'FadeAnimation.dart';
-import 'PantallaInicio.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'modelos/Paquete.dart';
 import 'pages/home.dart';
+import 'db.dart' as db;
 
 class Paquetes2 extends StatefulWidget{
+  final Evento evento;
+
+  Paquetes2({this.evento});
+
   @override
   _Paquetes2 createState() => _Paquetes2();
 }
@@ -21,7 +22,6 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
   ScrollController scrollController;
   var currentColor = Color.fromARGB(255, 45, 45, 45);
   int idx_Title = 2;
-  var cardsList = [CardItemModel("GENERAL", "PERSONAL" ,"ENTRADA 1 DIA","","",1200),CardItemModel("PREMIUM PASS","PERSONAL","ENTRADA 2 DIAS + PREMIUM","Transporte","",2400),CardItemModel("ALL INCLUDED","PERSONAL","ENTRADA 2 DIAS VIP","Transporte","Hospedaje",5000 )];
 
   AnimationController animationController;
   ColorTween colorTween;
@@ -59,7 +59,15 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
           child:
           Stack(
             children: <Widget>[
-              _paquetes(height),
+              StreamBuilder(
+                stream: db.damePaquetes(widget.evento),
+                builder: (context,AsyncSnapshot<List<Paquete>> snapshot){
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return CircularProgressIndicator();
+                  }
+                  return _PaquetesCard(height, snapshot.data);
+                },
+              ),
               Hero(
                 tag: 'clipper',
                 child: ClipPath(
@@ -75,9 +83,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                           colorFilter:
                           ColorFilter.mode(Colors.black.withOpacity(0.4),
                               BlendMode.dstATop),
-                          image: new AssetImage(
-                            'img/tecate.jpg',
-                          ),
+                          image: NetworkImage(widget.evento.imagen),
                         ),
                       ),
                     child: Container(
@@ -97,10 +103,10 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                       width: c_width,
                                       child: new Wrap (
                                         children: <Widget>[
-                                          Container(child: new Text ("Tecate Pal Norte", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35.0, color: Colors.white,))),
+                                          Container(child: new Text (widget.evento.nombre, textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35.0, color: Colors.white,))),
                                           Container(
                                             padding: EdgeInsets.all(10),
-                                              child: Text("12/13 Septiembre 2020", style: TextStyle(color: Colors.white, letterSpacing: 2,fontWeight: FontWeight.bold),),
+                                              child: Text(widget.evento.Fecha, style: TextStyle(color: Colors.white, letterSpacing: 2,fontWeight: FontWeight.bold),),
                                           ),
                                           Container(
                                             padding: EdgeInsets.all(10),
@@ -123,52 +129,12 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
             ],
           ),
         ),
-      bottomNavigationBar:
-      BottomNavigationBar(
-        onTap: (int TabIndice) {
-          setState(() {
-            idx_Title = TabIndice;
-          });
-        },
-        currentIndex: idx_Title,
-        selectedItemColor: Color.fromARGB(255, 255, 204, 0),
-        unselectedItemColor: Color.fromARGB(255, 230, 230, 230),
-        type: BottomNavigationBarType.shifting,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help_outline),
-            title: Text('Ayuda'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.bellOutline),
-            title: Text('Notificaciones'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.calendarStar),
-            title: Text('Eventos'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Búsqueda'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.account),
-            title: Text('Cuenta'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-        ],
-      ),
     );
   }
 
-  Widget _paquetes(height){
+  Widget _PaquetesCard(height, List<Paquete> paquetes){
 
     return Material(
-      //key:user,
       color: Colors.black,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 5),
@@ -187,7 +153,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                     height: 350.0,
                     child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: 3,
+                      itemCount: paquetes.length,
                       controller: scrollController,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, position) {
@@ -208,27 +174,27 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                         children: <Widget>[
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                                            child: Text("${cardsList[position].cardTitle}", style: TextStyle(fontSize: 28.0)),
+                                            child: Text("${paquetes[position].titulo}", style: TextStyle(fontSize: 28.0)),
+                                          ),
+                                          /*Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                                            child: Text("${paquetes[position].personas}", style: TextStyle(fontSize: 15.0),),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                                            child: Text("${cardsList[position].personas}", style: TextStyle(fontSize: 15.0),),
+                                            child: Text("${paquetes[position].paquete}", style: TextStyle(fontSize: 15.0),),
+                                          ),*/
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                                            child: Text("${paquetes[position].transporte == true ? "Transporte" : ""}", style: TextStyle(fontSize: 15.0),),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                                            child: Text("${cardsList[position].paquete}", style: TextStyle(fontSize: 15.0),),
+                                            child: Text("${paquetes[position].hospedaje == true ? "Hospedaje" : ""}", style: TextStyle(fontSize: 15.0),),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                                            child: Text("${cardsList[position].transporte}", style: TextStyle(fontSize: 15.0),),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                                            child: Text("${cardsList[position].hospedaje}", style: TextStyle(fontSize: 15.0),),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                                            child: Text("MXN "+"${cardsList[position].precio}", style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),),
+                                            child: Text("MXN "+"${paquetes[position].precio}", style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(10.0),

@@ -2,15 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:proyecto_ubicua/prueba.dart';
+import 'package:proyecto_ubicua/promociones.dart';
 import 'PantallaAyuda.dart';
 import 'PantallaDetalleVenta.dart';
 import 'PantallaNotificaciones.dart';
 import 'PantallaEventos.dart';
-import 'Login.dart';
 import 'Tulio.dart';
-import 'Paquetes.dart';
-import 'PantallaAyuda.dart';
 import 'Busqueda.dart';
 
 class Inicio extends StatelessWidget {
@@ -63,9 +60,9 @@ class _PantallaInicioState extends State<PantallaInicio> {
 
   @override
   Widget build(BuildContext context) {
-    var MenuList = ['Ayuda', 'Notificaciones', 'Eventos', 'Búsqueda', 'Cuenta'];
+    var MenuList = ['Promociones', 'Notificaciones', 'Eventos', 'Búsqueda', 'Cuenta'];
     List<Widget> Pantalla = [
-      PantallaAyuda(),
+      Promociones(),
       PantallaNotificaciones_State(items: items),
       PantallaEventos(),
       Busqueda(),
@@ -96,8 +93,8 @@ class _PantallaInicioState extends State<PantallaInicio> {
         type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.help_outline),
-            title: Text('Ayuda'),
+            icon: Icon(MdiIcons.sale),
+            title: Text('Promociones'),
             backgroundColor: Color.fromARGB(255, 45, 45, 45),
           ),
           BottomNavigationBarItem(
