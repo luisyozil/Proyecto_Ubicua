@@ -7,7 +7,7 @@ import 'FadeAnimation.dart';
 import 'PantallaInicio.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
+import 'pages/home.dart';
 
 class Paquetes2 extends StatefulWidget{
   @override
@@ -38,6 +38,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     double c_width = MediaQuery.of(context).size.width*0.9;
+
     return Scaffold(
         appBar: AppBar(
           title: Text("",
@@ -236,7 +237,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                      builder: (context) => Login()
+                                                      builder: (context) => HomePage(),
                                                   ),
                                                 );
                                               },
@@ -279,10 +280,11 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                             padding: const EdgeInsets.all(8.0),
                                             child: GestureDetector(
                                               onTap: () {
+
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                      builder: (context) => Login()
+                                                      builder: (context) => HomePage(),
                                                   ),
                                                 );
                                               },

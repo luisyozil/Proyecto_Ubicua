@@ -7,7 +7,8 @@ import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:proyecto_ubicua/prueba.dart';
 import 'Login.dart';
 import 'intro.dart';
-
+import 'pages/home.dart';
+import 'pages/existing-cards.dart';
 void main() => runApp(
   MaterialApp(
     themeMode: ThemeMode.dark,
@@ -21,5 +22,6 @@ void main() => runApp(
     ),
     debugShowCheckedModeBanner: false,
     home: IntroPage(),
+
   ),
 );
