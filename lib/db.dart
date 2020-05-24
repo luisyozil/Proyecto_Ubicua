@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:proyecto_ubicua/modelos/Paquete.dart';
 import 'modelos/Evento.dart';
 import 'modelos/Usuario.dart';
 
@@ -27,4 +28,10 @@ class SearchService {
     return Firestore.instance
         .collection('eventos').getDocuments();
   }
+}
+
+/************************************************************************************************************************ PARA LOS PAQUETES*/
+
+Stream<List<Paquete>> damePaquetes(Evento evento) {
+  return Firestore.instance.collection('paquetes').where("idEvento",isEqualTo: evento.id).snapshots().map(CambiaListaPaquetes);
 }

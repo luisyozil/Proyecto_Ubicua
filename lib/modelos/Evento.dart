@@ -14,8 +14,10 @@ class Evento {
 
   Evento(this.nombre);//:correo = "ejemplo@hotmail.com";
 
+  String get Fecha => '${fecha.day} / ${fecha.month} / ${fecha.year}';
+
   Evento.GuardaEvento(DocumentSnapshot doc)
-      : //id = doc.documentID,
+      : id = doc.documentID,
         nombre = doc.data['nombre'],
         imagen = doc.data['imagen'],
         fecha = (doc.data['fecha'] as Timestamp).toDate(),

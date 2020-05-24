@@ -27,6 +27,10 @@ class PantallaEventos extends StatelessWidget {
                   return CircularProgressIndicator();
                 }
 
+                if(snapshot.connectionState == ConnectionState.waiting){
+                  return CircularProgressIndicator();
+                }
+
                 List<Evento> eventos = snapshot.data;
 
                 return ListView.builder(

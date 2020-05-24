@@ -29,7 +29,7 @@ class _PantallaAyuda extends State<PantallaAyuda>{
     height = MediaQuery.of(context).size.height;
     double c_width = MediaQuery.of(context).size.width*0.9;
     return Scaffold(
-
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child:
         Stack(
