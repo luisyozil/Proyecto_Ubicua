@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:proyecto_ubicua/promociones.dart';
-import 'PantallaAyuda.dart';
-import 'PantallaDetalleVenta.dart';
 import 'PantallaNotificaciones.dart';
 import 'PantallaEventos.dart';
 import 'Tulio.dart';
@@ -41,7 +39,6 @@ class Inicio extends StatelessWidget {
 class PantallaInicio extends StatefulWidget {
   PantallaInicio(this.usuario);
   final FirebaseUser usuario;
-
   @override
   _PantallaInicioState createState() => _PantallaInicioState();
 }
