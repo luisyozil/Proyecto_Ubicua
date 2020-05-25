@@ -6,7 +6,7 @@ class Paquete {
   String dias;
   String extra;
   bool hospedaje, transporte;
-  var precio;
+  int precio;
   String titulo;
 
   Paquete(this.id,this.idEvento);

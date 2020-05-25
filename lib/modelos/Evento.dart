@@ -33,3 +33,7 @@ class Evento {
 List<Evento> CambiaListaEventos(QuerySnapshot query) {
   return query.documents.map((doc) => Evento.GuardaEvento(doc)).toList();
 }
+
+Evento CambiaEvento(DocumentSnapshot snapshot){
+  return Evento.GuardaEvento(snapshot);
+}
