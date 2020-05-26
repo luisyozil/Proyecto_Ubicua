@@ -80,13 +80,7 @@ Widget EventoBuilder(BuildContext context, Evento item,double StarRating) {
                   image: NetworkImage(item.imagen),
                   fit: BoxFit.cover,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 7,
-                    spreadRadius: 1,
-                    color: Color.fromARGB(255, 230, 230, 230),
-                  ),
-                ]),
+            ),
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
@@ -110,13 +104,13 @@ Widget EventoBuilder(BuildContext context, Evento item,double StarRating) {
             padding: EdgeInsets.all(12),
             width: MediaQuery.of(context).size.width * 0.43,
             decoration: BoxDecoration(
-                color: Colors.black87,
+                color: Colors.black87.withOpacity(0.9),
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    blurRadius: 7,
+                    blurRadius: 5,
                     spreadRadius: 1,
                     color: Color.fromARGB(255, 230, 230, 230),
                   ),
