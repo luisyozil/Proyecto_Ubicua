@@ -49,3 +49,7 @@ Stream<Paquete> BuscaPaquete(String id){
 Stream<List<Promocion>> damePromociones() {
   return Firestore.instance.collection('promociones').snapshots().map(CambiaListaPromociones);
 }
+
+Stream<Promocion> BuscaPromocion(String id){
+  return Firestore.instance.collection("promociones").where("idPaquete", isEqualTo: id).snapshots().map(EncuentraPromocion);
+}
