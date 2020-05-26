@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:proyecto_ubicua/lista_deseos.dart';
 import 'package:proyecto_ubicua/promociones.dart';
 import 'PantallaNotificaciones.dart';
 import 'PantallaEventos.dart';
@@ -61,7 +62,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
     List<Widget> Pantalla = [
       Promociones(),
       PantallaNotificaciones_State(items: items),
-      PantallaEventos(),
+      PantallaEventos(widget.usuario),
       Busqueda(),
       //Prueba(widget.usuario),
       perfil2(widget.usuario),
@@ -69,6 +70,15 @@ class _PantallaInicioState extends State<PantallaInicio> {
     return new Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(MdiIcons.cartOutline),
+            onPressed: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ListaDeseos(usuario: widget.usuario,)));
+            },
+          ),
+        ],
         title: Text(
           MenuList[idx_Title],
           style: TextStyle(

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -6,8 +7,9 @@ import 'db.dart' as db;
 import 'modelos/Evento.dart';
 
 class PantallaEventos extends StatelessWidget {
+  final FirebaseUser usuario;
   double StarRating = 0.0;
-  PantallaEventos();
+  PantallaEventos(this.usuario);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class PantallaEventos extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PantallaDetalleEvento(evento: eventos[index]),
+                            builder: (context) => PantallaDetalleEvento(evento: eventos[index], usuario: usuario,),
                           ),
                         );
                       },

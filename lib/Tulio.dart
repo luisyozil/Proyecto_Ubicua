@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:proyecto_ubicua/PantallaAyuda.dart';
 import 'db.dart' as db;
+import 'lista_deseos.dart';
 import 'modelos/Usuario.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'services/payment-service.dart';
@@ -109,8 +111,11 @@ class contacto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("",
-          style: TextStyle(color: Color.fromARGB(255, 230, 230, 230),),
+        title: Text(
+          "",
+          style: TextStyle(
+            color: Color.fromARGB(255, 230, 230, 230),
+          ),
         ),
         backgroundColor: Color.fromARGB(255, 45, 45, 45),
         leading: FlatButton(
@@ -123,119 +128,111 @@ class contacto extends StatelessWidget {
           ),
         ),
       ),
-
-      body :ListView(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      width: 80.0,
-                      height: 80.0,
-                      decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage('Images/contacto.png'))),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text("CONTACTO", style: TextStyle(fontSize: 30.0))
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 35,
-                    right: 35,
-                    top: 20,
+      body: ListView(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 80.0,
+                    height: 80.0,
+                    decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: new DecorationImage(
+                            fit: BoxFit.fill,
+                            image: new AssetImage('Images/contacto.png'))),
                   ),
-                  child: Material(
-
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16, right: 16),
-                      child: TextFormField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 1,
-
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-
-                          hintText: "Asunto",
-                        ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("CONTACTO", style: TextStyle(fontSize: 30.0))
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 35,
+                  right: 35,
+                  top: 20,
+                ),
+                child: Material(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: TextFormField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 1,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Asunto",
                       ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 35,
-                    right: 35,
-                    top: 20,
-                  ),
-                  child: Material(
-
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16, right: 16),
-                      child: TextFormField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 5,
-
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-
-                          hintText: "Comentario",
-                        ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 35,
+                  right: 35,
+                  top: 20,
+                ),
+                child: Material(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: TextFormField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 5,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Comentario",
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width,
-                  height: 50.0,
-                  child: FlatButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.black,
-                    padding: EdgeInsets.all(8.0),
-                    splashColor: Colors.blueAccent,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "ENVIAR",
-                      style: TextStyle(fontSize: 20.0),
-                    ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ButtonTheme(
+                minWidth: MediaQuery.of(context).size.width,
+                height: 50.0,
+                child: FlatButton(
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  padding: EdgeInsets.all(8.0),
+                  splashColor: Colors.blueAccent,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "ENVIAR",
+                    style: TextStyle(fontSize: 20.0),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
-
   }
 }
 
@@ -813,31 +810,55 @@ class perfil2 extends StatelessWidget {
                         ),
                         //container for about me
 
-                        Container(
-                          padding: EdgeInsets.only(left: 32, right: 32),
-                          child: Column(
-                            children: <Widget>[
-                              Text(
-                                "Acerca de mi",
-                                style: TextStyle(
-                                    color: Colors.yellow[600],
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "Raleway",
-                                    fontSize: 18),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                "HOLA SE VE BIEN COOL ESTO AJIJIJIJIJI                      "
-                                "EL YOZIL ES JOT0 ",
-                                style: TextStyle(
-                                    fontFamily: "Raleway", fontSize: 15),
-                              ),
-                            ],
-                          ),
+                        SizedBox(
+                          height: 16,
                         ),
-
+                        Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              height: 50.0,
+                              width: MediaQuery.of(context).size.width * .93,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromARGB(255, 255, 204, 0),
+                                      spreadRadius: 2),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    MdiIcons.cartOutline,
+                                    color: Colors.yellow[600],
+                                    size: 30.0,
+                                  ),
+                                  FlatButton(
+                                    splashColor:
+                                        Color.fromARGB(125, 255, 204, 0),
+                                    onPressed: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) => ListaDeseos(usuario: usuario,)));
+                                    },
+                                    child: Text(
+                                      'Lista de Deseos',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Color.fromARGB(255, 255, 204, 0),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                         SizedBox(
                           height: 16,
                         ),
@@ -964,8 +985,11 @@ class perfil2 extends StatelessWidget {
                                     splashColor:
                                         Color.fromARGB(125, 255, 204, 0),
                                     onPressed: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) => PantallaAyuda()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PantallaAyuda()));
                                     },
                                     child: Text(
                                       'Ayuda',

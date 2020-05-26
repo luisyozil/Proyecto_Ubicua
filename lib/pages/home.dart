@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:proyecto_ubicua/modelos/Evento.dart';
 import 'package:proyecto_ubicua/modelos/Paquete.dart';
 import 'package:proyecto_ubicua/modelos/Promocion.dart';
@@ -195,16 +194,11 @@ class Articulo extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          child: Row(
-                            children: <Widget>[
-                              Icon(MdiIcons.checkDecagram),
-                              Text(
-                                evento.nombre,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ],
+                          child: Text(
+                            evento.nombre,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                           margin: EdgeInsets.only(bottom: 6),
                         ),
@@ -273,16 +267,11 @@ class Articulo extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          child: Row(
-                            children: <Widget>[
-                              Icon(MdiIcons.checkDecagram),
-                              Text(
-                                evento.nombre,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ],
+                          child: Text(
+                            evento.nombre,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                           margin: EdgeInsets.only(bottom: 6),
                         ),
