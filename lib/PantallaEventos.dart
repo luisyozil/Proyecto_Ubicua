@@ -24,7 +24,7 @@ class PantallaEventos extends StatelessWidget {
               stream: db.dameEventos(),
               builder: (context, AsyncSnapshot<List<Evento>> snapshot) {
                 if (!snapshot.hasData) {
-                  return CircularProgressIndicator();
+                  return Text("No hay datos");
                 }
 
                 if(snapshot.connectionState == ConnectionState.waiting){

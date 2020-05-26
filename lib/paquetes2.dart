@@ -194,7 +194,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                                            child: Text("MXN "+"${paquetes[position].precio}", style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),),
+                                            child: Text("MXN "+ paquetes[position].precio.toString(), style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(10.0),
@@ -203,6 +203,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
+                                                    //TODO: aqui iria el "carrito"
                                                       builder: (context) => HomePage(),
                                                   ),
                                                 );
@@ -250,7 +251,7 @@ class _Paquetes2 extends State<Paquetes2>with TickerProviderStateMixin{
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                      builder: (context) => HomePage(),
+                                                      builder: (context) => HomePage(evento: widget.evento, paquete: paquetes[position],),
                                                   ),
                                                 );
                                               },

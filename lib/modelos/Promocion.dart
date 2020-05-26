@@ -24,3 +24,7 @@ List<Promocion> CambiaListaPromociones(QuerySnapshot query) {
 Promocion CambiaPromocion(DocumentSnapshot snapshot){
   return Promocion.GuardaPromocion(snapshot);
 }
+
+Promocion EncuentraPromocion(QuerySnapshot query){
+  return Promocion.GuardaPromocion(query.documents[0]);
+}
