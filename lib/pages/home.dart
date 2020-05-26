@@ -46,7 +46,7 @@ class HomePageState extends State<HomePage> {
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(response.message),
       duration:
-          new Duration(milliseconds: response.success == true ? 1200 : 3000),
+          new Duration(milliseconds: response.success == true ? 12000 : 100000),
     ));
   }
 
@@ -77,7 +77,7 @@ class HomePageState extends State<HomePage> {
                   height: 150,
                   padding: EdgeInsets.all(20),
                   child: ListView.separated(
-                    itemCount: 2,
+                    itemCount: 1,
                     itemBuilder: (context, index) {
                       Icon icon;
                       Text text;
@@ -87,11 +87,6 @@ class HomePageState extends State<HomePage> {
                           icon =
                               Icon(Icons.add_circle, color: theme.primaryColor);
                           text = Text('Pagar con una tarjeta nueva');
-                          break;
-                        case 1:
-                          icon = Icon(Icons.credit_card,
-                              color: theme.primaryColor);
-                          text = Text('Pagar con una tarjeta existente');
                           break;
                       }
 
@@ -116,7 +111,7 @@ class HomePageState extends State<HomePage> {
                   height: 150,
                   padding: EdgeInsets.all(20),
                   child: ListView.separated(
-                    itemCount: 2,
+                    itemCount: 1,
                     itemBuilder: (context, index) {
                       Icon icon;
                       Text text;
@@ -127,11 +122,7 @@ class HomePageState extends State<HomePage> {
                               Icon(Icons.add_circle, color: theme.primaryColor);
                           text = Text('Pagar con una tarjeta nueva');
                           break;
-                        case 1:
-                          icon = Icon(Icons.credit_card,
-                              color: theme.primaryColor);
-                          text = Text('Pagar con una tarjeta existente');
-                          break;
+
                       }
 
                       return InkWell(
@@ -249,6 +240,75 @@ class Articulo extends StatelessWidget {
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+        else{
+          return Container(
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor.withOpacity(.4),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  bottomLeft: Radius.circular(12),
+                ),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    width: 100,
+                    child: Image.network(evento.imagen),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.all(15),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(MdiIcons.checkDecagram),
+                              Text(
+                                evento.nombre,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(bottom: 6),
+                        ),
+                        Container(
+                          child: Text(paquete.titulo),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 15.0),
+                            Container(
+                              child: Center(
+                                child: Text(
+                                  "\$" + snapshot.data.NuevoPrecio.toString(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold, fontSize: 20),
+                                ),
+                              ),
+
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+
+                          ],
+                        ),
+
                       ],
                     ),
                   ),

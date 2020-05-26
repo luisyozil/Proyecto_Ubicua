@@ -9,7 +9,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'QuienesSomos.dart';
 import 'PantallaCondiciones.dart';
-
+import 'package:proyecto_ubicua/Tulio.dart';
 
 class PantallaAyuda extends StatefulWidget{
   @override
@@ -116,7 +116,7 @@ class _PantallaAyuda extends State<PantallaAyuda>{
                           child: FlatButton(
                             splashColor: Color.fromARGB(125, 255, 204, 0),
                             onPressed: (){
-
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => contacto()));
                             },
                             child: Text('Contacto',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
                           ),

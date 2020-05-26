@@ -140,7 +140,7 @@ class _FormLoginState extends State<FormLogin> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     icon: Icon(Icons.person),
-                    hintText: "Usuario",
+                    hintText: "Correo Electronico",
                   ),
                 ),
               ),

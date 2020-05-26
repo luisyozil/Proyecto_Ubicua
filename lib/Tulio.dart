@@ -107,135 +107,135 @@ class perfil extends StatelessWidget {
 class contacto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("",
+          style: TextStyle(color: Color.fromARGB(255, 230, 230, 230),),
+        ),
+        backgroundColor: Color.fromARGB(255, 45, 45, 45),
+        leading: FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.yellow[600],
+          ),
+        ),
+      ),
+
+      body :ListView(
           children: <Widget>[
+            Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 80.0,
+                      height: 80.0,
+                      decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image: new AssetImage('Images/contacto.png'))),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("CONTACTO", style: TextStyle(fontSize: 30.0))
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 35,
+                    right: 35,
+                    top: 20,
+                  ),
+                  child: Material(
+
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 16, right: 16),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 1,
+
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+
+                          hintText: "Asunto",
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 35,
+                    right: 35,
+                    top: 20,
+                  ),
+                  child: Material(
+
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 16, right: 16),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 5,
+
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+
+                          hintText: "Comentario",
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             SizedBox(
-              height: 20,
+              height: 30,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                          fit: BoxFit.fill,
-                          image: new AssetImage('Images/contacto.png'))),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("CONTACTO", style: TextStyle(fontSize: 30.0))
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: <Widget>[
-                new Flexible(
-                  child: new TextField(
-                    decoration: const InputDecoration(
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.grey, width: 2.0),
-                      ),
-                      hintText: 'Contraseña',
+                ButtonTheme(
+                  minWidth: MediaQuery.of(context).size.width,
+                  height: 50.0,
+                  child: FlatButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    disabledColor: Colors.grey,
+                    disabledTextColor: Colors.black,
+                    padding: EdgeInsets.all(8.0),
+                    splashColor: Colors.blueAccent,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "ENVIAR",
+                      style: TextStyle(fontSize: 20.0),
                     ),
                   ),
                 ),
               ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: <Widget>[
-                new Flexible(
-                  child: new TextField(
-                    decoration: const InputDecoration(
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.grey, width: 2.0),
-                      ),
-                      hintText: 'Correo electronico',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: <Widget>[
-                new Flexible(
-                  child: new TextField(
-                    decoration: const InputDecoration(
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.grey, width: 2.0),
-                      ),
-                      hintText: 'Asunto',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 120,
-              child: new TextField(
-                maxLines: 5,
-                decoration: const InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                  hintText: 'Comentario',
-                ),
-              ),
             ),
           ],
         ),
-        SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ButtonTheme(
-              minWidth: 411.0,
-              height: 50.0,
-              child: FlatButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                disabledColor: Colors.grey,
-                disabledTextColor: Colors.black,
-                padding: EdgeInsets.all(8.0),
-                splashColor: Colors.blueAccent,
-                onPressed: () {},
-                child: Text(
-                  "ENVIAR",
-                  style: TextStyle(fontSize: 20.0),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
+
   }
 }
 
