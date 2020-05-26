@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/modelos/Evento.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -7,9 +8,10 @@ import 'package:shimmer/shimmer.dart';
 
 class PantallaDetalleEvento extends StatelessWidget {
   final Evento evento;
+  final FirebaseUser usuario;
   double StarValue;
 
-  PantallaDetalleEvento({this.evento});
+  PantallaDetalleEvento({this.evento, this.usuario});
 
   @override
   Widget build(BuildContext context) {
@@ -228,7 +230,7 @@ class PantallaDetalleEvento extends StatelessWidget {
           right: MediaQuery.of(context).size.width * 0.05,
           bottom: 12,
         ),
-        child: SliderPaquetes(evento),
+        child: SliderPaquetes(evento, usuario),
       ),
     );
   }
@@ -236,7 +238,8 @@ class PantallaDetalleEvento extends StatelessWidget {
 
 class SliderPaquetes extends StatefulWidget {
   final Evento evento;
-  SliderPaquetes(this.evento);
+  final FirebaseUser usuario;
+  SliderPaquetes(this.evento, this.usuario);
 
   @override
   SliderPaquetesState createState() => SliderPaquetesState();
@@ -337,7 +340,7 @@ class SliderPaquetesState extends State<SliderPaquetes> {
       _value = 1;
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Paquetes2(evento: widget.evento,)),
+        MaterialPageRoute(builder: (context) => Paquetes2(evento: widget.evento, usuario: widget.usuario,)),
       );
       _value = 0;
     } else {

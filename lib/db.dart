@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:proyecto_ubicua/modelos/Elemento.dart';
 import 'package:proyecto_ubicua/modelos/Paquete.dart';
 import 'package:proyecto_ubicua/modelos/Promocion.dart';
 import 'modelos/Evento.dart';
@@ -52,4 +53,17 @@ Stream<List<Promocion>> damePromociones() {
 
 Stream<Promocion> BuscaPromocion(String id){
   return Firestore.instance.collection("promociones").where("idPaquete", isEqualTo: id).snapshots().map(EncuentraPromocion);
+}
+
+/************************************************************************************************************************ PARA LA LISTA DE DESEOS*/
+Stream<List<Elemento>> dameElementos(String id) {
+  return Firestore.instance.collection('elementos').where("IdUsuario", isEqualTo: id).snapshots().map(CambiaListaElementos);
+}
+
+Future<void> GuardaElemento(Elemento elemento){
+  return Firestore.instance.collection('elementos').document().setData(elemento.Conversion());
+}
+
+Future<void> EliminaElemento(String id){
+  return Firestore.instance.collection('elementos').document(id).delete();
 }
