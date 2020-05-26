@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:proyecto_ubicua/modelos/Evento.dart';
 import 'package:proyecto_ubicua/modelos/Paquete.dart';
 import 'package:proyecto_ubicua/modelos/Promocion.dart';
@@ -20,13 +21,15 @@ class HomePageState extends State<HomePage> {
   onItemPress(BuildContext context, int index, int cantidad) async {
     switch (index) {
       case 0:
-        payViaNewCard(context,  cantidad);
+        payViaNewCard(context, cantidad);
         break;
       case 1:
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ExistingCardsPage(cantidad: cantidad,),
+            builder: (context) => ExistingCardsPage(
+              cantidad: cantidad,
+            ),
           ),
         );
         break;
@@ -37,8 +40,8 @@ class HomePageState extends State<HomePage> {
     ProgressDialog dialog = new ProgressDialog(context);
     dialog.style(message: 'Por favor espere...');
     await dialog.show();
-    var response =
-        await StripeService.payWithNewCard(amount: cantidad.toString(), currency: 'USD');
+    var response = await StripeService.payWithNewCard(
+        amount: cantidad.toString(), currency: 'USD');
     await dialog.hide();
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(response.message),
@@ -72,8 +75,6 @@ class HomePageState extends State<HomePage> {
               if (!snapshot.hasData) {
                 return Container(
                   height: 150,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.red, width: 2)),
                   padding: EdgeInsets.all(20),
                   child: ListView.separated(
                     itemCount: 2,
@@ -113,8 +114,6 @@ class HomePageState extends State<HomePage> {
               else {
                 return Container(
                   height: 150,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.red, width: 2)),
                   padding: EdgeInsets.all(20),
                   child: ListView.separated(
                     itemCount: 2,
@@ -154,9 +153,111 @@ class HomePageState extends State<HomePage> {
               }
             },
           ),
+          Articulo(
+            paquete: widget.paquete,
+            evento: widget.evento,
+          ),
         ],
       ),
     );
     ;
+  }
+}
+
+class Articulo extends StatelessWidget {
+  final Evento evento;
+  final Paquete paquete;
+
+  Articulo({this.paquete, this.evento});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: db.BuscaPromocion(paquete.id),
+      builder: (context, AsyncSnapshot<Promocion> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+
+        if (snapshot.hasData) {
+          return Container(
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor.withOpacity(.4),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  bottomLeft: Radius.circular(12),
+                ),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    width: 100,
+                    child: Image.network(evento.imagen),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.all(15),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(MdiIcons.checkDecagram),
+                              Text(
+                                evento.nombre,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(bottom: 6),
+                        ),
+                        Container(
+                          child: Text(paquete.titulo),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              child: Text(
+                                "\$" + snapshot.data.NuevoPrecio.toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Container(
+                              child: Text(
+                                paquete.precio.toString(),
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    decoration: TextDecoration.lineThrough),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 8),
+                          child: Text(
+                            "Termina: " + snapshot.data.Fecha,
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      },
+    );
   }
 }
