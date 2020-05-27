@@ -10,6 +10,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'QuienesSomos.dart';
 import 'PantallaCondiciones.dart';
 import 'package:proyecto_ubicua/Tulio.dart';
+import 'Preguntas.dart';
 
 class PantallaAyuda extends StatefulWidget{
   @override
@@ -18,9 +19,6 @@ class PantallaAyuda extends StatefulWidget{
 
 class _PantallaAyuda extends State<PantallaAyuda>{
   var width, height;
-
-
-
   int idx_Title = 2;
   //static final GlobalKey<FormState> user = new GlobalKey<FormState>();
   @override
@@ -93,7 +91,12 @@ class _PantallaAyuda extends State<PantallaAyuda>{
                           child: FlatButton(
                             splashColor: Color.fromARGB(125, 255, 204, 0),
                             onPressed: (){
-
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Preguntas()
+                                ),
+                              );
                             },
                             child: Text('Preguntas Frecuentes',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
                           ),

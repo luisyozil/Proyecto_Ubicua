@@ -76,6 +76,8 @@ flutter:
    - img/edc.jpg
    - img/Ayuda.png
    - img/Terminos.png
+   - img/commonquestions.png
+   - img/questions.png
   # To add assets to your application, add an assets section, like this:
    - Images/
   #  - images/a_dot_ham.jpeg
