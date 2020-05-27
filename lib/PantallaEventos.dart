@@ -17,10 +17,7 @@ class PantallaEventos extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: Column(
         children: <Widget>[
-          Text('10 resultados de eventos cercanos.',
-              style: TextStyle(
-                color: Color.fromARGB(255, 230, 230, 230),
-              )),
+
           Expanded(
             child: StreamBuilder(
               stream: db.dameEventos(),
@@ -131,7 +128,6 @@ Widget EventoBuilder(BuildContext context, Evento item,double StarRating) {
                 Row(
                   children: <Widget>[
                     RatingBar(
-                      onRatingUpdate: (v) {StarRating = v;},
                       initialRating: StarRating,
                       itemSize: 13.0,
                       itemBuilder: (context, index) => Icon(
