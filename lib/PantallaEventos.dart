@@ -17,7 +17,7 @@ class PantallaEventos extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: Column(
         children: <Widget>[
-          
+
           Expanded(
             child: StreamBuilder(
               stream: db.dameEventos(),

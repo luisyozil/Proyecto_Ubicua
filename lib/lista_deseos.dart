@@ -98,6 +98,7 @@ class ElementoListaDeseos extends StatelessWidget {
                     child: Image.network(snapshotevento.data.imagen),
                   ),
                   Container(
+                    width: MediaQuery.of(context).size.width -140,
                     margin: EdgeInsets.only(top: 10, left: 15),
                     padding: EdgeInsets.all(15),
                     child: Column(
@@ -107,7 +108,7 @@ class ElementoListaDeseos extends StatelessWidget {
                             snapshotevento.data.nombre,
                             style: TextStyle(
                               fontSize: 20,
-                            ),
+                            ),textAlign: TextAlign.center,
                           ),
                           margin: EdgeInsets.only(bottom: 6),
                         ),
