@@ -172,7 +172,7 @@ class _Paquetes2 extends State<Paquetes2> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(left: 12, bottom: 10),
+                      padding: EdgeInsets.only(left: 12, bottom: 30),
                       child: Text("Paquetes",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 32)),
@@ -180,40 +180,37 @@ class _Paquetes2 extends State<Paquetes2> with TickerProviderStateMixin {
                     Container(
                       height: 350.0,
                       child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
                         itemCount: paquetes.length,
                         controller: scrollController,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, position) {
-                          return GestureDetector(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Card(
-                                child: Container(
-                                  width: 250.0,
-                                  child: Column(
-                                    crossAxisAlignment:
+                          return Container(
+                            child:  Card(
+                              child: Container(
+                                width: 250.0,
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 4.0),
-                                              child: Text(
-                                                  "${paquetes[position].titulo}",
-                                                  style: TextStyle(
-                                                      fontSize: 28.0)),
-                                            ),
-                                            /*Padding(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                                vertical: 4.0),
+                                            child: Text(
+                                                "${paquetes[position].titulo}",
+                                                style: TextStyle(
+                                                    fontSize: 28.0)),
+                                          ),
+                                          /*Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                                             child: Text("${paquetes[position].personas}", style: TextStyle(fontSize: 15.0),),
                                           ),
@@ -221,195 +218,157 @@ class _Paquetes2 extends State<Paquetes2> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                                             child: Text("${paquetes[position].paquete}", style: TextStyle(fontSize: 15.0),),
                                           ),*/
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 4.0),
-                                              child: Text(
-                                                "${paquetes[position].transporte == true ? "Transporte" : ""}",
-                                                style:
-                                                    TextStyle(fontSize: 15.0),
-                                              ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                                vertical: 4.0),
+                                            child: Text(
+                                              "${paquetes[position].transporte == true ? "Transporte" : ""}",
+                                              style:
+                                              TextStyle(fontSize: 15.0),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 4.0),
-                                              child: Text(
-                                                "${paquetes[position].hospedaje == true ? "Hospedaje" : ""}",
-                                                style:
-                                                    TextStyle(fontSize: 15.0),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                                vertical: 4.0),
+                                            child: Text(
+                                              "${paquetes[position].hospedaje == true ? "Hospedaje" : ""}",
+                                              style:
+                                              TextStyle(fontSize: 15.0),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 4.0),
-                                              child: Text(
-                                                "MXN " +
-                                                    paquetes[position]
-                                                        .precio
-                                                        .toString(),
-                                                style: TextStyle(
-                                                    fontSize: 20.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                                vertical: 30.0),
+                                            child: Text(
+                                              "MXN " +
+                                                  paquetes[position]
+                                                      .precio
+                                                      .toString(),
+                                              style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight:
+                                                  FontWeight.bold),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  db.GuardaElemento(Elemento(IdPaquete: paquetes[position].id, IdUsuario: widget.usuario.uid));
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Container(
-                                                  width: 300,
-                                                  height: 40,
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        Colors.yellow[500],
-                                                        Colors.yellow[600],
-                                                        Colors.yellow[700],
-                                                      ],
-                                                      begin: Alignment.topLeft,
-                                                      end:
-                                                          Alignment.bottomRight,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Colors.black12,
-                                                        offset: Offset(5, 5),
-                                                        blurRadius: 10,
-                                                      )
+                                          ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.all(10.0),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                db.GuardaElemento(Elemento(IdPaquete: paquetes[position].id, IdUsuario: widget.usuario.uid));
+                                                Navigator.pop(context);
+                                              },
+                                              child: Container(
+                                                width: 300,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      Colors.yellow[500],
+                                                      Colors.yellow[600],
+                                                      Colors.yellow[700],
                                                     ],
+                                                    begin: Alignment.topLeft,
+                                                    end:
+                                                    Alignment.bottomRight,
                                                   ),
-                                                  child: Center(
-                                                    child: Text(
-                                                      'Añadir a mi lista',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      10),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.black12,
+                                                      offset: Offset(5, 5),
+                                                      blurRadius: 10,
+                                                    )
+                                                  ],
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Añadir a mi lista',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                      FontWeight.bold,
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          HomePage(
-                                                        evento: widget.evento,
-                                                        paquete:
-                                                            paquetes[position],
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                                child: Container(
-                                                  width: 300,
-                                                  height: 40,
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        Colors.yellow[500],
-                                                        Colors.yellow[600],
-                                                        Colors.yellow[700],
-                                                      ],
-                                                      begin: Alignment.topLeft,
-                                                      end:
-                                                          Alignment.bottomRight,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Colors.black12,
-                                                        offset: Offset(5, 5),
-                                                        blurRadius: 10,
-                                                      )
-                                                    ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.all(8.0),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomePage(
+                                                          evento: widget.evento,
+                                                          paquete:
+                                                          paquetes[position],
+                                                        ),
                                                   ),
-                                                  child: Center(
-                                                    child: Text(
-                                                      'Pagar',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 300,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      Colors.yellow[500],
+                                                      Colors.yellow[600],
+                                                      Colors.yellow[700],
+                                                    ],
+                                                    begin: Alignment.topLeft,
+                                                    end:
+                                                    Alignment.bottomRight,
+                                                  ),
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      10),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.black12,
+                                                      offset: Offset(5, 5),
+                                                      blurRadius: 10,
+                                                    )
+                                                  ],
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Pagar',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                      FontWeight.bold,
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
+                                    ),
+                                  ],
                                 ),
                               ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
                             ),
-                            onHorizontalDragEnd: (details) {
-                              animationController = AnimationController(
-                                  vsync: this,
-                                  duration: Duration(milliseconds: 500));
-                              curvedAnimation = CurvedAnimation(
-                                  parent: animationController,
-                                  curve: Curves.fastOutSlowIn);
-                              animationController.addListener(() {
-                                setState(() {
-                                  currentColor =
-                                      colorTween.evaluate(curvedAnimation);
-                                });
-                              });
-
-                              if (details.velocity.pixelsPerSecond.dx > 0) {
-                                if (cardIndex > 0) {
-                                  cardIndex--;
-                                  colorTween = ColorTween(
-                                      begin: currentColor,
-                                      end: appColors[cardIndex]);
-                                }
-                              } else {
-                                if (cardIndex < 2) {
-                                  cardIndex++;
-                                  colorTween = ColorTween(
-                                      begin: currentColor,
-                                      end: appColors[cardIndex]);
-                                }
-                              }
-                              setState(() {
-                                scrollController.animateTo((cardIndex) * 256.0,
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.fastOutSlowIn);
-                              });
-                              colorTween.animate(curvedAnimation);
-                              animationController.forward();
-                            },
                           );
                         },
                       ),

@@ -6,6 +6,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:proyecto_ubicua/paquetes2.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'Paquetes.dart';
+
 class PantallaDetalleEvento extends StatelessWidget {
   final Evento evento;
   final FirebaseUser usuario;

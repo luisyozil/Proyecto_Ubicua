@@ -82,45 +82,6 @@ class _MisViajes extends State<MisViajes>with TickerProviderStateMixin{
           ],
         ),
       ),
-      bottomNavigationBar:
-      BottomNavigationBar(
-        onTap: (int TabIndice) {
-          setState(() {
-            idx_Title = TabIndice;
-          });
-        },
-        currentIndex: idx_Title,
-        selectedItemColor: Color.fromARGB(255, 255, 204, 0),
-        unselectedItemColor: Color.fromARGB(255, 230, 230, 230),
-        type: BottomNavigationBarType.shifting,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help_outline),
-            title: Text('Ayuda'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.bellOutline),
-            title: Text('Notificaciones'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.calendarStar),
-            title: Text('Eventos'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Búsqueda'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.account),
-            title: Text('Cuenta'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-        ],
-      ),
     );
   }
 
