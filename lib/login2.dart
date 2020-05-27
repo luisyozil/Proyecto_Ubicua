@@ -103,7 +103,10 @@ class _FormLoginState extends State<FormLogin> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
       } catch (error) {
-        print(error.toString());
+        final snackBar = SnackBar(
+          content: Text('Usuario o Contraseña no valido'),
+        );
+        Scaffold.of(context).showSnackBar(snackBar);
       }
     }
   }
