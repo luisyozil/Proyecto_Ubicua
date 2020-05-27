@@ -9,6 +9,7 @@ import 'lista_deseos.dart';
 import 'modelos/Usuario.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'services/payment-service.dart';
+import 'MyProfile.dart';
 
 class perfil extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -938,7 +939,11 @@ class perfil2 extends StatelessWidget {
                                 splashColor:
                                 Color.fromARGB(125, 255, 204, 0),
                                 onPressed: () {
-
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              MyProfile(usuario)));
                                 },
                                 child:
                                 Row(

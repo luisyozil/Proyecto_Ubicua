@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proyecto_ubicua/modelos/Elemento.dart';
 import 'package:proyecto_ubicua/modelos/Paquete.dart';
@@ -19,6 +21,11 @@ Future<void> GuardaUsuario(Usuario usuario){
   return Firestore.instance.collection('usuarios').document(usuario.id).setData(usuario.Conversion());
 }
 
+Future<void> ActualizaUsuario(String id,Usuario usuario){
+  return Firestore.instance.collection('usuarios').document(id).updateData(usuario.Conversion()).catchError((e) {
+    print(e);
+  });
+}
 
 /************************************************************************************************************************ PARA LOS EVENTOS*/
 Stream<List<Evento>> dameEventos() {
