@@ -830,32 +830,35 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    MdiIcons.cartOutline,
-                                    color: Colors.yellow[600],
-                                    size: 30.0,
-                                  ),
-                                  FlatButton(
+                              child:FlatButton(
                                     splashColor:
                                         Color.fromARGB(125, 255, 204, 0),
                                     onPressed: () {
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) => ListaDeseos(usuario: usuario,)));
                                     },
-                                    child: Text(
-                                      'Lista de Deseos',
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color.fromARGB(255, 255, 204, 0),
-                                      ),
+                                    child:
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          MdiIcons.cartOutline,
+                                          color: Colors.yellow[600],
+                                          size: 30.0,
+                                        ),
+                                        Text(
+                                          'Lista de Deseos',
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                            color: Color.fromARGB(255, 255, 204, 0),
+                                          ),
+                                        ),
+                                      ],
                                     ),
+
                                   ),
-                                ],
-                              ),
+
                             ),
                           ],
                         ),
@@ -880,29 +883,34 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.airplanemode_active,
-                                    color: Colors.yellow[600],
-                                    size: 30.0,
-                                  ),
-                                  FlatButton(
-                                    splashColor:
-                                        Color.fromARGB(125, 255, 204, 0),
-                                    onPressed: () {},
-                                    child: Text(
+                              child:FlatButton(
+                                splashColor:
+                                Color.fromARGB(125, 255, 204, 0),
+                                onPressed: () {
+
+                                },
+                                child:
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      MdiIcons.airplane,
+                                      color: Colors.yellow[600],
+                                      size: 30.0,
+                                    ),
+                                    Text(
                                       'Mis Viajes',
                                       style: TextStyle(
                                         fontSize: 16.0,
                                         color: Color.fromARGB(255, 255, 204, 0),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
+
                               ),
+
                             ),
                           ],
                         ),
@@ -926,29 +934,34 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.info,
-                                    color: Colors.yellow[600],
-                                    size: 30.0,
-                                  ),
-                                  FlatButton(
-                                    splashColor:
-                                        Color.fromARGB(125, 255, 204, 0),
-                                    onPressed: () {},
-                                    child: Text(
-                                      'Mi Informacion',
+                              child:FlatButton(
+                                splashColor:
+                                Color.fromARGB(125, 255, 204, 0),
+                                onPressed: () {
+
+                                },
+                                child:
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      MdiIcons.information,
+                                      color: Colors.yellow[600],
+                                      size: 30.0,
+                                    ),
+                                    Text(
+                                      'Mi informacion',
                                       style: TextStyle(
                                         fontSize: 16.0,
                                         color: Color.fromARGB(255, 255, 204, 0),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
+
                               ),
+
                             ),
                           ],
                         ),
@@ -972,35 +985,38 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.help,
-                                    color: Colors.yellow[600],
-                                    size: 30.0,
-                                  ),
-                                  FlatButton(
-                                    splashColor:
-                                        Color.fromARGB(125, 255, 204, 0),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PantallaAyuda()));
-                                    },
-                                    child: Text(
+                              child:FlatButton(
+                                splashColor:
+                                Color.fromARGB(125, 255, 204, 0),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              PantallaAyuda()));
+                                },
+                                child:
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      MdiIcons.help,
+                                      color: Colors.yellow[600],
+                                      size: 30.0,
+                                    ),
+                                    Text(
                                       'Ayuda',
                                       style: TextStyle(
                                         fontSize: 16.0,
                                         color: Color.fromARGB(255, 255, 204, 0),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
+
                               ),
+
                             ),
                           ],
                         ),

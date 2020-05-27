@@ -6,6 +6,13 @@ import 'package:proyecto_ubicua/pages/existing-cards.dart';
 import 'package:proyecto_ubicua/services/payment-service.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:proyecto_ubicua/db.dart' as db;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:proyecto_ubicua/PantallaAyuda.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class HomePage extends StatefulWidget {
   final Evento evento;
@@ -171,138 +178,155 @@ class Articulo extends StatelessWidget {
 
         if (snapshot.hasData) {
           return Container(
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor.withOpacity(.4),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12),
-                ),
+            margin: EdgeInsets.only(top: 15),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor.withOpacity(.4),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                bottomLeft: Radius.circular(12),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    width: 100,
-                    child: Image.network(evento.imagen),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    padding: EdgeInsets.all(15),
-                    child: Column(
+            ),
+            child: StreamBuilder(
+              stream: db.BuscaEvento(paquete.idEvento),
+              builder: (context, AsyncSnapshot<Evento> snapshotevento) {
+                if (snapshotevento.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: 100,
+                      child: Image.network(snapshotevento.data.imagen),
+                    ),
+                    Stack(
+                      overflow: Overflow.clip,
                       children: <Widget>[
                         Container(
-                          child: Text(
-                            evento.nombre,
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                          margin: EdgeInsets.only(bottom: 6),
-                        ),
-                        Container(
-                          child: Text(paquete.titulo),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                "\$" + snapshot.data.NuevoPrecio.toString(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
+                          width: MediaQuery.of(context).size.width - 140,
+                          margin: EdgeInsets.only(top: 10, left: 15),
+                          padding: EdgeInsets.all(15),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  snapshotevento.data.nombre,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                margin: EdgeInsets.only(bottom: 6),
                               ),
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Container(
-                              child: Text(
-                                paquete.precio.toString(),
-                                style: TextStyle(
+                              Container(
+                                child: Text(paquete.titulo),
+                              ),
+                              Container(
+                                child: Text(
+                                  "\$" + paquete.precio.toString(),
+                                  style: TextStyle(
                                     color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(top: 8),
-                          child: Text(
-                            "Termina: " + snapshot.data.Fecha,
-                            style: TextStyle(fontSize: 12),
+
+                        Positioned(
+                          bottom: -15,
+                          right: -15,
+                          child: IconButton(
+                            onPressed: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => HomePage(paquete: paquete, evento: snapshotevento.data,)));
+                            },
+                            icon: Icon(MdiIcons.cashUsd),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              },
             ),
           );
         }
         else{
           return Container(
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor.withOpacity(.4),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12),
-                ),
+            margin: EdgeInsets.only(top: 15),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor.withOpacity(.4),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                bottomLeft: Radius.circular(12),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    width: 100,
-                    child: Image.network(evento.imagen),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    padding: EdgeInsets.all(15),
-                    child: Column(
+            ),
+            child: StreamBuilder(
+              stream: db.BuscaEvento(paquete.idEvento),
+              builder: (context, AsyncSnapshot<Evento> snapshotevento) {
+                if (snapshotevento.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: 100,
+                      child: Image.network(snapshotevento.data.imagen),
+                    ),
+                    Stack(
+                      overflow: Overflow.clip,
                       children: <Widget>[
                         Container(
-                          child: Text(
-                            evento.nombre,
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                          margin: EdgeInsets.only(bottom: 6),
-                        ),
-                        Container(
-                          child: Text(paquete.titulo),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            SizedBox(width: 15.0),
-                            Container(
-                              child: Center(
+                          width: MediaQuery.of(context).size.width - 140,
+                          margin: EdgeInsets.only(top: 10, left: 15),
+                          padding: EdgeInsets.all(15),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
                                 child: Text(
-                                  "\$" + snapshot.data.NuevoPrecio.toString(),
+                                  snapshotevento.data.nombre,
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 20),
+                                    fontSize: 20,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                margin: EdgeInsets.only(bottom: 6),
+                              ),
+                              Container(
+                                child: Text(paquete.titulo),
+                              ),
+                              Container(
+                                child: Text(
+                                  "\$" + paquete.precio.toString(),
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
-
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-
-                          ],
+                            ],
+                          ),
                         ),
 
+                        Positioned(
+                          bottom: -15,
+                          right: -15,
+                          child: IconButton(
+                            onPressed: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => HomePage(paquete: paquete, evento: snapshotevento.data,)));
+                            },
+                            icon: Icon(MdiIcons.cashUsd),
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              },
             ),
           );
         }
