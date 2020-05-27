@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:proyecto_ubicua/pages/home.dart';
 import 'db.dart' as db;
 import 'modelos/Elemento.dart';
 import 'modelos/Evento.dart';
@@ -53,8 +54,29 @@ class ListaDeseos extends StatelessWidget {
                 },
               );
             } else {
-              return Container(
-                child: Text("No tienes elementos en tu lista"),
+              return Center(
+                child: Container(
+                  height: 100,
+                  /*decoration: BoxDecoration(
+                    border: Border.all(color: Colors.red, width: 2),
+                  ),*/
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        MdiIcons.musicOff,
+                        size: 30,
+                      ),
+                      Text(
+                        "No tienes elementos",
+                        style: TextStyle(fontSize: 25),
+                      ),
+                      Text(
+                        "en tu lista",
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ],
+                  ),
+                ),
               );
             }
           }
@@ -72,33 +94,34 @@ class ElementoListaDeseos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 15),
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor.withOpacity(.4),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12),
-              bottomLeft: Radius.circular(12),
-            ),
-          ),
-          child: StreamBuilder(
-            stream: db.BuscaEvento(paquete.idEvento),
-            builder: (context, AsyncSnapshot<Evento> snapshotevento) {
-              if (snapshotevento.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
-              }
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      margin: EdgeInsets.only(top: 15),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Theme.of(context).backgroundColor.withOpacity(.4),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          bottomLeft: Radius.circular(12),
+        ),
+      ),
+      child: StreamBuilder(
+        stream: db.BuscaEvento(paquete.idEvento),
+        builder: (context, AsyncSnapshot<Evento> snapshotevento) {
+          if (snapshotevento.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: 100,
+                child: Image.network(snapshotevento.data.imagen),
+              ),
+              Stack(
+                overflow: Overflow.clip,
                 children: <Widget>[
                   Container(
-                    width: 100,
-                    child: Image.network(snapshotevento.data.imagen),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width -140,
+                    width: MediaQuery.of(context).size.width - 140,
                     margin: EdgeInsets.only(top: 10, left: 15),
                     padding: EdgeInsets.all(15),
                     child: Column(
@@ -108,7 +131,8 @@ class ElementoListaDeseos extends StatelessWidget {
                             snapshotevento.data.nombre,
                             style: TextStyle(
                               fontSize: 20,
-                            ),textAlign: TextAlign.center,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                           margin: EdgeInsets.only(bottom: 6),
                         ),
@@ -126,32 +150,33 @@ class ElementoListaDeseos extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Positioned(
+                    top: -15,
+                    right: -15,
+                    child: IconButton(
+                      onPressed: (){
+                        db.EliminaElemento(elemento.id);
+                      },
+                      icon: Icon(MdiIcons.close),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -15,
+                    right: -15,
+                    child: IconButton(
+                      onPressed: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => HomePage(paquete: paquete, evento: snapshotevento.data,)));
+                      },
+                      icon: Icon(MdiIcons.cashUsd),
+                    ),
+                  ),
                 ],
-              );
-            },
-          ),
-        ),
-        Positioned(
-          top: 10,
-          right: 0,
-          child: IconButton(
-            onPressed: (){
-              db.EliminaElemento(elemento.id);
-            },
-            icon: Icon(MdiIcons.close),
-          ),
-        ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: IconButton(
-            onPressed: (){
-
-            },
-            icon: Icon(MdiIcons.cashUsd),
-          ),
-        ),
-      ],
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
