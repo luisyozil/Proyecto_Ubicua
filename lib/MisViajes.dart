@@ -1,31 +1,83 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:proyecto_ubicua/intro.dart';
+import 'package:proyecto_ubicua/modelos/Usuario.dart';
 import 'clipper.dart';
-import 'CardItemModel.dart';
-import 'Login.dart';
-import 'FadeAnimation.dart';
-import 'PantallaInicio.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'db.dart' as db;
+import 'modelos/Evento.dart';
+import 'modelos/viajes.dart';
 
 
-class  MisViajes extends StatefulWidget{
+class MisViajes extends StatelessWidget {
+
+  Usuario usuario;
+
+  MisViajes(this.usuario);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: StreamBuilder(
+        stream: db.dameViajes(usuario.id),
+        builder: (context, AsyncSnapshot<List<Viaje>> snapshot ){
+          if(snapshot.connectionState == ConnectionState.waiting)
+            return CircularProgressIndicator();
+
+          if(snapshot.hasData){
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index){
+                return StreamBuilder(
+                  stream: db.BuscaEvento(snapshot.data[index].IdEvento),
+                  builder: (context, AsyncSnapshot<Evento> snapshotevento ){
+                    if(snapshotevento.connectionState == ConnectionState.waiting){
+                      return CircularProgressIndicator();
+                    }
+
+                    if(snapshotevento.hasData){
+                      return ViajeRow(snapshotevento.data);
+                    }
+
+                  },
+                );
+              },
+            );
+          }else{
+            return Container(
+              child: Text("no hay eventos"),
+            );
+          }
+        },
+      ),
+    );
+  }
+}
+
+
+/*class MisViajes extends StatefulWidget {
+  Usuario usuario;
+
+  MisViajes(this.usuario);
+
   @override
   _MisViajes createState() => _MisViajes();
 }
 
-class _MisViajes extends State<MisViajes>with TickerProviderStateMixin{
+class _MisViajes extends State<MisViajes> with TickerProviderStateMixin {
   var width, height;
   int idx_Title = 2;
   //static final GlobalKey<FormState> user = new GlobalKey<FormState>();
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text("",
-          style: TextStyle(color: Color.fromARGB(255, 230, 230, 230),),
+        title: Text(
+          "",
+          style: TextStyle(
+            color: Color.fromARGB(255, 230, 230, 230),
+          ),
         ),
         backgroundColor: Color.fromARGB(255, 45, 45, 45),
         leading: FlatButton(
@@ -39,10 +91,28 @@ class _MisViajes extends State<MisViajes>with TickerProviderStateMixin{
         ),
       ),
       body: SingleChildScrollView(
-        child:
-        Stack(
+        child: Stack(
           children: <Widget>[
-            _paquetes(height),
+            StreamBuilder(
+              stream: db.dameViajes(widget.usuario.id),
+              builder: (context, AsyncSnapshot<List<Viaje>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting)
+                  return CircularProgressIndicator();
+
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return ViajeRow();
+                    },
+                  );
+                } else {
+                  return Container(
+                    child: Text("no hay eventos"),
+                  );
+                }
+              },
+            ),
             Hero(
               tag: 'clipper',
               child: ClipPath(
@@ -51,15 +121,15 @@ class _MisViajes extends State<MisViajes>with TickerProviderStateMixin{
                     height: height * .18,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors:[
-                          Colors.yellow[500],
-                          Colors.yellow[600],
-                          Colors.yellow[700],
-                        ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.centerRight,
-                        )
-                    ),
+                        gradient: LinearGradient(
+                      colors: [
+                        Colors.yellow[500],
+                        Colors.yellow[600],
+                        Colors.yellow[700],
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.centerRight,
+                    )),
                     child: Container(
                       padding: EdgeInsets.only(top: 0),
                       child: Column(
@@ -68,15 +138,18 @@ class _MisViajes extends State<MisViajes>with TickerProviderStateMixin{
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Container(
-                                padding: EdgeInsets.only(left: 50,bottom: 10,top: 20),
-                                child: Text("Mis Viajes", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32)),
+                                padding: EdgeInsets.only(
+                                    left: 50, bottom: 10, top: 20),
+                                child: Text("Mis Viajes",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 32)),
                               ),
                             ],
                           ),
                         ],
                       ),
-                    )
-                ),
+                    )),
               ),
             ),
           ],
@@ -85,97 +158,33 @@ class _MisViajes extends State<MisViajes>with TickerProviderStateMixin{
     );
   }
 
-  Widget _paquetes(height){
+  Widget _paquetes(height) {
     return Material(
-      //key:user,
+        //key:user,
         color: Colors.black,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
           child: Padding(
-            padding: EdgeInsets.only(top: height*.18-60),
+            padding: EdgeInsets.only(top: height * .18 - 60),
             child: Column(
               children: <Widget>[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     ViajeRow(),
-                    ViajeRow(),
                   ],
                 )
               ],
             ),
           ),
-        )
-    );
+        ));
   }
-}
+}*/
 
 class ViajeRow extends StatelessWidget {
-  final Thumbnail = new Container(
-    margin: new EdgeInsets.symmetric(
-        vertical: 0.0
-    ),
-    alignment: FractionalOffset.centerLeft,
-    child:  Padding(
-      padding: const EdgeInsets.only(left: 0.0, top: 7.0),
-      child: CircleAvatar(
-        radius: 40,
-        backgroundImage: AssetImage("img/tecate.jpg"),
-      ),
-    ),
-  );
-  final Card = new Container(
-    height: 124.0,
-    margin: new EdgeInsets.only(left: 46.0),
-    decoration: new BoxDecoration(
-      gradient: LinearGradient(colors:[
-        Colors.grey[900],
-        Colors.grey[800],
-        Colors.grey[700],
-      ],
-        begin: Alignment.topLeft,
-        end: Alignment.centerRight,
-      ),
-      shape: BoxShape.rectangle,
-      borderRadius: new BorderRadius.circular(8.0),
-      boxShadow: <BoxShadow>[
-        new BoxShadow(
-          color: Colors.black12,
-          blurRadius: 10.0,
-          offset: new Offset(0.0, 10.0),
-        ),
-      ],
-    ),
-  );
-  final CardContent = new Container(
-    margin: new EdgeInsets.fromLTRB(96.0, 16.0, 16.0, 16.0),
-    constraints: new BoxConstraints.expand(),
-    child: new Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        new Container(height: 4.0),
-        new Text("Tecate Pal Norte", style: TextStyle(fontSize: 20),
-        ),
-        new Container(height: 10.0),
-        new Text("Monterrey N.L",
-        ),
-        new Container(
-            margin: new EdgeInsets.symmetric(vertical: 8.0),
-            height: 2.0,
-            width: 30.0,
-            color: Colors.yellow
-        ),
-        new Row(
-          children: <Widget>[
-            new Container(width: 8.0),
-            new Text("12-13/Septiembre 2020",
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
+  Evento evento;
 
+  ViajeRow(this.evento);
 
   @override
   Widget build(BuildContext context) {
@@ -187,11 +196,73 @@ class ViajeRow extends StatelessWidget {
         ),
         child: new Stack(
           children: <Widget>[
-            Card,
-            Thumbnail,
-            CardContent,
+            Container(
+              height: 124.0,
+              margin: new EdgeInsets.only(left: 46.0),
+              decoration: new BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.grey[900],
+                    Colors.grey[800],
+                    Colors.grey[700],
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.centerRight,
+                ),
+                shape: BoxShape.rectangle,
+                borderRadius: new BorderRadius.circular(8.0),
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 10.0,
+                    offset: new Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: new EdgeInsets.symmetric(vertical: 0.0),
+              alignment: FractionalOffset.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 0.0, top: 7.0),
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(evento.imagen),
+                ),
+              ),
+            ),
+            Container(
+              margin: new EdgeInsets.fromLTRB(96.0, 16.0, 16.0, 16.0),
+              constraints: new BoxConstraints.expand(),
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Container(height: 4.0),
+                  new Text(
+                    evento.nombre,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  new Container(height: 10.0),
+                  /*new Text(
+                    "Monterrey N.L",
+                  ),*/
+                  new Container(
+                      margin: new EdgeInsets.symmetric(vertical: 8.0),
+                      height: 2.0,
+                      width: 30.0,
+                      color: Colors.yellow),
+                  new Row(
+                    children: <Widget>[
+                      new Container(width: 8.0),
+                      new Text(
+                        evento.Fecha,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
-        )
-    );
+        ));
   }
 }

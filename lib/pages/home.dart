@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/modelos/Evento.dart';
 import 'package:proyecto_ubicua/modelos/Paquete.dart';
 import 'package:proyecto_ubicua/modelos/Promocion.dart';
+import 'package:proyecto_ubicua/modelos/viajes.dart';
 import 'package:proyecto_ubicua/pages/existing-cards.dart';
 import 'package:proyecto_ubicua/services/payment-service.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:proyecto_ubicua/db.dart' as db;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:proyecto_ubicua/PantallaAyuda.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 
 class HomePage extends StatefulWidget {
   final Evento evento;
@@ -35,6 +33,7 @@ class HomePageState extends State<HomePage> {
           MaterialPageRoute(
             builder: (context) => ExistingCardsPage(
               cantidad: cantidad,
+              evento: widget.evento,
             ),
           ),
         );
@@ -46,6 +45,8 @@ class HomePageState extends State<HomePage> {
     ProgressDialog dialog = new ProgressDialog(context);
     dialog.style(message: 'Por favor espere...');
     await dialog.show();
+    FirebaseUser usuario = await FirebaseAuth.instance.currentUser();
+    db.GuardaViaje(Viaje(IdUsuario: usuario.uid, IdEvento: widget.evento.id));
     var response = await StripeService.payWithNewCard(
         amount: cantidad.toString(), currency: 'USD');
     await dialog.hide();
@@ -128,7 +129,6 @@ class HomePageState extends State<HomePage> {
                               Icon(Icons.add_circle, color: theme.primaryColor);
                           text = Text('Pagar con una tarjeta nueva');
                           break;
-
                       }
 
                       return InkWell(
@@ -233,14 +233,18 @@ class Articulo extends StatelessWidget {
                             ],
                           ),
                         ),
-
                         Positioned(
                           bottom: -15,
                           right: -15,
                           child: IconButton(
-                            onPressed: (){
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => HomePage(paquete: paquete, evento: snapshotevento.data,)));
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage(
+                                            paquete: paquete,
+                                            evento: snapshotevento.data,
+                                          )));
                             },
                             icon: Icon(MdiIcons.cashUsd),
                           ),
@@ -252,8 +256,7 @@ class Articulo extends StatelessWidget {
               },
             ),
           );
-        }
-        else{
+        } else {
           return Container(
             margin: EdgeInsets.only(top: 15),
             padding: EdgeInsets.all(10),
@@ -310,14 +313,18 @@ class Articulo extends StatelessWidget {
                             ],
                           ),
                         ),
-
                         Positioned(
                           bottom: -15,
                           right: -15,
                           child: IconButton(
-                            onPressed: (){
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => HomePage(paquete: paquete, evento: snapshotevento.data,)));
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage(
+                                            paquete: paquete,
+                                            evento: snapshotevento.data,
+                                          )));
                             },
                             icon: Icon(MdiIcons.cashUsd),
                           ),

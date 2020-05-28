@@ -1,13 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:proyecto_ubicua/modelos/Evento.dart';
+import 'package:proyecto_ubicua/modelos/viajes.dart';
 import 'package:proyecto_ubicua/services/payment-service.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:proyecto_ubicua/db.dart' as db;
 
 class ExistingCardsPage extends StatefulWidget {
   final int cantidad;
-
-  ExistingCardsPage({this.cantidad});
+  final Evento evento;
+  ExistingCardsPage({this.cantidad, this.evento});
 
   @override
   ExistingCardsPageState createState() => ExistingCardsPageState();
@@ -45,6 +49,8 @@ class ExistingCardsPageState extends State<ExistingCardsPage> {
       currency: 'USD',
       card: stripeCard
     );
+    FirebaseUser usuario = await FirebaseAuth.instance.currentUser();
+    db.GuardaViaje(Viaje(IdUsuario: usuario.uid, IdEvento: widget.evento.id));
     await dialog.hide();
     Scaffold.of(context).showSnackBar(
         SnackBar(
