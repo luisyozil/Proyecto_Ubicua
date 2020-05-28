@@ -164,7 +164,6 @@ class HomePageState extends State<HomePage> {
 class Articulo extends StatelessWidget {
   final Evento evento;
   final Paquete paquete;
-
   Articulo({this.paquete, this.evento});
 
   @override
@@ -187,74 +186,79 @@ class Articulo extends StatelessWidget {
                 bottomLeft: Radius.circular(12),
               ),
             ),
-            child: StreamBuilder(
-              stream: db.BuscaEvento(paquete.idEvento),
-              builder: (context, AsyncSnapshot<Evento> snapshotevento) {
-                if (snapshotevento.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                }
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      width: 100,
-                      child: Image.network(snapshotevento.data.imagen),
-                    ),
-                    Stack(
-                      overflow: Overflow.clip,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 100,
+                  child: Image.network(evento.imagen),
+                ),
+                Flexible(
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    child: Column(
                       children: <Widget>[
                         Container(
-                          width: MediaQuery.of(context).size.width - 140,
-                          margin: EdgeInsets.only(top: 10, left: 15),
-                          padding: EdgeInsets.all(15),
-                          child: Column(
+                          child: Row(
                             children: <Widget>[
-                              Container(
-                                child: Text(
-                                  snapshotevento.data.nombre,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                margin: EdgeInsets.only(bottom: 6),
-                              ),
-                              Container(
-                                child: Text(paquete.titulo),
-                              ),
-                              Container(
-                                child: Text(
-                                  "\$" + paquete.precio.toString(),
-                                  style: TextStyle(
-                                    color: Colors.grey,
+                              Icon(MdiIcons.checkDecagram),
+                              Flexible(
+                                fit: FlexFit.loose,
+                                child: Container(
+                                  child: Text(
+                                    evento.nombre,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
+                          margin: EdgeInsets.only(bottom: 6),
                         ),
-                        Positioned(
-                          bottom: -15,
-                          right: -15,
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage(
-                                            paquete: paquete,
-                                            evento: snapshotevento.data,
-                                          )));
-                            },
-                            icon: Icon(MdiIcons.cashUsd),
+                        Container(
+                          child: Text(paquete.titulo),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              child: Text(
+                                "\$" + snapshot.data.NuevoPrecio.toString(),
+                                style: TextStyle(
+                                    color: Colors.yellow[600],
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Container(
+                              child: Text(
+                                paquete.precio.toString(),
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    decoration: TextDecoration.lineThrough),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 8),
+                          child: Text(
+                            "Termina: " + snapshot.data.Fecha,
+                            style: TextStyle(fontSize: 12),
                           ),
                         ),
                       ],
                     ),
-                  ],
-                );
-              },
+                  ),
+                ),
+              ],
             ),
+
           );
         } else {
           return Container(
@@ -313,18 +317,14 @@ class Articulo extends StatelessWidget {
                             ],
                           ),
                         ),
+
                         Positioned(
                           bottom: -15,
                           right: -15,
                           child: IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage(
-                                            paquete: paquete,
-                                            evento: snapshotevento.data,
-                                          )));
+                            onPressed: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => HomePage(paquete: paquete, evento: snapshotevento.data,)));
                             },
                             icon: Icon(MdiIcons.cashUsd),
                           ),
