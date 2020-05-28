@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_ubicua/intro.dart';
+import 'avisoprivacidad.dart';
 import 'clipper.dart';
 import 'CardItemModel.dart';
 import 'Login.dart';
@@ -195,7 +196,7 @@ class _PantallaAyuda extends State<PantallaAyuda>{
                           child: FlatButton(
                             splashColor: Color.fromARGB(125, 255, 204, 0),
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => PantallaCondiciones()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AvisoPrivacidad()));
                             },
                             child: Text('Privacidad y Seguridad',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
                           ),
