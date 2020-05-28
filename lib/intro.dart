@@ -23,13 +23,30 @@ class _IntroPageState extends State<IntroPage> {
     final SharedPreferences prefs = await _prefs;
     final String token = prefs.getString('token');
     final bool signed = prefs.getBool('signed');
+    AuthResult usuario;
+    bool correcto = true;
     print("aqui");
     if(signed!=null&&signed)
       {
-        AuthResult usuario = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: prefs.getString('email'), password: prefs.getString('pass'));
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
+        try
+        {
+          usuario = await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: prefs.getString('email'), password: prefs.getString('pass'));
+        }
+        catch(error)
+        {
+          correcto = false;
+        }
+        if(correcto)
+          {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
+          }
+        else
+          {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Login2()));
+          }
       }
     else
       {

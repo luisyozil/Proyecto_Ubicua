@@ -6,7 +6,6 @@ class Usuario {
   String apellido;
   String imagen;
   String correo;
-
   Usuario(this.id,this.nombre,this.apellido,this.imagen, this.correo);//:correo = "ejemplo@hotmail.com";
 
   Map<String, dynamic> Conversion() => {
@@ -29,5 +28,6 @@ List<Usuario> CambiaListaUsuarios(QuerySnapshot query) {
 }
 
 Usuario CambiaUsuario(DocumentSnapshot snapshot){
+  print("todo ok");
   return Usuario.GuardaUsuario(snapshot);
 }

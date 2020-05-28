@@ -11,6 +11,7 @@ import 'lista_deseos.dart';
 import 'modelos/Usuario.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'services/payment-service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'MyProfile.dart';
 
 class perfil extends StatelessWidget {
@@ -641,8 +642,14 @@ class nuevopago extends StatelessWidget {
 
 class perfil2 extends StatelessWidget {
   final FirebaseUser usuario;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   perfil2(this.usuario);
+
+  Future<void> DesLoggea() async {
+    final SharedPreferences prefs = await _prefs;
+    prefs.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -650,6 +657,7 @@ class perfil2 extends StatelessWidget {
       stream: db.BuscaUsuario(usuario.uid),
       builder: (context, AsyncSnapshot<Usuario> snapshot) {
         if (!snapshot.hasData) {
+          print(usuario.uid);
           return CircularProgressIndicator();
         }
 
@@ -1045,6 +1053,7 @@ class perfil2 extends StatelessWidget {
                                 splashColor: Color.fromARGB(125, 255, 204, 0),
                                 onPressed: () {
                                   try {
+                                    DesLoggea();
                                     FirebaseAuth.instance.signOut();
                                     Navigator.pushAndRemoveUntil(
                                         context,
