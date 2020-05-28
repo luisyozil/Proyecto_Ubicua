@@ -69,16 +69,14 @@ class _PantallaInicioState extends State<PantallaInicio> {
     ];
     return new Scaffold(
       backgroundColor: Colors.black,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ListaDeseos(usuario: widget.usuario,)));
+        },
+        child: Icon(MdiIcons.cartOutline),
+      ),
       appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(MdiIcons.cartOutline),
-            onPressed: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ListaDeseos(usuario: widget.usuario,)));
-            },
-          ),
-        ],
         title: Text(
           MenuList[idx_Title],
           style: TextStyle(

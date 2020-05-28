@@ -824,7 +824,7 @@ class perfil2 extends StatelessWidget {
                         SizedBox(
                           height: 16,
                         ),
-                        Row(
+                        /*Row(
                           children: <Widget>[
                             SizedBox(
                               width: 10,
@@ -872,7 +872,7 @@ class perfil2 extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
+                        ),*/
                         SizedBox(
                           height: 16,
                         ),
