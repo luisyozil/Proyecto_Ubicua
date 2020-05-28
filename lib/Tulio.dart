@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:proyecto_ubicua/PantallaAyuda.dart';
 import 'db.dart' as db;
+import 'intro.dart';
 import 'lista_deseos.dart';
 import 'modelos/Usuario.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -831,35 +832,35 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child:FlatButton(
-                                    splashColor:
-                                        Color.fromARGB(125, 255, 204, 0),
-                                    onPressed: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) => ListaDeseos(usuario: usuario,)));
-                                    },
-                                    child:
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(
-                                          MdiIcons.cartOutline,
-                                          color: Colors.yellow[600],
-                                          size: 30.0,
-                                        ),
-                                        Text(
-                                          'Lista de Deseos',
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                            color: Color.fromARGB(255, 255, 204, 0),
-                                          ),
-                                        ),
-                                      ],
+                              child: FlatButton(
+                                splashColor: Color.fromARGB(125, 255, 204, 0),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ListaDeseos(
+                                                usuario: usuario,
+                                              )));
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      MdiIcons.cartOutline,
+                                      color: Colors.yellow[600],
+                                      size: 30.0,
                                     ),
-
-                                  ),
-
+                                    Text(
+                                      'Lista de Deseos',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Color.fromARGB(255, 255, 204, 0),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -884,14 +885,10 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child:FlatButton(
-                                splashColor:
-                                Color.fromARGB(125, 255, 204, 0),
-                                onPressed: () {
-
-                                },
-                                child:
-                                Row(
+                              child: FlatButton(
+                                splashColor: Color.fromARGB(125, 255, 204, 0),
+                                onPressed: () {},
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
@@ -909,9 +906,7 @@ class perfil2 extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-
                               ),
-
                             ),
                           ],
                         ),
@@ -935,9 +930,8 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child:FlatButton(
-                                splashColor:
-                                Color.fromARGB(125, 255, 204, 0),
+                              child: FlatButton(
+                                splashColor: Color.fromARGB(125, 255, 204, 0),
                                 onPressed: () {
                                   Navigator.push(
                                       context,
@@ -945,8 +939,7 @@ class perfil2 extends StatelessWidget {
                                           builder: (context) =>
                                               MyProfile(usuario)));
                                 },
-                                child:
-                                Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
@@ -964,9 +957,7 @@ class perfil2 extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-
                               ),
-
                             ),
                           ],
                         ),
@@ -990,9 +981,8 @@ class perfil2 extends StatelessWidget {
                                       spreadRadius: 2),
                                 ],
                               ),
-                              child:FlatButton(
-                                splashColor:
-                                Color.fromARGB(125, 255, 204, 0),
+                              child: FlatButton(
+                                splashColor: Color.fromARGB(125, 255, 204, 0),
                                 onPressed: () {
                                   Navigator.push(
                                       context,
@@ -1000,8 +990,7 @@ class perfil2 extends StatelessWidget {
                                           builder: (context) =>
                                               PantallaAyuda()));
                                 },
-                                child:
-                                Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
@@ -1019,9 +1008,61 @@ class perfil2 extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-
                               ),
-
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              height: 50.0,
+                              width: MediaQuery.of(context).size.width * .93,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromARGB(255, 255, 204, 0),
+                                      spreadRadius: 2),
+                                ],
+                              ),
+                              child: FlatButton(
+                                splashColor: Color.fromARGB(125, 255, 204, 0),
+                                onPressed: ()  {
+                                  try{
+                                  FirebaseAuth.instance.signOut();
+                                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                                      builder: (context) =>
+                                          IntroPage()), ModalRoute.withName('/'));
+                                  }catch(e){
+                                    print(e.toString());
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      MdiIcons.accountArrowLeft,
+                                      color: Colors.yellow[600],
+                                      size: 30.0,
+                                    ),
+                                    Text(
+                                      'Cerrar Sesion',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Color.fromARGB(255, 255, 204, 0),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),

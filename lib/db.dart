@@ -62,6 +62,10 @@ Stream<Promocion> BuscaPromocion(String id){
   return Firestore.instance.collection("promociones").where("idPaquete", isEqualTo: id).snapshots().map(EncuentraPromocion);
 }
 
+Future<void> EliminaPromocion(String id){
+  return Firestore.instance.collection('promociones').document(id).delete();
+}
+
 /************************************************************************************************************************ PARA LA LISTA DE DESEOS*/
 Stream<List<Elemento>> dameElementos(String id) {
   return Firestore.instance.collection('elementos').where("IdUsuario", isEqualTo: id).snapshots().map(CambiaListaElementos);
