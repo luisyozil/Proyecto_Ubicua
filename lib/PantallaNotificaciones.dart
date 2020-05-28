@@ -1,13 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'PantallaDetalleVenta.dart';
 import 'package:shimmer/shimmer.dart';
+import 'PantallaDetalleVenta.dart';
 import 'db.dart' as db;
 import 'modelos/Evento.dart';
 
-
 class PantallaNotificaciones_State extends StatefulWidget {
   final List<int> items;
-  PantallaNotificaciones_State({this.items});
+  final FirebaseUser usuario;
+  PantallaNotificaciones_State({this.items, this.usuario});
 
   @override
   NotificacionesPantalla createState() {
@@ -32,7 +33,7 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-          Expanded(
+        Expanded(
           child: StreamBuilder(
             stream: db.dameEventos(),
             builder: (context, AsyncSnapshot<List<Evento>> snapshot) {
@@ -41,148 +42,164 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
               }
 
               List<Evento> eventos = snapshot.data;
-              eventos.removeWhere((it) => it.fecha.difference(DateTime.now()).inDays != 3);
-              return  eventos.length > 0 ?  ListView.builder(
-                itemCount: eventos.length,
-                itemBuilder: (context, index) {
-
-                  return Dismissible(
-                    key: UniqueKey(),
-                    onDismissed: (direction) {
-                      setState(() {
-                        items.removeAt(index);
-                      });
-                    },
-                    background: Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.black,
-
-                    ),
-                    child: InkWell(
-                      child:  Container(
-                        height: MediaQuery.of(context).size.height / 6,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.black,
-                        child: Center(
-                          child: Container(
-                            height: (MediaQuery.of(context).size.height / 6) - 10,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: <Color>[
-                                  Colors.yellow[200],
-                                  Colors.yellow[400],
-                                  Colors.yellow[600],
-                                  Colors.yellow[800],
-                                ],
-                              ),),
-                            child: Center(
-                              child: Row(
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Container(
-                                    width: (MediaQuery.of(context).size.height / 6) - 20,
-                                    height: (MediaQuery.of(context).size.height / 6) - 20,
-                                    decoration: BoxDecoration(
-                                      color: Color.fromARGB(255, 150, 150, 150),
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                          eventos[index].imagen,
-                                        ),
-                                      ),
+              eventos.removeWhere(
+                  (it) => it.fecha.difference(DateTime.now()).inDays != 3);
+              return eventos.length > 0
+                  ? ListView.builder(
+                      itemCount: eventos.length,
+                      itemBuilder: (context, index) {
+                        return Dismissible(
+                          key: UniqueKey(),
+                          onDismissed: (direction) {
+                            setState(() {
+                              items.removeAt(index);
+                            });
+                          },
+                          background: Container(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.black,
+                          ),
+                          child: InkWell(
+                            child: Container(
+                              height: MediaQuery.of(context).size.height / 6,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.black,
+                              child: Center(
+                                child: Container(
+                                  height:
+                                      (MediaQuery.of(context).size.height / 6) -
+                                          10,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: <Color>[
+                                        Colors.yellow[200],
+                                        Colors.yellow[400],
+                                        Colors.yellow[600],
+                                        Colors.yellow[800],
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width*.70,
-                                    height: (MediaQuery.of(context).size.height / 6) - 20,
-                                    decoration: BoxDecoration(
-                                      //  color: Color.fromARGB(255, 150, 150, 150),
-                                        shape: BoxShape.rectangle),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                  child: Center(
+                                    child: Row(
                                       children: <Widget>[
-                                        Shimmer.fromColors(
-                                          child:Text(
-                                            eventos[index].nombre,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.bold,
-                                              color: Color.fromARGB(255, 230, 230, 230),
-                                            ),
-                                            maxLines: 2,
-                                            overflow: TextOverflow.fade,
-                                          ),
-                                          baseColor: Colors.black,
-                                          highlightColor: Colors.grey,
-                                        ),
-
                                         SizedBox(
                                           width: 5.0,
                                         ),
-                                        Shimmer.fromColors(
-                                          child:Text(
-                                            "¡No olvides reservar tus boletos para asistir! ",
-                                            style: TextStyle(
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.bold,
-                                              color: Color.fromARGB(255, 230, 230, 230),
+                                        Container(
+                                          width: (MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  6) -
+                                              20,
+                                          height: (MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  6) -
+                                              20,
+                                          decoration: BoxDecoration(
+                                            color: Color.fromARGB(
+                                                255, 150, 150, 150),
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                eventos[index].imagen,
+                                              ),
                                             ),
-                                            maxLines: 2,
-                                            overflow: TextOverflow.fade,
                                           ),
-                                          baseColor: Colors.black,
-                                          highlightColor: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .70,
+                                          height: (MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  6) -
+                                              20,
+                                          decoration: BoxDecoration(
+                                              //  color: Color.fromARGB(255, 150, 150, 150),
+                                              shape: BoxShape.rectangle),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Shimmer.fromColors(
+                                                child: Text(
+                                                  eventos[index].nombre,
+                                                  style: TextStyle(
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(
+                                                        255, 230, 230, 230),
+                                                  ),
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.fade,
+                                                ),
+                                                baseColor: Colors.black,
+                                                highlightColor: Colors.grey,
+                                              ),
+                                              SizedBox(
+                                                width: 5.0,
+                                              ),
+                                              Shimmer.fromColors(
+                                                child: Text(
+                                                  "¡No olvides reservar tus boletos para asistir! ",
+                                                  style: TextStyle(
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(
+                                                        255, 230, 230, 230),
+                                                  ),
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.fade,
+                                                ),
+                                                baseColor: Colors.black,
+                                                highlightColor: Colors.grey,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 5.0,
                                         ),
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        /*Navigator.push(
+                            onTap: () {
+                              Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => PantallaDetalleEvento(
-                          Nombre: 'Evento $item',
-                          DetalleEvento:
-                              "Este es una descripcion del el evento numero",
-                          ImagenEvento: Image.asset(
-                            'img/ImagenFest.jpg',
-                            height: 160.0,
-                            width: 160.0,
-                            fit: BoxFit.cover,
+                    builder: (context) => PantallaDetalleEvento(evento: eventos[index], usuario: widget.usuario,)),
+              );
+                            },
                           ),
-                        )),
-              );*/
+                        );
                       },
-                    ),
-                  );
-                },
-              ) :  Align(
-                alignment: Alignment.center,
-               child: Text( 'No hay notificaciones por el momento',textAlign: TextAlign.center,style: TextStyle(
-                 fontSize: 21.0,
-                 fontWeight: FontWeight.bold,
-                 color: Color.fromARGB(255, 230, 230, 230),
-               ),), );
+                    )
+                  : Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'No hay notificaciones por el momento',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 21.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 230, 230, 230),
+                        ),
+                      ),
+                    );
             },
           ),
         ),
-         
       ],
     );
   }

@@ -16,7 +16,6 @@ class _PantallaCondiciones extends State<PantallaCondiciones> {
   int idx_Title = 2;
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return  Scaffold(
