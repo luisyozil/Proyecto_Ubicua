@@ -94,9 +94,9 @@ class _IntroPageState extends State<IntroPage> {
                   controller: _pageController,
                   children: <Widget>[
                     Pantalla(
-                      titulo: "We care about you, friends and family",
+                      titulo: "DREAM PARADISE",
                       descripcion:
-                          "We connect with your favorite artist in every concert wherever you are",
+                          "Te conectamos con tu artista favorito en cualquier concierto desde quiera que estes.",
                       imagen: "img/musicos2.png",
                     ),
                     Pantalla(
@@ -108,7 +108,7 @@ class _IntroPageState extends State<IntroPage> {
                     Pantalla(
                       titulo: "Conciertos",
                       descripcion:
-                          "We connect with your favorite artist in every concert wherever you are",
+                          "No importa tus gustos musicales, seguro encontrarás tu concierto ideal",
                       imagen: "img/musicos3.png",
                     ),
                   ],

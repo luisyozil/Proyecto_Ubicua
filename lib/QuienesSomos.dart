@@ -80,7 +80,7 @@ class _QuienesSomos extends State<QuienesSomos> {
                     ),
                     Pantalla(
                       titulo: "Computacion Ubicua",
-                      descripcion: "Sea cual sea el concierto, pasarás grandes momentos",
+                      descripcion: "Semestre 2019-2020- II",
                       imagen: "img/Nosotros.png",
                     ),
                   ],
@@ -115,45 +115,6 @@ class _QuienesSomos extends State<QuienesSomos> {
               ),
             ),
           )
-        ],
-      ),
-      bottomNavigationBar:
-      BottomNavigationBar(
-        onTap: (int TabIndice) {
-          setState(() {
-            idx_Title = TabIndice;
-          });
-        },
-        currentIndex: idx_Title,
-        selectedItemColor: Color.fromARGB(255, 255, 204, 0),
-        unselectedItemColor: Color.fromARGB(255, 230, 230, 230),
-        type: BottomNavigationBarType.shifting,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help_outline),
-            title: Text('Ayuda'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.bellOutline),
-            title: Text('Notificaciones'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.calendarStar),
-            title: Text('Eventos'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Búsqueda'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(MdiIcons.account),
-            title: Text('Cuenta'),
-            backgroundColor: Color.fromARGB(255, 45, 45, 45),
-          ),
         ],
       ),
     );
@@ -193,7 +154,7 @@ class Pantalla extends StatelessWidget{
             child: Column(
               children: <Widget>[
                 SizedBox(height: 70,),
-                Image.asset(imagen,width: width*.9,),
+                Image.asset(imagen,width: width*.9,height: height/3,),
                 SizedBox(height: 32,),
                 FadeAnimation(.5, Text(titulo, style: TextStyle(fontSize: 32,
                     color: Colors.white,
@@ -207,7 +168,6 @@ class Pantalla extends StatelessWidget{
             ),
           )
       ),
-
     );
   }
 }
