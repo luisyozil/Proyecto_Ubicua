@@ -61,7 +61,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
     var MenuList = ['Promociones', 'Notificaciones', 'Eventos', 'Búsqueda', 'Cuenta'];
     List<Widget> Pantalla = [
       Promociones(),
-      PantallaNotificaciones_State(items: items),
+      PantallaNotificaciones_State(items: items, usuario: widget.usuario,),
       PantallaEventos(widget.usuario),
       Busqueda(),
       //Prueba(widget.usuario),

@@ -24,9 +24,13 @@ class Promociones extends StatelessWidget {
           padding: EdgeInsets.only(left: 30),
           itemCount: snapshot.data.length,
           itemBuilder: (context, index) {
-            return ElementoPromocion(
-              promocion: snapshot.data[index],
-            );
+            if(snapshot.data[index].vencimiento.day == DateTime.now().day && snapshot.data[index].vencimiento.month == DateTime.now().month && snapshot.data[index].vencimiento.year == DateTime.now().year){
+              db.EliminaPromocion(snapshot.data[index].id);
+            }else{
+              return ElementoPromocion(
+                promocion: snapshot.data[index],
+              );
+            }
           },
         );
       },
