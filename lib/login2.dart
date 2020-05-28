@@ -5,6 +5,7 @@ import 'Login.dart';
 import 'FadeAnimation.dart';
 import 'PantallaInicio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'SignUp.dart';
 
 class Login2 extends StatefulWidget {
@@ -74,6 +75,7 @@ class FormLogin extends StatefulWidget {
 }
 
 class _FormLoginState extends State<FormLogin> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   TextEditingController _email;
   TextEditingController _pass;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -93,6 +95,7 @@ class _FormLoginState extends State<FormLogin> {
   }
 
   Future<void> Verifica() async {
+    final SharedPreferences prefs = await _prefs;
     final formstate = _formkey.currentState;
     if (formstate.validate()) {
       formstate.save();
@@ -100,6 +103,9 @@ class _FormLoginState extends State<FormLogin> {
         AuthResult usuario = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
                 email: _email.text.trim(), password: _pass.text);
+        prefs.setString('email', _email.text);
+        prefs.setString('pass', _pass.text);
+        prefs.setBool('signed', true);
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
       } catch (error) {

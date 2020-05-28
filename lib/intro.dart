@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'clipper.dart';
 import 'login2.dart';
+import 'PantallaInicio.dart';
 import 'FadeAnimation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class IntroPage extends StatefulWidget {
   @override
@@ -11,9 +14,30 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   PageController _pageController = PageController();
   var width, height;
   var currentPage = 0;
+
+  Future<void> _validaLog() async {
+    final SharedPreferences prefs = await _prefs;
+    final String token = prefs.getString('token');
+    final bool signed = prefs.getBool('signed');
+    print("aqui");
+    if(signed!=null&&signed)
+      {
+        AuthResult usuario = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: prefs.getString('email'), password: prefs.getString('pass'));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
+      }
+    else
+      {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Login2()));
+      }
+  }
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -29,14 +53,7 @@ class _IntroPageState extends State<IntroPage> {
           Container(
               color: Colors.black,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Login2(),
-                    ),
-                  );
-                },
+                onTap: _validaLog,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
