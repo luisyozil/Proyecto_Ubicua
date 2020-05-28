@@ -195,7 +195,6 @@ class _PantallaAyuda extends State<PantallaAyuda>{
                           child: FlatButton(
                             splashColor: Color.fromARGB(125, 255, 204, 0),
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => PantallaCondiciones()));
                             },
                             child: Text('Privacidad y Seguridad',style: TextStyle(fontSize: 16.0,color: Color.fromARGB(255, 255, 204, 0),),),
                           ),

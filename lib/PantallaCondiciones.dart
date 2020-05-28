@@ -113,9 +113,9 @@ class ParteGris extends StatelessWidget{
                   children: <Widget>[
                     Image.asset("img/Terminos.png", width: width,),
                     Text(
-                        "Compraventa. La aceptación de estos términos y condiciones constituye un Contrato de Compraventa entre Dream Paradise y la persona que está comprando boletos."),
+                        "Compraventa.\n\nLa aceptación de estos términos y condiciones constituye un Contrato de Compraventa entre Dream Paradise y la persona que está comprando boletos."),
                     Text(
-                        "Autorización. Tu compra está sujeta a la autorización de tarjeta de crédito y verificación de tu banco."),
+                        "\n\nAutorización.\n\nTu compra está sujeta a la autorización de tarjeta de crédito y verificación de tu banco."),
                     Text(
                         "Cambios, Reembolsos y Cancelaciones. No existen cambios, reembolsos ni cancelaciones."),
                     Text(
@@ -123,15 +123,15 @@ class ParteGris extends StatelessWidget{
                     Text(
                         "En caso de cancelación del evento, la devolución del costo del boleto será entregada en el lugar, días y horas que Dream Paradise señale para tal efecto."),
                     Text(
-                        "Límite de Boletos. El límite de boletos es por persona. En caso de superarlo, se cancelarán los boletos excedentes sin previo aviso."),
+                        "\n\nLímite de Boletos.\n\nEl límite de boletos es por persona. En caso de superarlo, se cancelarán los boletos excedentes sin previo aviso."),
                     Text(
-                        "Lugares Disponibles. Dream Paradise Online te proporciona el mejor lugar disponible al momento de realizar la compra, de acuerdo con el precio solicitado."),
+                        "\n\nLugares Disponibles.\n\nDream Paradise Online te proporciona el mejor lugar disponible al momento de realizar la compra, de acuerdo con el precio solicitado."),
                     Text(
-                        "Precauciones. Antes de hacer tu compra por favor revisa cuidadosamente el evento, sección, fecha y número de boletos solicitados, ya que una vez realizada ésta no hay cambios, reembolsos ni devoluciones."),
-                    Text("Entrega de Boletos."),
+                        "\n\nPrecauciones.\n\nAntes de hacer tu compra por favor revisa cuidadosamente el evento, sección, fecha y número de boletos solicitados, ya que una vez realizada ésta no hay cambios, reembolsos ni devoluciones."),
+                    Text("\n\nEntrega de Boletos.\n\n"),
                     Text(
                         "Adicional al mail de confirmación recibirás un correo de nuestra parte donde incluiremos todos tus boletos"),
-                    Text("Es IMPORTANTE que al llegar evento:"),
+                    Text("\n\nEs IMPORTANTE que al llegar evento:\n\n"),
                     Text(
                         "1. Te dirijas al acceso destinado para BOLETO ELECTRONICO."),
                     Text(
@@ -139,18 +139,18 @@ class ParteGris extends StatelessWidget{
                     Text(
                         "En caso de que más de un boleto sea presentado, el lector electrónico negará el acceso al portador sin importar que te acredites como el comprador."),
                     Text(
-                        " Por tal motivo te sugerimos cuidar los archivos enviados, y no distribuirlos para evitar que sean utilizados por cualquier otra persona."),
+                        "Por tal motivo te sugerimos cuidar los archivos enviados, y no distribuirlos para evitar que sean utilizados por cualquier otra persona."),
                     Text(
-                        " Si tienes los boletos de más personas, es importante que todos entren al inmueble al mismo tiempo para que podamos escanear los boletos desde tu dispositivo."),
+                        "Si tienes los boletos de más personas,es importante que todos entren al inmueble al mismo tiempo para que podamos escanear los boletos desde tu dispositivo."),
                     Text(
                         "Esta opción requiere la validación de tus datos bancarios."),
                     Text(
-                        "  Atención a Clientes. Si presentas algún problema al realizar tu compra, por favor comunícate al departamento de servicio a clientes al (448)-1-45-76-78"),
+                        "\n\nAtención a Clientes.\n\nSi presentas algún problema al realizar tu compra, por favor comunícate al departamento de servicio a clientes al (448)-1-45-76-78"),
                     Text(
-                        "  Jurisdicción y Competencia. Cualquier controversia derivada de estos Términos y Condiciones de Compraventa, las partes se someterán expresamente a la jurisdicción y competencia de los tribunales de la ciudad de San Luis Potosí, S.L.P, haciendo renuncia expresa de cualquier otra jurisdicción que pudiera corresponderles debido a sus domicilios presentes o futuros."),
+                        "\n\nJurisdicción y Competencia.\n\nCualquier controversia derivada de estos Términos y Condiciones de Compraventa, las partes se someterán expresamente a la jurisdicción y competencia de los tribunales de la ciudad de San Luis Potosí, S.L.P, haciendo renuncia expresa de cualquier otra jurisdicción que pudiera corresponderles debido a sus domicilios presentes o futuros."),
                     Text(
-                        "Responsabilidad de Dream Paradise. Dream Paradise es una empresa independiente, contratada únicamente para la venta de Boletos, por lo que no se hace responsable de la calidad o contenido del evento, ni de los actos o consecuencias que dicho evento pueda tener."),
-                    SizedBox(height: 120,),
+                        "\n\nResponsabilidad de Dream Paradise.\n\nDream Paradise es una empresa independiente, contratada únicamente para la venta de Boletos, por lo que no se hace responsable de la calidad o contenido del evento, ni de los actos o consecuencias que dicho evento pueda tener."),
+                    SizedBox(height: 200,),
 
                   ],
                 ),
