@@ -318,17 +318,7 @@ class Articulo extends StatelessWidget {
                           ),
                         ),
 
-                        Positioned(
-                          bottom: -15,
-                          right: -15,
-                          child: IconButton(
-                            onPressed: (){
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => HomePage(paquete: paquete, evento: snapshotevento.data,)));
-                            },
-                            icon: Icon(MdiIcons.cashUsd),
-                          ),
-                        ),
+
                       ],
                     ),
                   ],
