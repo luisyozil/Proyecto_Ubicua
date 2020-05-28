@@ -87,7 +87,7 @@ class _ProfilePageState extends State<MyProfile> {
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              title: Text('Edit Profile'),
+              title: Text('Perfil'),
             ),
             body: Builder(
               builder: (context) =>  Container(
@@ -207,7 +207,7 @@ class _ProfilePageState extends State<MyProfile> {
                             },
                             elevation: 4.0,
                             child: Text(
-                              'Cancel',
+                              'Cancelar',
                             ),
                           ),
                           RaisedButton(
@@ -219,7 +219,7 @@ class _ProfilePageState extends State<MyProfile> {
                             },
                             elevation: 4.0,
                             child: Text(
-                              'Submit',
+                              'Aceptar',
                             ),
                           ),
 
