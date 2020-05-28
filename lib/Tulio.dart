@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:proyecto_ubicua/MisViajes.dart';
 import 'package:proyecto_ubicua/PantallaAyuda.dart';
 import 'db.dart' as db;
 import 'intro.dart';
@@ -887,7 +888,15 @@ class perfil2 extends StatelessWidget {
                               ),
                               child: FlatButton(
                                 splashColor: Color.fromARGB(125, 255, 204, 0),
-                                onPressed: () {},
+                                onPressed: () {
+                                  //todo: llamar vista de mis viajes
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MisViajes(user)
+                                      )
+                                  );
+                                },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -1034,13 +1043,15 @@ class perfil2 extends StatelessWidget {
                               ),
                               child: FlatButton(
                                 splashColor: Color.fromARGB(125, 255, 204, 0),
-                                onPressed: ()  {
-                                  try{
-                                  FirebaseAuth.instance.signOut();
-                                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                                      builder: (context) =>
-                                          IntroPage()), ModalRoute.withName('/'));
-                                  }catch(e){
+                                onPressed: () {
+                                  try {
+                                    FirebaseAuth.instance.signOut();
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => IntroPage()),
+                                        ModalRoute.withName('/'));
+                                  } catch (e) {
                                     print(e.toString());
                                   }
                                 },
