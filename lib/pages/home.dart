@@ -22,17 +22,21 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  var res = 0;
+  var val2 = 100;
   onItemPress(BuildContext context, int index, int cantidad) async {
     switch (index) {
       case 0:
+        cantidad = cantidad*100;
         payViaNewCard(context, cantidad);
         break;
       case 1:
+        res = cantidad*val2;
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ExistingCardsPage(
-              cantidad: cantidad,
+              cantidad: res,
               evento: widget.evento,
             ),
           ),
@@ -48,7 +52,7 @@ class HomePageState extends State<HomePage> {
     FirebaseUser usuario = await FirebaseAuth.instance.currentUser();
     db.GuardaViaje(Viaje(IdUsuario: usuario.uid, IdEvento: widget.evento.id));
     var response = await StripeService.payWithNewCard(
-        amount: cantidad.toString(), currency: 'USD');
+        amount: cantidad.toString(), currency: 'MXN');
     await dialog.hide();
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(response.message),
