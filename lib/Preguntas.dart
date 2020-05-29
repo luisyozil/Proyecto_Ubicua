@@ -74,9 +74,10 @@ class _Preguntas extends State<Preguntas> {
                   controller: _pageController,
                   children: <Widget>[
                     Pantalla(
-                      titulo: "¿Cómo me registro en Dream Paradise?",
-                      descripcion: "Puedes contectarte atraves de alguna cuenta de correo"
-                          "sin ningun costo para disfrutar de la experiencia",
+                      titulo: "¿Cómo me contacto Dream Paradise?",
+                      descripcion: "Puedes contactarte atraves de alguna cuenta de correo"
+                          "a esta direccion service@dreamparadise.com o por medio"
+                          "de nuestro apartado de comentarios, con gusto te atendemos",
                       imagen: "img/commonquestions.png",
                     ),
                     Pantalla(

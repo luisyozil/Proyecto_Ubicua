@@ -25,7 +25,6 @@ class _IntroPageState extends State<IntroPage> {
     final bool signed = prefs.getBool('signed');
     AuthResult usuario;
     bool correcto = true;
-    print("aqui");
     if(signed!=null&&signed)
       {
         try
@@ -36,6 +35,7 @@ class _IntroPageState extends State<IntroPage> {
         catch(error)
         {
           correcto = false;
+          prefs.clear();
         }
         if(correcto)
           {
