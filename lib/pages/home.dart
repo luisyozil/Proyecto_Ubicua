@@ -49,11 +49,11 @@ class HomePageState extends State<HomePage> {
     ProgressDialog dialog = new ProgressDialog(context);
     dialog.style(message: 'Por favor espere...');
     await dialog.show();
-    FirebaseUser usuario = await FirebaseAuth.instance.currentUser();
-    db.GuardaViaje(Viaje(IdUsuario: usuario.uid, IdEvento: widget.evento.id));
     var response = await StripeService.payWithNewCard(
         amount: cantidad.toString(), currency: 'MXN');
     await dialog.hide();
+    FirebaseUser usuario = await FirebaseAuth.instance.currentUser();
+    db.GuardaViaje(Viaje(IdUsuario: usuario.uid, IdEvento: widget.evento.id));
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(response.message),
       duration:
