@@ -6,6 +6,7 @@ import 'db.dart' as db;
 import 'modelos/Elemento.dart';
 import 'modelos/Evento.dart';
 import 'modelos/Paquete.dart';
+import 'modelos/Promocion.dart';
 
 class ListaDeseos extends StatelessWidget {
   final FirebaseUser usuario;
@@ -25,7 +26,6 @@ class ListaDeseos extends StatelessWidget {
 
           if (!snapshot.hasData) {
             return Container(
-              child: Text("No hay datos"),
             );
           } else {
             if (snapshot.data.length > 0) {
@@ -46,7 +46,6 @@ class ListaDeseos extends StatelessWidget {
                         );
                       } else {
                         return Container(
-                          child: Text("No hay datos"),
                         );
                       }
                     },
@@ -140,11 +139,38 @@ class ElementoListaDeseos extends StatelessWidget {
                           child: Text(paquete.titulo),
                         ),
                         Container(
-                          child: Text(
-                            "\$" + paquete.precio.toString(),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text(
+                                "\$" + paquete.precio.toString(),
+                                style: TextStyle(
+                                  color: Colors.yellow[600],
+                                ),
+                              ),
+                              StreamBuilder(
+                                stream: db.BuscaPromocion(paquete.id),
+                                builder: (context, AsyncSnapshot<Promocion> snapshot ){
+                                  if(snapshot.connectionState == ConnectionState.waiting){
+                                    return CircularProgressIndicator();
+                                  }
+
+                                  if(snapshot.hasData){
+                                    return Container(
+                                      child: Text(
+                                        "\$" + snapshot.data.NuevoPrecio.toString(),
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            decoration: TextDecoration.lineThrough),
+                                      ),
+                                    );
+                                  }else{
+                                    return Container();
+                                  }
+
+                                },
+                              ),
+                            ],
                           ),
                         ),
                       ],

@@ -291,7 +291,7 @@ class _Paquetes2 extends State<Paquetes2> with TickerProviderStateMixin {
                                                 ),
                                                 child: Center(
                                                   child: Text(
-                                                    'Añadir a mi lista',
+                                                    'Añadir a mi Carrito',
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15,

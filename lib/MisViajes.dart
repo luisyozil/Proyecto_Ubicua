@@ -20,6 +20,7 @@ class MisViajes extends StatelessWidget {
       body: StreamBuilder(
         stream: db.dameViajes(usuario.id),
         builder: (context, AsyncSnapshot<List<Viaje>> snapshot ){
+          
           if(snapshot.connectionState == ConnectionState.waiting)
             return CircularProgressIndicator();
 
