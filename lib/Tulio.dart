@@ -735,86 +735,6 @@ class perfil2 extends StatelessWidget {
 
                         //performace bar
 
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(32),
-                          color: Colors.yellow[600],
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.check_box,
-                                        color: Colors.black,
-                                        size: 30,
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        "23",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "Raleway",
-                                            fontSize: 24),
-                                      )
-                                    ],
-                                  ),
-                                  Text(
-                                    "Viajes Realizados ",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: "Raleway",
-                                        fontSize: 15),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: <Widget>[
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.favorite,
-                                        color: Colors.black,
-                                        size: 30,
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        "14/05/20",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "Raleway",
-                                            fontSize: 24),
-                                      )
-                                    ],
-                                  ),
-                                  Text(
-                                    "Miembro desde",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: "Raleway",
-                                        fontSize: 15),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
 
                         SizedBox(
                           height: 16,
@@ -824,55 +744,7 @@ class perfil2 extends StatelessWidget {
                         SizedBox(
                           height: 16,
                         ),
-                        /*Row(
-                          children: <Widget>[
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              height: 50.0,
-                              width: MediaQuery.of(context).size.width * .93,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.black,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromARGB(255, 255, 204, 0),
-                                      spreadRadius: 2),
-                                ],
-                              ),
-                              child: FlatButton(
-                                splashColor: Color.fromARGB(125, 255, 204, 0),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ListaDeseos(
-                                                usuario: usuario,
-                                              )));
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Icon(
-                                      MdiIcons.cartOutline,
-                                      color: Colors.yellow[600],
-                                      size: 30.0,
-                                    ),
-                                    Text(
-                                      'Lista de Deseos',
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color.fromARGB(255, 255, 204, 0),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),*/
+
                         SizedBox(
                           height: 16,
                         ),
