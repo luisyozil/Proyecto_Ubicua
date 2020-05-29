@@ -54,7 +54,7 @@ Stream<Paquete> BuscaPaquete(String id){
   return Firestore.instance.collection("paquetes").document(id).snapshots().map(CambiaPaquete);
 }
 
-/************************************************************************************************************************ PARA LOS PROMOCIONES*/
+/************************************************************************************************************************ PARA LAS PROMOCIONES*/
 Stream<List<Promocion>> damePromociones() {
   return Firestore.instance.collection('promociones').snapshots().map(CambiaListaPromociones);
 }
