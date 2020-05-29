@@ -12,6 +12,7 @@ import 'pages/existing-cards.dart';
 
 void main() => runApp(
       MaterialApp(
+        debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData(
           fontFamily: 'Raleway',
@@ -21,7 +22,7 @@ void main() => runApp(
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
         ),
-        debugShowCheckedModeBanner: false,
+        //debugShowCheckedModeBanner: false,
         home: IntroPage(),
       ),
     );

@@ -22,6 +22,7 @@ class Inicio extends StatelessWidget {
     return WillPopScope(
         onWillPop: () async { return false; },
         child:   MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Version 1.0',
           home: PantallaInicio(usuario),
           themeMode: ThemeMode.dark,
