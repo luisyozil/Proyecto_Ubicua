@@ -46,7 +46,7 @@ class NotificacionesPantalla extends State<PantallaNotificaciones_State> {
                       (it) =>
                   it.fecha
                       .difference(DateTime.now())
-                      .inDays > 3);
+                      .inDays != 3);
               return eventos.length > 0
                   ? ListView.builder(
                 itemCount: eventos.length,
