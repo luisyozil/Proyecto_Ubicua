@@ -22,6 +22,7 @@ class Inicio extends StatelessWidget {
     return WillPopScope(
         onWillPop: () async { return false; },
         child:   MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Version 1.0',
           home: PantallaInicio(usuario),
           themeMode: ThemeMode.dark,
@@ -69,16 +70,14 @@ class _PantallaInicioState extends State<PantallaInicio> {
     ];
     return new Scaffold(
       backgroundColor: Colors.black,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ListaDeseos(usuario: widget.usuario,)));
+        },
+        child: Icon(MdiIcons.cartOutline),
+      ),
       appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(MdiIcons.cartOutline),
-            onPressed: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ListaDeseos(usuario: widget.usuario,)));
-            },
-          ),
-        ],
         title: Text(
           MenuList[idx_Title],
           style: TextStyle(

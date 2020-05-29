@@ -88,8 +88,9 @@ class ParteGris extends StatelessWidget {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    return ListView(
-      children: <Widget>[
+    return Scaffold(
+      body: ListView(
+        children:  <Widget>[
         Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
@@ -167,7 +168,8 @@ class ParteGris extends StatelessWidget {
         SizedBox(
           height: 50,
         ),
-      ],
+      ]
+    )
     );
   }
 }

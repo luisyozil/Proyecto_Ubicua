@@ -23,13 +23,30 @@ class _IntroPageState extends State<IntroPage> {
     final SharedPreferences prefs = await _prefs;
     final String token = prefs.getString('token');
     final bool signed = prefs.getBool('signed');
-    print("aqui");
+    AuthResult usuario;
+    bool correcto = true;
     if(signed!=null&&signed)
       {
-        AuthResult usuario = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: prefs.getString('email'), password: prefs.getString('pass'));
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
+        try
+        {
+          usuario = await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: prefs.getString('email'), password: prefs.getString('pass'));
+        }
+        catch(error)
+        {
+          correcto = false;
+          prefs.clear();
+        }
+        if(correcto)
+          {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
+          }
+        else
+          {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Login2()));
+          }
       }
     else
       {
@@ -77,9 +94,9 @@ class _IntroPageState extends State<IntroPage> {
                   controller: _pageController,
                   children: <Widget>[
                     Pantalla(
-                      titulo: "We care about you, friends and family",
+                      titulo: "DREAM PARADISE",
                       descripcion:
-                          "We connect with your favorite artist in every concert wherever you are",
+                          "Te conectamos con tu artista favorito en cualquier concierto desde quiera que estes.",
                       imagen: "img/musicos2.png",
                     ),
                     Pantalla(
@@ -91,7 +108,7 @@ class _IntroPageState extends State<IntroPage> {
                     Pantalla(
                       titulo: "Conciertos",
                       descripcion:
-                          "We connect with your favorite artist in every concert wherever you are",
+                          "No importa tus gustos musicales, seguro encontrarás tu concierto ideal",
                       imagen: "img/musicos3.png",
                     ),
                   ],

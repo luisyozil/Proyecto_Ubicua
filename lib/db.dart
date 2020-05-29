@@ -6,6 +6,7 @@ import 'package:proyecto_ubicua/modelos/Paquete.dart';
 import 'package:proyecto_ubicua/modelos/Promocion.dart';
 import 'modelos/Evento.dart';
 import 'modelos/Usuario.dart';
+import 'modelos/viajes.dart';
 
 
 //esta funcion trae todos los documentos de la base de datos usuarios **REVISAR EL MODELO USUARIO**
@@ -53,7 +54,7 @@ Stream<Paquete> BuscaPaquete(String id){
   return Firestore.instance.collection("paquetes").document(id).snapshots().map(CambiaPaquete);
 }
 
-/************************************************************************************************************************ PARA LOS PROMOCIONES*/
+/************************************************************************************************************************ PARA LAS PROMOCIONES*/
 Stream<List<Promocion>> damePromociones() {
   return Firestore.instance.collection('promociones').snapshots().map(CambiaListaPromociones);
 }
@@ -77,4 +78,13 @@ Future<void> GuardaElemento(Elemento elemento){
 
 Future<void> EliminaElemento(String id){
   return Firestore.instance.collection('elementos').document(id).delete();
+}
+
+/************************************************************************************************************************ PARA Mis Viajes*/
+Stream<List<Viaje>> dameViajes(String id) {
+  return Firestore.instance.collection('misviajes').where("IdUsuario", isEqualTo: id).snapshots().map(CambiaListaViajes);
+}
+
+Future<void> GuardaViaje(Viaje viaje){
+  return Firestore.instance.collection('elementos').document().setData(viaje.Conversion());
 }

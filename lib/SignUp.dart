@@ -11,6 +11,7 @@ import 'modelos/Usuario.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -79,6 +80,7 @@ class FormSignUp extends StatefulWidget {
 }
 
 class _FormSignUpState extends State<FormSignUp> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   File imagen;
 
   Future<void> pickImage() async {
@@ -113,6 +115,7 @@ class _FormSignUpState extends State<FormSignUp> {
   }
 
   Future<void> Verifica() async {
+    final SharedPreferences prefs = await _prefs;
     final formstate = _formkey.currentState;
     if (formstate.validate()) {
       formstate.save();
@@ -125,8 +128,11 @@ class _FormSignUpState extends State<FormSignUp> {
 
         String Uid = usuario.user.uid;
         String urlImagen = "https://api.adorable.io/avatars/600/"+_name.text+_lastname.text+"@adorable.io.png";
-        Usuario user = Usuario(Uid,_name.text,_lastname.text,urlImagen,_email.text);
+        Usuario user = Usuario(Uid,_name.text,_lastname.text,urlImagen,_email.text.trim());
         db.GuardaUsuario(user);
+        prefs.setString('email', _email.text.trim());
+        prefs.setString('pass', _pass.text);
+        prefs.setBool('signed', true);
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Inicio(usuario.user)));
       } catch (error) {
