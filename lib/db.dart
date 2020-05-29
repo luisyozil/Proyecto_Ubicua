@@ -86,5 +86,5 @@ Stream<List<Viaje>> dameViajes(String id) {
 }
 
 Future<void> GuardaViaje(Viaje viaje){
-  return Firestore.instance.collection('elementos').document().setData(viaje.Conversion());
+  return Firestore.instance.collection('misviajes').document().setData(viaje.Conversion());
 }
