@@ -1,15 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:proyecto_ubicua/modelos/Usuario.dart';
 import 'clipper.dart';
 import 'db.dart' as db;
 import 'modelos/Evento.dart';
 import 'modelos/viajes.dart';
 
-
 class MisViajes extends StatelessWidget {
-
-  Usuario usuario;
+  final FirebaseUser usuario;
 
   MisViajes(this.usuario);
 
@@ -18,42 +17,59 @@ class MisViajes extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: StreamBuilder(
-        stream: db.dameViajes(usuario.id),
-        builder: (context, AsyncSnapshot<List<Viaje>> snapshot ){
-          
-          if(snapshot.connectionState == ConnectionState.waiting)
+        stream: db.dameViajes(usuario.uid),
+        builder: (context, AsyncSnapshot<List<Viaje>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
             return CircularProgressIndicator();
 
-          if(snapshot.hasData){
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index){
-                return StreamBuilder(
-                  stream: db.BuscaEvento(snapshot.data[index].IdEvento),
-                  builder: (context, AsyncSnapshot<Evento> snapshotevento ){
-                    if(snapshotevento.connectionState == ConnectionState.waiting){
-                      return CircularProgressIndicator();
-                    }
+          if (snapshot.hasData) {
+            if(snapshot.data.length > 0){
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return StreamBuilder(
+                    stream: db.BuscaEvento(snapshot.data[index].IdEvento),
+                    builder: (context, AsyncSnapshot<Evento> snapshotevento) {
+                      if (snapshotevento.connectionState ==
+                          ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      }
 
-                    if(snapshotevento.hasData){
-                      return ViajeRow(snapshotevento.data);
-                    }
-
-                  },
-                );
-              },
-            );
-          }else{
-            return Container(
-              child: Text("no hay eventos"),
-            );
+                      if (snapshotevento.hasData) {
+                        return ViajeRow(snapshotevento.data);
+                      }
+                    },
+                  );
+                },
+              );
+            }else{
+              return Center(
+                child: Container(
+                  height: 100,
+                  /*decoration: BoxDecoration(
+                    border: Border.all(color: Colors.red, width: 2),
+                  ),*/
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        MdiIcons.musicOff,
+                        size: 30,
+                      ),
+                      Text(
+                        "No tienes Viajes",
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
           }
         },
       ),
     );
   }
 }
-
 
 /*class MisViajes extends StatefulWidget {
   Usuario usuario;
